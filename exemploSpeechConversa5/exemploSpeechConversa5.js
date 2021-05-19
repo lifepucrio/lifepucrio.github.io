@@ -26,6 +26,7 @@ function setup() {
 }
 
 function draw() {
+  
 }
 
 function mostraResultado() {
@@ -52,7 +53,11 @@ function mostraResultado() {
   qualResposta++;
 }
 
-function mousePressed() {
+//function mousePressed() {
+//  fala();
+//}
+
+function touchStarted() {
   fala();
 }
 
