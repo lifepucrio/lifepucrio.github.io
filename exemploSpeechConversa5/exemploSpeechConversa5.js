@@ -53,13 +53,13 @@ function mostraResultado() {
   qualResposta++;
 }
 
-//function mousePressed() {
-//  fala();
-//}
-
-function touchStarted() {
+function mousePressed() {
   fala();
 }
+
+//function touchStarted() {
+//  fala();
+//}
 
 function fala() {
   background(255, 0, 0);
