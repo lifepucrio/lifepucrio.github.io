@@ -14,7 +14,7 @@ function setup() {
   // desabilitar o menu contextual padrão que aparece
   // no click com o botão direito do mouse
   // para poder usar a função de zoom da biblioteca
-  document.oncontextmenu = function() { return false; }
+  //document.oncontextmenu = function() { return false; }
   noStroke();
 } 
 
