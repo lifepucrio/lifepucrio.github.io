@@ -25,7 +25,7 @@ function draw(){
   sphere(200);
 }
 
-function mousePressed(){
+function touchStarted(){
   if (bool){textura = loadImage("assets/terra2.jpg"); bool = false;}
   else {textura = loadImage("assets/terra.jpg"); bool = true;}
 
