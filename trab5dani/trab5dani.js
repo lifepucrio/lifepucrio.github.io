@@ -1,10 +1,10 @@
 //Exemplo utilizando a biblioteca p5.easycam
-
+var bool = true;
 
 function preload(){
 textura1 = loadImage("assets/terra.jpg");
 textura2 = loadImage("assets/terra2.jpg");
-bool = true;
+
 }
 
 function setup() { 
