@@ -2,7 +2,7 @@
 
 
 function preload(){
-textura = loadImage("assets/terra.jpg");
+textura1 = loadImage("assets/terra.jpg");
 textura2 = loadImage("assets/terra2.jpg");
 bool = true;
 }
@@ -16,8 +16,6 @@ function setup() {
   // para poder usar a função de zoom da biblioteca
   document.oncontextmenu = function() { return false; }
   noStroke();
-  textura1 = loadImage("assets/terra2.jpg");
-  textura2 = loadImage("assets/terra.jpg");
 } 
 
 function draw(){
