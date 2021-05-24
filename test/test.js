@@ -13,7 +13,7 @@ function draw() {
   }
 }
 
-function touchStarted(){
+function mousePressed(){
   if (tex==true){
     tex = false;
   }else {
