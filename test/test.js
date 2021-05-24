@@ -2,6 +2,7 @@ var tex = true;
 
 function setup() {
   createCanvas(windowWidth, windowHeight,WEBGL);
+  createEasyCam();
 }
 
 
