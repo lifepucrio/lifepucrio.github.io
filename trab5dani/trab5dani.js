@@ -1,10 +1,10 @@
 //Exemplo utilizando a biblioteca p5.easycam
-
+var bool = true;
 
 function preload(){
-textura = loadImage("assets/terra.jpg");
+textura1 = loadImage("assets/terra.jpg");
 textura2 = loadImage("assets/terra2.jpg");
-bool = true;
+
 }
 
 function setup() { 
@@ -21,14 +21,20 @@ function setup() {
 function draw(){
   background(0);
   lights();
-  texture(textura);
+  if(bool==true){
+  texture(textura1);
+  }else{
+    texture(textura2);
+    }
   sphere(200);
 }
 
-function mousePressed(){
-  if (bool){textura = loadImage("assets/terra2.jpg"); bool = false;}
-  else {textura = loadImage("assets/terra.jpg"); bool = true;}
 
-
+function touchStarted(){
+  if (bool==true){
+    bool = false;
+  }else {
+    bool = true;
+  }
 
 }
