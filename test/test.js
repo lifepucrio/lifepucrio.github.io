@@ -1,7 +1,7 @@
 var tex = true;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight,WEBGL);
 }
 
 
@@ -11,9 +11,10 @@ function draw() {
   } else {
     background(0,255,0);
   }
+  sphere(200);
 }
 
-function mousePressed(){
+function touchStarted(){
   if (tex==true){
     tex = false;
   }else {
