@@ -16,19 +16,25 @@ function setup() {
   // para poder usar a função de zoom da biblioteca
   document.oncontextmenu = function() { return false; }
   noStroke();
+  textura1 = loadImage("assets/terra2.jpg");
+  textura2 = loadImage("assets/terra.jpg");
 } 
 
 function draw(){
   background(0);
   lights();
-  texture(textura);
+  if(bool==true){
+  texture(textura1);
+  }else{
+    texture(textura2);
   sphere(200);
 }
 
 function touchStarted(){
-  if (bool){textura = loadImage("assets/terra2.jpg"); bool = false;}
-  else {textura = loadImage("assets/terra.jpg"); bool = true;}
-
-
+  if (bool==true){
+    bool = false;
+  }else {
+    bool = true;
+  }
 
 }
