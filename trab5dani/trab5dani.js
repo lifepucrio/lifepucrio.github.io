@@ -27,8 +27,9 @@ function draw(){
   texture(textura1);
   }else{
     texture(textura2);
+    }
   sphere(200);
-}
+
 
 function touchStarted(){
   if (bool==true){
