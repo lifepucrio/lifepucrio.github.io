@@ -10,11 +10,11 @@ textura2 = loadImage("assets/terra2.jpg");
 function setup() { 
   createCanvas(windowWidth, windowHeight, WEBGL);
   // inicializar a camera
-  createEasyCam();
+  //createEasyCam();
   // desabilitar o menu contextual padrão que aparece
   // no click com o botão direito do mouse
   // para poder usar a função de zoom da biblioteca
-  document.oncontextmenu = function() { return false; }
+  //document.oncontextmenu = function() { return false; }
   noStroke();
 } 
 
