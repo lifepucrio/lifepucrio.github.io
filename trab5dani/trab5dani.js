@@ -27,6 +27,7 @@ function draw(){
     texture(textura2);
     }
   sphere(200);
+}
 
 
 function touchStarted(){
