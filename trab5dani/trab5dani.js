@@ -1,5 +1,5 @@
 //Exemplo utilizando a biblioteca p5.easycam
-var bool = true;
+var tex = true;
 
 function preload(){
 textura1 = loadImage("assets/terra.jpg");
@@ -21,7 +21,7 @@ function setup() {
 function draw(){
   background(0);
   lights();
-  if(bool==true){
+  if(tex==true){
   texture(textura1);
   }else{
     texture(textura2);
@@ -31,10 +31,10 @@ function draw(){
 
 
 function touchStarted(){
-  if (bool==true){
-    bool = false;
+  if (tex==true){
+    tex = false;
   }else {
-    bool = true;
+    tex = true;
   }
 
 }
