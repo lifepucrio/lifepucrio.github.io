@@ -12,6 +12,7 @@ var qualPergunta=1;
 var qualResposta=1;
 var perguntando=true;
 
+
 function setup() {
   createCanvas(800, 400);
   background(255);
@@ -53,7 +54,7 @@ function mostraResultado() {
   qualResposta++;
 }
 
-function mousePressed() {
+function touchStarted() {
   fala();
 }
 
