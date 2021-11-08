@@ -15,7 +15,7 @@ function preload() {
   //a tabela possui header
   minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
   FranklinGothic = loadFont('assets/FranklinGothic.ttf');
-  FrankGo = loadFont('assets/FRANKGO.ttf');
+  FrankGo = loadFont('assets/FrankGo.ttf');
   img0 = loadImage('assets/img0.png');
   img1 = loadImage('assets/img1.png');
   img2 = loadImage('assets/img2.png');
