@@ -72,7 +72,7 @@ function setup() {
   //com a latitude e longitude do GPS
   options.lat = locationData.latitude;
   options.lng = locationData.longitude;
-  createCanvas(640, 640);
+  createCanvas(displayWidth, displayHeight);
   //criar o mapa e posicionar no canvas
   //com a latitude e longitude escolhidas
   meuMapa = mappa.tileMap(options);
