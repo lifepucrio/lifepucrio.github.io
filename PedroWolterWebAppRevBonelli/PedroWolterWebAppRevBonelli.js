@@ -14,8 +14,8 @@ function preload() {
   //carregar o arquivo 'tabela.csv' que está na pasta 'assets'
   //a tabela possui header
   minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
-  FranklinGothic = loadFont('assets/FranklinGothic.ttf');
-  FrankGo = loadFont('assets/FrankGo.ttf');
+  //FranklinGothic = loadFont('assets/FranklinGothic.ttf');
+  //FrankGo = loadFont('assets/FrankGo.ttf');
   img0 = loadImage('assets/img0.png');
   img1 = loadImage('assets/img1.png');
   img2 = loadImage('assets/img2.png');
@@ -50,7 +50,7 @@ function draw() {
   for (let linha = 0; linha < minhaTabela.getRowCount(); linha++) {
     fill(255, 255, 255);
     textAlign(CENTER, CENTER);
-    textFont(FranklinGothic);
+    //textFont(FranklinGothic);
     textSize(32);
     text("Name", width/2, 300);
     text("Crew Size", width*0.25, 440);
