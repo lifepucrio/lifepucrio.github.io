@@ -50,7 +50,7 @@ function draw() {
   for (let linha = 0; linha < minhaTabela.getRowCount(); linha++) {
     fill(255, 255, 255);
     textAlign(CENTER, CENTER);
-    //textFont(FranklinGothic);
+    textFont(FranklinGothic);
     textSize(32);
     text("Name", width/2, 300);
     text("Crew Size", width*0.25, 440);
@@ -73,7 +73,7 @@ function draw() {
     }
     image(SetaA, width*0.25, height*0.75);
     image(SetaD, width*0.75, height*0.75);
-    text(choice, 260, 700);
+    //text(choice, 260, 700);
 
     //Imagem
     if (choice == 0) {
