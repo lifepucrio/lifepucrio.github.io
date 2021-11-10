@@ -32,8 +32,8 @@ function setup() {
   //configurar a linguagem para português do Brasil
   minhaVoz.setLang('pt-BR');
   //escolher a voz
-  minhaVoz.setVoice("Google português do Brasil");
-  minhaVoz.listVoices();
+  minhaVoz.setVoice('Google português do Brasil');
+  //minhaVoz.listVoices();
 }
 
 function draw() {
