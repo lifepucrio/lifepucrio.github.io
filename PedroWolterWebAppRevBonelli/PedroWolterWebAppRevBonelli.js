@@ -13,7 +13,7 @@ let filme6=0;
 function preload() {
   //carregar o arquivo 'tabela.csv' que está na pasta 'assets'
   //a tabela possui header
-  //minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
+  minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
   FranklinGothic = loadFont('assets/FranklinGothic.ttf');
   //FrankGo = loadFont('assets/FrankGo.ttf');
   img0 = loadImage('assets/img0.png');
