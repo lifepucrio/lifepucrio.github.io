@@ -35,7 +35,7 @@ function preload() {
   fundo = loadImage('assets/fundo.png');
 }
 
-function setup(){
+function setup() {
   createCanvas(displayWidth, displayHeight);
   imageMode(CENTER);
 }
@@ -44,18 +44,19 @@ function draw() {
   //imprimir as informações da tabela no console, para debugar
   // print(minhaTabela.getRowCount() + ' linhas na tabela');
   // print(minhaTabela.getColumnCount() + ' colunas na tabela');
-  
-  image(fundo, width/2,height/2,width, height);
+
+  image(fundo, width/2, height/2, width, height);
+  fill(255, 255, 255);
+  textAlign(CENTER, CENTER);
+  textFont(FranklinGothic);
+  textSize(32);
+  text("Name", width/2, 300);
+  text("Crew Size", width*0.25, 440);
+  text("Vehicle Class", width*0.75, 440);
+  text("Cost in credits", width/2, 555);
   //ler as informações da tabela linha por linha
   for (let linha = 0; linha < minhaTabela.getRowCount(); linha++) {
-    fill(255, 255, 255);
-    textAlign(CENTER, CENTER);
-    textFont(FranklinGothic);
-    textSize(32);
-    text("Name", width/2, 300);
-    text("Crew Size", width*0.25, 440);
-    text("Vehicle Class", width*0.75, 440);
-    text("Cost in credits", width/2, 555);
+
 
     //textFont(FrankGo);
     textSize(24);
