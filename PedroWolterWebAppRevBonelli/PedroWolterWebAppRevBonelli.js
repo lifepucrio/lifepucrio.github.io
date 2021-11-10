@@ -16,23 +16,23 @@ function preload() {
   minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
   //FranklinGothic = loadFont('assets/FranklinGothic.ttf');
   //FrankGo = loadFont('assets/FrankGo.ttf');
-  img0 = loadImage('assets/img0.png');
-  img1 = loadImage('assets/img1.png');
-  img2 = loadImage('assets/img2.png');
-  img3 = loadImage('assets/img3.png');
-  img4 = loadImage('assets/Snowspeeder.png');
-  img5 = loadImage('assets/img5.png');
-  img6 = loadImage('assets/img6.png');
-  img7 = loadImage('assets/img7.png');
-  img8 = loadImage('assets/img8.png');
-  img9 = loadImage('assets/img9.png');
-  img10 = loadImage('assets/img10.png');
-  img11 = loadImage('assets/img11.png');
-  img12 = loadImage('assets/img12.png');
-  img13 = loadImage('assets/img13.png');
-  SetaA = loadImage('assets/SetaA.png');
-  SetaD = loadImage('assets/SetaD.png');
-  fundo = loadImage('assets/fundo.png');
+  //img0 = loadImage('assets/img0.png');
+  //img1 = loadImage('assets/img1.png');
+  //img2 = loadImage('assets/img2.png');
+  //img3 = loadImage('assets/img3.png');
+  //img4 = loadImage('assets/Snowspeeder.png');
+  //img5 = loadImage('assets/img5.png');
+  //img6 = loadImage('assets/img6.png');
+  //img7 = loadImage('assets/img7.png');
+  //img8 = loadImage('assets/img8.png');
+  //img9 = loadImage('assets/img9.png');
+  //img10 = loadImage('assets/img10.png');
+  //img11 = loadImage('assets/img11.png');
+  //img12 = loadImage('assets/img12.png');
+  //img13 = loadImage('assets/img13.png');
+  //SetaA = loadImage('assets/SetaA.png');
+  //SetaD = loadImage('assets/SetaD.png');
+  //fundo = loadImage('assets/fundo.png');
 }
 
 function setup(){
