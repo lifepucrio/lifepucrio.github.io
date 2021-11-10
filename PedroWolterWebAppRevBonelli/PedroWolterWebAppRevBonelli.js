@@ -8,6 +8,7 @@ let filme3=0;
 let filme4=0;
 let filme5=0;
 let filme6=0;
+var podePassar=true;
 
 
 function preload() {
@@ -15,7 +16,6 @@ function preload() {
   //a tabela possui header
   minhaTabela = loadTable('assets/tabela.csv', 'csv', 'header');
   FranklinGothic = loadFont('assets/FranklinGothic.ttf');
-  //FrankGo = loadFont('assets/FrankGo.ttf');
   img0 = loadImage('assets/img0.png');
   img1 = loadImage('assets/img1.png');
   img2 = loadImage('assets/img2.png');
@@ -36,15 +36,13 @@ function preload() {
 }
 
 function setup() {
+  //criando o canvas com a largura e altura do dispositivo
   createCanvas(displayWidth, displayHeight);
   imageMode(CENTER);
 }
 
 function draw() {
-  //imprimir as informações da tabela no console, para debugar
-  // print(minhaTabela.getRowCount() + ' linhas na tabela');
-  // print(minhaTabela.getColumnCount() + ' colunas na tabela');
-
+  //posicionando todas as imagens em posições relativas à largura e altura da tela
   image(fundo, width/2, height/2, width, height);
   fill(255, 255, 255);
   textAlign(CENTER, CENTER);
@@ -56,9 +54,6 @@ function draw() {
   text("Cost in credits", width/2, 555);
   //ler as informações da tabela linha por linha
   for (let linha = 0; linha < minhaTabela.getRowCount(); linha++) {
-
-
-    //textFont(FrankGo);
     textSize(24);
     textAlign(CENTER);
     if (choice == linha)
@@ -74,7 +69,6 @@ function draw() {
     }
     image(SetaA, width*0.25, height*0.75);
     image(SetaD, width*0.75, height*0.75);
-    //text(choice, 260, 700);
 
     //Imagem
     if (choice == 0) {
@@ -109,19 +103,24 @@ function draw() {
   }
 }
 
+//substituindo a função mousePressed por touchStarted
 function touchStarted() {
-  if (mouseX >= width/2  && mouseY >= height*0.7) {
-    if (choice == 12) {
-      choice = -1;
+  if (podePassar==true) {
+    if (mouseX >= width/2  && mouseY >= height*0.7) {
+      if (choice == 12) {
+        choice = -1;
+      }
+      choice = choice+1;
+    } else if (mouseX <= width/2  && mouseY >= height*0.7) {
+      if (choice == 0) {
+        choice = 13  ;
+      }
+      choice = choice-1;
     }
-    choice = choice+1;
-  } else if (mouseX <= width/2  && mouseY >= height*0.7) {
-    if (choice == 0) {
-      choice = 13  ;
-    }
-    choice = choice-1;
+    podePassar=false;
   }
 }
 
-//function mousePressed() {
-//   choice = choice+1;}
+function touchEnded(){
+  podePassar=true;
+}
