@@ -114,7 +114,7 @@ function mostraResultado() {
 }
 
 
-function mousePressed() {
+function touchStarted() {
   fala();
   
 }
