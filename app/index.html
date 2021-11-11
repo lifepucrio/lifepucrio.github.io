@@ -1,18 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <title>Web App</title>
+  <!-- Configurar a largura e escala da tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Habilitar para ser adicionado como atalho na home screen do celular -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Web App</title>
+  <!-- Scripts do p5.js -->
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="app.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Desabilitar o scroll no web app -->
+  <script type="text/javascript">
+    function blockMove() {
+      event.preventDefault();
+    }
+  </script>
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+</head>
 
-  <body>
-    <script src="app.js"></script>
-  </body>
+<body ontouchmove="blockMove()">
+  <!-- Remover as margens do HTML para o aplicativo ficar fullscreen -->
+  <style>
+    body {
+      padding:
+        0;
+      margin:
+        0;
+    }
+  </style>
+</body>
+
 </html>
