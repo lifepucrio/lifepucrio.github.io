@@ -23,7 +23,7 @@ function preload(){
 function setup(){
   options.lat = locationData.latitude;
   options.lng = locationData.longitude;
-  createCanvas (displayWidth, displayHeight);
+  createCanvas (windowWidth, windowHeight);
   meuMapa = mappa.tileMap(options); 
   meuMapa.overlay(canvas);
   meuMapa.onChange(desenhaMapa);
