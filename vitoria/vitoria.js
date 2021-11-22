@@ -3,6 +3,8 @@
 //var meuMapa;
 var camera;
 
+var meuMapa;
+
 var mappa = new Mappa('Leaflet');
 
 var options = {
@@ -30,6 +32,7 @@ function setup(){
   
 
 function desenhaMapa(){
+  clear();
     var pos = meuMapa.latLngToPixel(locationData.latitude, locationData.longitude);
 
 }
