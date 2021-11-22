@@ -11,7 +11,7 @@ var options = {
   lat: -22.93,
   lng: -43.18,
   zoom: 6,
- style: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+ style: "https://{s}.tile.osm.org/{z}/{x}/{y}.png"
 };
 
 function preload(){
