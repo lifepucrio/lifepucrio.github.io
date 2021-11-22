@@ -39,6 +39,6 @@ function desenhaMapa(){
 
 function draw(){
  
- image (camera, 0, 0, width, height*0.85);
+ image (camera, 0, 0, width, height);
   
 }
