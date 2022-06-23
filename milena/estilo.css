@@ -1,0 +1,35 @@
+@charset "utf-8";
+body {
+	background-color:;
+
+
+   background: url('Artboard 2.png') center center no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+}
+}
+ h1 {font-size: 50px; 
+     font-weight: 500;
+     font-style: normal;
+	 color: darkolivegreen;
+	 font-family: basic-sans, sans-serif;
+}
+p {font-size: 18px;
+   font-family: basic-sans, sans-serif;
+   font-weight: 300;
+   font-style: normal;
+   color: darkolivegreen;
+}
+div.figure{
+	float: none;
+	width: auto;
+	font-size:;
+   font-family: basic-sans, sans-serif;
+font-weight: 300;
+font-style: normal;
+   color: darkolivegreen; 
+}
+
