@@ -1,0 +1,41 @@
+
+ <html>
+ <head>
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>www.site.com.br</title>
+ </head>
+ <style>
+    @font-face
+    {font-family: "comic";
+  src: url("ComicNeueSansID.ttf");
+}
+@font-face
+    {font-family: "impact";
+  src: url("IMPACTED.ttf");
+}
+ h1 {font-family:serif;color:orangered;text-align:center; font-size:120px ;}
+ h2 {color:darkorange;font-family:serif;text-align:center; font-size:60px;}
+ 
+img {border: black 3px dashed;}
+
+.inicio {font-family: comic ; font-size:40px; color:blueviolet;}
+.meio {font-family:impact ; font-size:45px; color:darkcyan;}
+
+
+ </style>
+ <body background="Fundo++.jpg">
+
+
+ <h1>Título</h1>
+ <h2> Subtítulo </h2> 
+ <img src="Html-1.jpg">
+ <p class="inicio"> Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans, Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans Comic Sans, Comica Sans, Comic Sans, Comic Sans, Comic Sans </p>	
+ <hr>
+ <img src="Html-2.jpg">
+ <img src="Html-3.jpg"> 
+ <p class="meio">
+ Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact, Impact,</p>
+ <img src="GIF.gif">
+ </body>
+ </html>
