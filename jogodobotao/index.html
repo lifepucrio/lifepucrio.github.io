@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo do Botão</title>
+  <link rel="icon" type/x-icon href="botaov.ico">
+<style>
+body {
+  position: absolute;
+}
+
+#image {
+   cursor: pointer;
+  position: absolute; 
+  top: 0px; 
+  left: 0px; 
+  transition: all 0.2s;
+}
+</style>
+<body>  
+    <source src="adriano.mp3" type="audio/mpeg" id="sound">
+    <img height="200px" id="image" src="botaov.png">
+
+<script type="text/javascript">
+
+var image = document.getElementById('image');
+var sound = new Audio('button10.wav')
+
+image.addEventListener('click',()=>{
+  sound.currentTime = 0;
+  sound.play();
+});
+
+image.onclick=function(){
+  var x = Math.floor(Math.random()*1000);
+  var y = Math.floor(Math.random()*1000);
+  image.style.top = x + 'px';
+  image.style.left = y + 'px';
+  play('sound', 'loader-')
+};
+
+var count =(function () {
+
+var counter = 0;
+return function () {return counter +=1;}
+})();
+
+function displaycount(){
+
+document.getElementById("contador").innerHTML = count();
+}
+
+// function moveleft() {
+//   const img = document.getElementById('inspo');
+//   img.style.left = Number(img.style.left.slice(0, -2)) - 10 + 'px';
+// }
+
+// function moveright() {
+//   const img = document.getElementById('inspo');
+//   img.style.left = Number(img.style.left.slice(0, -2)) + 10 + 'px';
+// }
+
+// function moveup() {
+//   const img = document.getElementById('inspo');
+//   img.style.top = Number(img.style.top.slice(0, -2)) - 10 + 'px';
+// }
+
+// function movedown() {
+//   const img = document.getElementById('inspo');
+//   img.style.top = Number(img.style.top.slice(0, -2)) + 10 + 'px';
+// }
+
+</script>
+
+<body onclick="moveimage()">
+</body>
+</html>
