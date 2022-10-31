@@ -19,12 +19,13 @@ function preloadBGImage() //não recarrega MouseIconImage
 function setup()
 {
   createCanvas(displayWidth, displayHeight);
+  imageMode(CENTER);
 }
 
 function draw()
 {
   background(255);
-  image(BGImage, -mouseX/8, -mouseY/8);
+  image(BGImage, displayWidth/2 - mouseX/8, displayHeight/2 - mouseY/8);
   noStroke();
   fill(255);
   //mask

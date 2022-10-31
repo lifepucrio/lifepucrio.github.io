@@ -11,8 +11,14 @@
   <script language="javascript" type="text/javascript" src="gustavo.js"></script>
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
 
-  <!-- This line removes any default padding and style.
-  You might only need one of these values set. -->
+  <!-- Desabilitar o scroll no web app -->
+  <script type="text/javascript">
+  function blockMove() {
+  event.preventDefault() ;
+}
+</script>
+  <body ontouchmove="blockMove()">
+  <!-- Remover as margens do HTML para o aplicativo ficar fullscreen -->
   <style> body {
 padding:
   0;
