@@ -21,12 +21,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(4*windowHeight/3, windowHeight);
+  createCanvas(4*displayHeight/3, displayHeight);
   video = createCapture(VIDEO);
   video.size(width, height);
   video.hide();
   
-  som.play();
+  //som.play();
   
   poseNet = ml5.poseNet(video);
   poseNet.on('pose', gotPoses);
@@ -45,6 +45,12 @@ function draw() {
   fundo.resize(0, height);
   image(fundo, 0, 0);
   drawKeypoints();
+}
+
+function mousePressed() {
+  if(som.isPlaying() == false){
+    som.play();
+  }
 }
 
 function drawKeypoints() {
