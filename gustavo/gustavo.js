@@ -25,7 +25,7 @@ function setup()
 function draw()
 {
   background(255);
-  image(BGImage, displayWidth/2 - mouseX/8, displayHeight/2 - mouseY/8);
+  image(BGImage, displayWidth/2 - mouseX/8 - rotationY/2, displayHeight/2 - mouseY/8 - rotationX/2);
   noStroke();
   fill(255);
   //mask
@@ -46,7 +46,7 @@ function draw()
   strokeWeight(4);
   stroke(0);
   rect(displayWidth/2 - maskWidth/2, displayHeight/2 - maskHeight/2, maskWidth, maskHeight);
-  image(MouseIconImage, displayWidth - 120, displayHeight - 120 + 20, 75, 75);
+  //image(MouseIconImage, displayWidth - 120, displayHeight - 120 + 20, 75, 75);
 }
 
 function mousePressed()
