@@ -22,3 +22,7 @@ function handleFile(file) {
     img = null;
   }
 }
+
+function mousePressed() {
+  save('myCanvas.jpg');
+}
