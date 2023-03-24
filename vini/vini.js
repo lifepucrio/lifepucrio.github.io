@@ -4,10 +4,11 @@ let img;
 function setup() {
   input = createFileInput(handleFile);
   input.position(0, 0);
+  createCanvas(800,600);
 }
 
 function draw() {
-  background(255);
+  background(0);
   if (img) {
     image(img, 0, 0, width, height);
   }
