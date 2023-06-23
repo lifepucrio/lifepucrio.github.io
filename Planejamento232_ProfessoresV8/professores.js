@@ -9,16 +9,17 @@ function professores() {
     let prof = tabela.get(i, 'PROFESSOR');
     if (prof.includes(qualProf)) {
       let inicio;
-      //console.log(prof);
+      console.log(prof);
       for (let x=4; x<=8; x++) {
         let dia=tabela.get(i, x);
         if (dia!= null && dia != '') {
-          //console.log('dia:'+dia);
+          console.log('dia:'+dia);
           let horario = tabela.get(i, 'HORA');
           inicio = horario.substring(0, 2);
           let fim = horario.substring(3, 5);
           let duracao=float(fim)-float(inicio);
           let codigo=tabela.get(i, 'CODIGO');
+          console.log(codigo);
           let disciplina=tabela.get(i, 'DISCIPLINA');
           let sala=tabela.get(i, 'SALA');
           let turma=tabela.get(i, 'TUR');
@@ -110,7 +111,7 @@ function professores() {
           if (checa[pos+2]==3) {
             console.log(checa[pos+2]+' aulas as '+h+' horas de '+d);
             if (checa[pos+3].substring(7, 14)==checa[pos+3].substring(14, 21)) {
-              console.log("rolou");
+              console.log("roloooou");
               aulas[z+7]=115;
               if (anda1==0) {
                 aulas[z+8]=0;
@@ -147,6 +148,29 @@ function professores() {
                 anda1++;
               }
               turma='';
+            }
+            if (checa[pos+3].substring(0, 7)==checa[pos+3].substring(7, 14)&&
+            checa[pos+3].substring(0, 7)==checa[pos+3].substring(14, 21)) {
+              console.log("rolou 3 turmas iguais");
+              aulas[z+7]=210;
+              aulas[z+8]=0;
+              //aulas[z+8]=anda1*95;
+              //if (anda1==0) {
+              //  aulas[z+8]=0;
+              //}
+              //if (anda1==1) {
+              //  aulas[z+8]=3000;
+              //}
+              //if (anda1==2) {
+              //  aulas[z+8]=95;
+              //}
+              //if (anda1>2) {
+              //  anda1=0;
+              //} else {
+              //  anda1++;
+              //}
+              turma='';
+              sala='';
             }
           }
           //4 aulas com horarios coincidentes

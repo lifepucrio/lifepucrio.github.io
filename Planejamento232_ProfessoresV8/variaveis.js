@@ -5,7 +5,7 @@ var qd;
 var qh;
 var hora;
 var diaSelecionado;
-var qualProf = 'Alessandra Carusi';
+var qualProf = 'Lula Rocha';
 //var horario, inicio, fim;
 var posSegunda;
 var posTerca;
