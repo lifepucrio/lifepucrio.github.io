@@ -42,7 +42,7 @@ function professores() {
   }
   console.log(aulas);
 
-  //veriofica se tem sobreposições de aulas
+  //verifica se tem sobreposições de aulas
   pos=0;
   for (let d=2; d<=6; d++) {
     for (let h=7; h<=19; h++) {
@@ -81,14 +81,6 @@ function professores() {
             if (checa[pos+3].substring(0, 7)==checa[pos+3].substring(7, 14)) {
               console.log("a mesma aula");
               turma='';
-              //aulas[z+7]=115;
-              //turma='';
-              //if (anda2==0) {
-              //  aulas[z+8]=0;
-              //}
-              //if (anda2==1) {
-              //  aulas[z+8]=95;
-              //}
             } else {
               aulas[z+7]=115;
               //turma='';
