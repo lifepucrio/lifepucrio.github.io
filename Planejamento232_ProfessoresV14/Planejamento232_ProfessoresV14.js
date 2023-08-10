@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1300, 1500);
   console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qp = createSelect();
@@ -139,10 +139,14 @@ function selecionaProf() {
 function draw() {
   noLoop();
   background(220);
-  textSize(50);
+  
   textFont("Helvetica");
-  //textStyle(BOLD);
-  text(qualProf, 105, 80);
+  textStyle(NORMAL);
+  textSize(20);
+  text("Previsão de Aulas - Semestre 2023.2",105,45);
+  textStyle(BOLD);
+  textSize(45);
+  text(qualProf, 105, 90);
   //base desenho
   textSize(14);
   base();

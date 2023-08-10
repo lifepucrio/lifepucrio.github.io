@@ -34,5 +34,5 @@ function contagemDeCreditos() {
   }
   textStyle(BOLD);
   textSize(16);
-  text('Total de Créditos: '+totalDeCreditos, 750, 800);
+  text('Total de Créditos Previstos\n(a ser confirmado após a matrícula): '+totalDeCreditos, 750, 800);
 }

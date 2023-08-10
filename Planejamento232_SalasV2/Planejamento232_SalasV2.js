@@ -1,0 +1,59 @@
+
+
+function preload() {
+  tabela=loadTable('data/joao.csv', 'csv', 'header');
+}
+
+function setup() {
+  createCanvas(1300, 1000);
+  console.log(tabela.getRowCount()+'linhas');
+  rectMode(CORNER);
+  qs = createSelect();
+  qs.position(300, 60);
+  qs.option('ART 1');
+  qs.option('ART 2');
+  qs.option('ART 3');
+  qs.option('ART 4');
+  qs.option('ART 5');
+  qs.option('F 100');
+  qs.option('L 422');
+  qs.option('L 260');
+  qs.option('L 532');
+  qs.option('L 658');
+  qs.option('K 015');
+  qs.option('K 008');
+  qs.option('LAB MOD');
+  qs.option('LIFE');
+  qs.option('LAIA');
+  qs.option('LAMP');
+  
+  qs.selected('ART 1');
+  qs.changed(selecionaSala);
+  posSegunda=100;
+  posTerca=100+largRect;
+  posQuarta=100+2*largRect;
+  posQuinta=100+3*largRect;
+  posSexta=100+4*largRect;
+}
+
+function selecionaSala() {
+  qualSala = qs.value();
+  redraw();
+}
+
+
+function draw() {
+  noLoop();
+  background(220);
+  textSize(50);
+  textFont("Helvetica");
+  //textStyle(BOLD);
+  text(qualSala, 105, 80);
+  //base desenho
+  textSize(14);
+  base();
+  //salas
+  textSize(11);
+  textLeading(11);
+  salas();
+}
