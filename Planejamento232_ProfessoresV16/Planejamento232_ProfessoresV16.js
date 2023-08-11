@@ -20,7 +20,8 @@ function setup() {
   qp.option('Carlos Eduardo Felix');
   qp.option('Celso Wilmer');
   qp.option('Claudia Bolshaw');
-  qp.option('Claudia Kayat ');
+  qp.option('Claudia Kayat');
+  qp.option('Claudia MontAlvão');
   qp.option('Claudia Stamato ');
   qp.option('Claudia Vianna');
   qp.option('Claudio Magalhães ');
