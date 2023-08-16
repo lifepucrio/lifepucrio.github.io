@@ -85,6 +85,7 @@ function setup() {
   qp.option('Renata Mattos');
   qp.option('Rian Rezende');
   qp.option('Ricardo Fontes');
+  qp.option('Rita Couto');
   qp.option('Roberta Portas ');
   qp.option('Romulo Matteoni');
   qp.option('Sanseverino');

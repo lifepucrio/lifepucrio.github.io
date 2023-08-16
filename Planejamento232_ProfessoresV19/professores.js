@@ -106,6 +106,7 @@ function professores() {
               }
             }
           }
+          
 
           //3 aulas com horarios coincidentes
           if (checa[pos+2]==3) {
