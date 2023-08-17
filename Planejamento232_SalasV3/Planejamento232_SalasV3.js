@@ -21,6 +21,7 @@ function setup() {
   qs.option('L 532');
   qs.option('L 658');
   qs.option('K 015');
+  qs.option('K 017');
   qs.option('K 008');
   qs.option('LAB MOD');
   qs.option('LIFE');

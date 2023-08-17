@@ -3,7 +3,7 @@ function salas() {
     sala = tabela.get(i, 'SALA');
     if (sala.includes(qualSala)) {
       console.log(sala);
-      for (let x=7; x<=11; x++) {
+      for (let x=4; x<=8; x++) {
         dia=tabela.get(i, x);
         if (dia!= null && dia != '') {
           console.log('dia:'+dia);
