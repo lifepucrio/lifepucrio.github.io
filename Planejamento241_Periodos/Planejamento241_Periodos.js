@@ -18,6 +18,7 @@ function setup() {
   qs.option('6o');
   qs.option('7o');
   qs.option('8o');
+  
   qs.selected('1o');
   qs.changed(selecionaPeriodo);
 }

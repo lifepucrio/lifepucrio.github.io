@@ -90,6 +90,8 @@ function periodos() {
   }
   console.log(calendario);
 
+
+
   //exibe o calendario
   for (let pos=0; pos<calendario.length; pos+=18) {
     //se identifica aula no calendario
@@ -231,6 +233,9 @@ function periodos() {
       //text(calendario[pos+5], posRectX+espaco, posRectY+70);
       //text(calendario[pos+6], posRectX+espaco, posRectY+82);
     }
+    
+    
+    
     //segunda posição
     if (calendario[pos+7]!=" ") {
       let dia=calendario[pos];
@@ -306,35 +311,35 @@ function periodos() {
 
 
       //escolheCor
-      if (calendario[pos+2]=='DSG1841'||calendario[pos+2]=='DSG1843'||
-        calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
-        calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
-        calendario[pos+2]=='DSG1849'||calendario[pos+2]=='DSG1851'||
-        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
-        calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
-        calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
+      if (calendario[pos+7]=='DSG1841'||calendario[pos+7]=='DSG1843'||
+        calendario[pos+7]=='DSG1845'||calendario[pos+7]=='DSG1846'||
+        calendario[pos+7]=='DSG1848'||calendario[pos+7]=='DSG1850'||
+        calendario[pos+7]=='DSG1849'||calendario[pos+7]=='DSG1851'||
+        calendario[pos+7]=='DSG1852'||calendario[pos+7]=='DSG1854'||
+        calendario[pos+7]=='DSG1853'||calendario[pos+7]=='DSG1855'||
+        calendario[pos+7]=='DSG1856'||calendario[pos+7]=='DSG1857') {
         //linguagens
         fill(23, 173, 245, 150);
-      } else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
-        calendario[pos+2]=='DSG1847'||calendario[pos+2]=='DSG1861'||calendario[pos+2]=='DSG1862'||
-        calendario[pos+2]=='DSG1863'||
-        calendario[pos+2]=='DSG1864'||calendario[pos+2]=='DSG1865'||
-        calendario[pos+2]=='DSG1866'||calendario[pos+2]=='DSG1867') {
+      } else if (calendario[pos+7]=='DSG1842'||calendario[pos+7]=='DSG1844'||
+        calendario[pos+7]=='DSG1847'||calendario[pos+7]=='DSG1861'||calendario[pos+7]=='DSG1862'||
+        calendario[pos+7]=='DSG1863'||
+        calendario[pos+7]=='DSG1864'||calendario[pos+7]=='DSG1865'||
+        calendario[pos+7]=='DSG1866'||calendario[pos+7]=='DSG1867') {
         //praticas experimentais
         fill(0, 176, 160, 150);
-      } else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812') {
+      } else if (calendario[pos+7]=='DSG1811'||calendario[pos+7]=='DSG1812') {
         //estudios
         fill(255, 122, 129, 150);
-      } else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
+      } else if (calendario[pos+7]=='DSG1813'||calendario[pos+7]=='DSG1814'||calendario[pos+7]=='DSG1815'||
+        calendario[pos+7]=='DSG1816') {
         //projetos
         fill(248, 0, 24, 150);
-      } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
-        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
+      } else if (calendario[pos+7]=='DSG1821'||calendario[pos+7]=='DSG1822'||calendario[pos+7]=='DSG1823'||
+        calendario[pos+7]=='DSG1824'||calendario[pos+7]=='DSG1825'||calendario[pos+7]=='DSG1826') {
         //historia e teoria
         fill(216, 104, 218, 150);
-      } else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
-        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
+      } else if (calendario[pos+7]=='DSG1801'||calendario[pos+7]=='DSG1802'||calendario[pos+7]=='DSG1803'||
+        calendario[pos+7]=='DSG1804'||calendario[pos+7]=='DSG1805'||calendario[pos+7]=='DSG1806'||calendario[pos+7]=='DSG1901'||calendario[pos+7]=='DSG1902') {
         //conteudos estruturantes
         fill(209, 163, 175, 150);
       } else {
@@ -432,35 +437,35 @@ function periodos() {
 
 
       //escolheCor
-      if (calendario[pos+2]=='DSG1841'||calendario[pos+2]=='DSG1843'||
-        calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
-        calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
-        calendario[pos+2]=='DSG1849'||calendario[pos+2]=='DSG1851'||
-        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
-        calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
-        calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
+      if (calendario[pos+12]=='DSG1841'||calendario[pos+12]=='DSG1843'||
+        calendario[pos+12]=='DSG1845'||calendario[pos+12]=='DSG1846'||
+        calendario[pos+12]=='DSG1848'||calendario[pos+12]=='DSG1850'||
+        calendario[pos+12]=='DSG1849'||calendario[pos+12]=='DSG1851'||
+        calendario[pos+12]=='DSG1852'||calendario[pos+12]=='DSG1854'||
+        calendario[pos+12]=='DSG1853'||calendario[pos+12]=='DSG1855'||
+        calendario[pos+12]=='DSG1856'||calendario[pos+12]=='DSG1857') {
         //linguagens
         fill(23, 173, 245, 150);
-      } else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
-        calendario[pos+2]=='DSG1847'||calendario[pos+2]=='DSG1861'||calendario[pos+2]=='DSG1862'||
-        calendario[pos+2]=='DSG1863'||
-        calendario[pos+2]=='DSG1864'||calendario[pos+2]=='DSG1865'||
-        calendario[pos+2]=='DSG1866'||calendario[pos+2]=='DSG1867') {
+      } else if (calendario[pos+12]=='DSG1842'||calendario[pos+12]=='DSG1844'||
+        calendario[pos+12]=='DSG1847'||calendario[pos+12]=='DSG1861'||calendario[pos+12]=='DSG1862'||
+        calendario[pos+12]=='DSG1863'||
+        calendario[pos+12]=='DSG1864'||calendario[pos+12]=='DSG1865'||
+        calendario[pos+12]=='DSG1866'||calendario[pos+12]=='DSG1867') {
         //praticas experimentais
         fill(0, 176, 160, 150);
-      } else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812') {
+      } else if (calendario[pos+12]=='DSG1811'||calendario[pos+12]=='DSG1812') {
         //estudios
         fill(255, 122, 129, 150);
-      } else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
+      } else if (calendario[pos+12]=='DSG1813'||calendario[pos+12]=='DSG1814'||calendario[pos+12]=='DSG1815'||
+        calendario[pos+12]=='DSG1816') {
         //projetos
         fill(248, 0, 24, 150);
-      } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
-        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
+      } else if (calendario[pos+12]=='DSG1821'||calendario[pos+12]=='DSG1822'||calendario[pos+12]=='DSG1823'||
+        calendario[pos+12]=='DSG1824'||calendario[pos+12]=='DSG1825'||calendario[pos+12]=='DSG1826') {
         //historia e teoria
         fill(216, 104, 218, 150);
-      } else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
-        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
+      } else if (calendario[pos+12]=='DSG1801'||calendario[pos+12]=='DSG1802'||calendario[pos+12]=='DSG1803'||
+        calendario[pos+12]=='DSG1804'||calendario[pos+12]=='DSG1805'||calendario[pos+12]=='DSG1806'||calendario[pos+12]=='DSG1901'||calendario[pos+12]=='DSG1902') {
         //conteudos estruturantes
         fill(209, 163, 175, 150);
       } else {
