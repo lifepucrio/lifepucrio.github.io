@@ -36,7 +36,7 @@ function periodos() {
   //preenche o calendario com as aulas da sala
   for (let i=0; i<tabela.getRowCount(); i++) {
     let periodo = tabela.get(i, 'PERIODO');
-    if (periodo.includes(qualPeriodo)) {
+    if (periodo.includes(qualPeriodo)||periodo.includes(qualOptativa)) {
       console.log(qualPeriodo);
       for (let x=5; x<=9; x++) {
         let dia=tabela.get(i, x);
@@ -89,6 +89,7 @@ function periodos() {
     }
   }
   console.log(calendario);
+
 
 
 

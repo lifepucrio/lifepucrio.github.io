@@ -21,10 +21,28 @@ function setup() {
   
   qs.selected('1o');
   qs.changed(selecionaPeriodo);
+  
+  //qo = createSelect();
+  //qo.position(900, 60);
+  //qo.option('OPTATIVA GERAL DE ENFASE');
+  //qo.option('OPTATIVA DE OFICINA DE ENFASE');
+  //qo.option('OPTATIVA DE DESENHO DE ENFASE');
+  //qo.option('Optativas de Historia da Arte e do Design');
+  //qo.option('Optativas de Praticas Experimentais');
+  
+  //qo.selected('1o');
+  //qo.changed(selecionaPeriodo);
 }
 
 function selecionaPeriodo() {
   qualPeriodo = qs.value();
+  if(qualPeriodo=='3o'||qualPeriodo=='4o'){
+    qualOptativa='Optativas de Praticas Experimentais';
+  }else if(qualPeriodo=='7o'||qualPeriodo=='8o'){
+    qualOptativa='OPTATIVA GERAL DE ENFASE';
+  }else{
+    qualOptativa='Nada';
+  }
   redraw();
 }
 

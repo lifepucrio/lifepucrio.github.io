@@ -8,6 +8,7 @@ var qh;
 var hora;
 var diaSelecionado;
 var qualPeriodo = "1o";
+var qualOptativa="Nada";
 //var preenche=color(0,0,0,0);
 //var horario, inicio, fim;
 var posSegunda=100;
