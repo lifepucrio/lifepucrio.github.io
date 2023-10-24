@@ -131,5 +131,5 @@ function draw() {
   base();
 
   professores();
-  //contagemDeCreditos();
+  contagemDeCreditos();
 }
