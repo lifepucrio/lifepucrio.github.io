@@ -16,7 +16,6 @@ function setup() {
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
   qp.option('BARBARA JANE NECYK');
-  qp.option('BARBARA PIRES E CASTRO');
   qp.option('CARLO FRANZATO');
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
