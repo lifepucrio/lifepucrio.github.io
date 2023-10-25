@@ -27,6 +27,7 @@ function setup() {
   qs.option('LIFE');
   qs.option('LAIA');
   qs.option('LAMP');
+  qs.option('LABMAC');
   
   qs.selected('ART1');
   qs.changed(selecionaSala);
