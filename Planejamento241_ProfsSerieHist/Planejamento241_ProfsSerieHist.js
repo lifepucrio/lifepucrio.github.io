@@ -128,11 +128,18 @@ function draw() {
   textSize(25);
   fill(0);
   text(qualProf, 105, 80);
-  //base desenho
   textSize(14);
+  textStyle(NORMAL);
+  for (let i=0; i<tabelaSerieHist.getRowCount(); i++) {
+    let prof = tabelaSerieHist.get(i, 'PROFESSORES');
+    if (prof.includes(qualProf)) {
+      let admiss=tabelaSerieHist.get(i, 'ADMISSAO');
+      text("Admissão em "+admiss, 105, 100);
+    }
+  }
+  
+  //base desenho
   base();
-
-  //professores();
   contagemDeCreditos();
   montaSerie();
 }
