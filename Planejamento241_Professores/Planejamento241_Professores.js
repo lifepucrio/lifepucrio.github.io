@@ -16,6 +16,7 @@ function setup() {
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
   qp.option('BARBARA JANE NECYK');
+  qp.option('BARBARA PIRES E CASTRO');
   qp.option('CARLO FRANZATO');
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
@@ -53,6 +54,7 @@ function setup() {
   qp.option('ISABELA CANELLAS DA MOTTA');
   qp.option('IZABEL MARIA DE OLIVEIRA');
   qp.option('JACKELINE LIMA FARBIARZ');
+  qp.option('JACQUES CHUEKE');
   qp.option('JOANA PESSOA MOTA');
   qp.option('JOAO DE SA BONELLI');
   qp.option('JOAO VICTOR AZEVEDO DE MENEZES CORREIA DE MELO');
@@ -97,6 +99,7 @@ function setup() {
   qp.option('ROMULO MIYAZAWA MATTEONI');
   qp.option('SHEILA DAIN');
   qp.option('SILVIA HELENA SOARES DA COSTA');
+  qp.option('SIMONE CARVALHO DE FORMIGA XAVIER');
   qp.option('SUZANA VALLADARES FONSECA');
   qp.option('TATIANA BARBOSA CARVALHO');
   qp.option('VERA LUCIA MOREIRA DOS SANTOS NOJIMA');
