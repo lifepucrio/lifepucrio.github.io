@@ -126,5 +126,5 @@ function contagemDeCreditos() {
   }
   textStyle(BOLD);
   textSize(16);
-  text('Total de Créditos Previstos: '+totalDeCreditos, 750, 800);
+  text('Total de Créditos: '+totalDeCreditos, 750, 800);
 }

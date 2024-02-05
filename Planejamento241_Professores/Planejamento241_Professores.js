@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1200, 960);
+  createCanvas(displayWidth, displayHeight);
   console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qp = createSelect();
@@ -126,7 +126,7 @@ function draw() {
   textFont("Helvetica");
   textStyle(NORMAL);
   textSize(20);
-  text("Planejamento de Aulas - Semestre 2024.1", 105, 45);
+  text("Confirmação de Aulas - Semestre 2024.1", 105, 45);
   textStyle(BOLD);
   textSize(25);
   text(qualProf, 105, 80);
