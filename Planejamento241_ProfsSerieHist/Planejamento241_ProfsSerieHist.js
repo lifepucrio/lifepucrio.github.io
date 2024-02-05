@@ -1,12 +1,12 @@
 
 
 function preload() {
-  tabela=loadTable('data/PLANEJAMENTO20241.csv', 'csv', 'header');
-  tabelaSerieHist=loadTable('data/PROFESSORESDAD.csv', 'csv', 'header');
+  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vRFuGKIrvofqmtAdGWHujOwUqgPp3VMx54ED3Pu4UxduBGQyfKXRTqXEibXubb9DUZslWv5w9VxssiI/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vRFuGKIrvofqmtAdGWHujOwUqgPp3VMx54ED3Pu4UxduBGQyfKXRTqXEibXubb9DUZslWv5w9VxssiI/pub?gid=341439767&single=true&output=csv', 'csv', 'header');
 }
 
 function setup() {
-  createCanvas(1300, 1500);
+  createCanvas(1200, 960);
   console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qp = createSelect();
