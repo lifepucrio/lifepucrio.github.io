@@ -34,6 +34,7 @@ function setup() {
   qp.option('CRISTINE NOGUEIRA NUNES');
   qp.option('DANIEL MALAGUTI CAMPOS');
   qp.option('DANIELA CORREA DE OLIVEIRA');
+  qp.option('DAVISON COUTINHO');
   qp.option('DENISE BERRUEZO PORTINARI');
   qp.option('EDUARDO ROCHA DE OLIVEIRA FILHO');
   qp.option('ELIANE GARCIA PEREIRA');
