@@ -37,8 +37,8 @@ function periodos() {
   for (let i=0; i<tabela.getRowCount(); i++) {
     let periodo = tabela.get(i, 'PERIODO');
     if (periodo.includes(qualPeriodo)||periodo.includes(optPratExp)||
-      periodo.includes(optEnfase)||periodo.includes(optOficinaEnfase)||
-      periodo.includes(optDesenhoEnfase)) {
+    periodo.includes(optEnfase)||periodo.includes(optOficinaEnfase)||
+    periodo.includes(optDesenhoEnfase)) {
       console.log(qualPeriodo);
       for (let x=5; x<=9; x++) {
         let dia=tabela.get(i, x);
@@ -63,6 +63,8 @@ function periodos() {
             } else if (calendario[(dia-2)*13*18+(inicio-7)*18+7]==" ") {
               //se for o mesmo código da primeira posição
               if (codigo==calendario[(dia-2)*13*18+(inicio-7)*18+2]) {
+                //não faz nada
+              } else {
                 //preenche na segunda posição
                 calendario[(dia-2)*13*18+(inicio-7)*18+7]=codigo;
                 calendario[(dia-2)*13*18+(inicio-7)*18+8]=int(fim);
@@ -73,12 +75,14 @@ function periodos() {
             } else {
               //se for o mesmo código da primeira posição
               if (codigo==calendario[(dia-2)*13*18+(inicio-7)*18+7]) {
-                //preenche na terceira posição
-                calendario[(dia-2)*13*18+(inicio-7)*18+12]=codigo;
-                calendario[(dia-2)*13*18+(inicio-7)*18+13]=int(fim);
-                calendario[(dia-2)*13*18+(inicio-7)*18+14]=disciplina;
-                calendario[(dia-2)*13*18+(inicio-7)*18+15]=turma;
-                calendario[(dia-2)*13*18+(inicio-7)*18+16]=sala;
+                //não faz nada
+              } else {
+              //preenche na terceira posição
+              calendario[(dia-2)*13*18+(inicio-7)*18+12]=codigo;
+              calendario[(dia-2)*13*18+(inicio-7)*18+13]=int(fim);
+              calendario[(dia-2)*13*18+(inicio-7)*18+14]=disciplina;
+              calendario[(dia-2)*13*18+(inicio-7)*18+15]=turma;
+              calendario[(dia-2)*13*18+(inicio-7)*18+16]=sala;
               }
             }
           }
@@ -203,7 +207,10 @@ function periodos() {
         //estudios
         fill(255, 122, 129, 150);
       } else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG19141'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
         //projetos
         fill(248, 0, 24, 150);
       } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
@@ -229,12 +236,12 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+4], posRectX+espaco, posRectY+25, largRectAula-20, 160);
-      text(calendario[pos+5], posRectX+espaco, posRectY+85);
+      //text(calendario[pos+5], posRectX+espaco, posRectY+85);
       //text(calendario[pos+6], posRectX+espaco, posRectY+82);
     }
-
-
-
+    
+    
+    
     //segunda posição
     if (calendario[pos+7]!=" ") {
       let dia=calendario[pos];
@@ -329,8 +336,11 @@ function periodos() {
       } else if (calendario[pos+7]=='DSG1811'||calendario[pos+7]=='DSG1812') {
         //estudios
         fill(255, 122, 129, 150);
-      } else if (calendario[pos+7]=='DSG1813'||calendario[pos+7]=='DSG1814'||calendario[pos+7]=='DSG1815'||
-        calendario[pos+7]=='DSG1816') {
+      } else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG19141'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
         //projetos
         fill(248, 0, 24, 150);
       } else if (calendario[pos+7]=='DSG1821'||calendario[pos+7]=='DSG1822'||calendario[pos+7]=='DSG1823'||
@@ -357,7 +367,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+9], posRectX+largRectAula+espaco*2, posRectY+25, largRectAula-20, 160);
-      text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+85);
+      //text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+85);
       //text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+82);
     }
 
@@ -455,12 +465,15 @@ function periodos() {
       } else if (calendario[pos+12]=='DSG1811'||calendario[pos+12]=='DSG1812') {
         //estudios
         fill(255, 122, 129, 150);
-      } else if (calendario[pos+12]=='DSG1813'||calendario[pos+12]=='DSG1814'||calendario[pos+12]=='DSG1815'||
-        calendario[pos+12]=='DSG1816') {
+      } else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG19141'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
         //projetos
         fill(248, 0, 24, 150);
       } else if (calendario[pos+12]=='DSG1821'||calendario[pos+12]=='DSG1822'||calendario[pos+12]=='DSG1823'||
-        calendario[pos+12]=='DSG1824'||calendario[pos+12]=='DSG1825'||calendario[pos+12]=='DSG1826') {
+        calendario[pos+12]=='DSG1824'||calendario[pos+12]=='DSG1825'||calendario[pos+12]=='DSG1826'||calendario[pos+12]=='DSG1900') {
         //historia e teoria
         fill(216, 104, 218, 150);
       } else if (calendario[pos+12]=='DSG1801'||calendario[pos+12]=='DSG1802'||calendario[pos+12]=='DSG1803'||
@@ -483,7 +496,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+14], posRectX+largRectAula*2+espaco*3, posRectY+25, largRectAula-20, 160);
-      text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+85);
+      //text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+85);
       //text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
     }
   }
