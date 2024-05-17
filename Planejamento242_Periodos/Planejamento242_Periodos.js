@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1200, 960);
+  createCanvas(1800, 960);
   console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qs = createSelect();

@@ -1,4 +1,4 @@
-var largRect=210;
+var largRect=310;
 var espaco=5;
 var largRectAula=120;
 var tabela;
