@@ -1,6 +1,6 @@
 var largRect=310;
-var espaco=5;
-var largRectAula=120;
+var espaco=4;
+var largRectAula;
 var tabela;
 var qualHora=7;
 var qd;
@@ -38,3 +38,6 @@ var posRectY;
 var altRect;
 
 var checa=[];
+//cria o calendario
+var pos=0;
+var calendario=[];

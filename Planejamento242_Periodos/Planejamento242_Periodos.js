@@ -18,30 +18,29 @@ function setup() {
   qs.option('6o');
   qs.option('7o');
   qs.option('8o');
-  
+
   qs.selected('1o');
   qs.changed(selecionaPeriodo);
-  
+
   ope = createCheckbox('Optativas Práticas Experimentais', false);
-  ope.position(2900, 60);
+  ope.position(-2900, 60);
   ope.changed(mostraOptPratExp);
   ope.style('font-family:helvetica');
-  
+
   oe = createCheckbox('Optativas de Ênfase', false);
-  oe.position(2900, 50);
+  oe.position(-2900, 50);
   oe.changed(mostraOptEnfase);
   oe.style('font-family:helvetica');
-  
+
   ooe = createCheckbox('Optativas Oficinas de Ênfase', false);
-  ooe.position(2900, 60);
+  ooe.position(-2900, 60);
   ooe.changed(mostraOptOficinaEnfase);
   ooe.style('font-family:helvetica');
-  
+
   ode = createCheckbox('Optativas Desenho de Ênfase', false);
-  ode.position(2900, 60);
+  ode.position(-2900, 60);
   ode.changed(mostraOptDesenhoEnfase);
   ode.style('font-family:helvetica');
-
 }
 
 function mostraOptPratExp() {
@@ -82,35 +81,53 @@ function mostraOptDesenhoEnfase() {
 
 function selecionaPeriodo() {
   qualPeriodo = qs.value();
-  if(qualPeriodo=='3o'||qualPeriodo=='4o'){
-    ope.position(900, 60);
-  }else{
-    ope.position(2900, 60);
+  if (qualPeriodo=='1o'||qualPeriodo=='2o') {
+    ope.position(-2900, 60);
+    oe.position(-2900, 40);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
     ope.checked(false);
-    mostraOptPratExp();
-  }
-  if(qualPeriodo=='5o'||qualPeriodo=='6o'||qualPeriodo=='7o'||qualPeriodo=='8o'){
-    oe.position(900, 20);
-  }else{
-    oe.position(2900, 60);
     oe.checked(false);
-    mostraOptEnfase();
-  }
-  if(qualPeriodo=='7o'||qualPeriodo=='8o'){
-    ooe.position(900, 40);
-  }else{
-    ooe.position(2900, 60);
-    ooe.checked(false);
-    mostraOptEnfase();
-  }
-  if(qualPeriodo=='7o'){
-    ode.position(900, 60);
-  }else{
-    ode.position(2900, 60);
     ode.checked(false);
-    mostraOptEnfase();
+    ooe.checked(false);
+  } else {
+    //ope.position(2900, 60);
   }
-
+  if (qualPeriodo=='3o'||qualPeriodo=='4o') {
+    ope.position(900, 60);
+    ope.checked(false);
+    oe.checked(false);
+    ode.checked(false);
+    ooe.checked(false);
+  } else {
+    ope.position(-2900, 60);
+  }
+  if (qualPeriodo=='5o'||qualPeriodo=='6o') {
+    oe.position(900, 20);
+    ope.checked(false);
+    oe.checked(false);
+    ode.checked(false);
+    ooe.checked(false);
+  } else {
+    oe.position(-2900, 60);
+  }
+  if (qualPeriodo=='7o'||qualPeriodo=='8o') {
+    oe.position(900, 20);
+    ooe.position(900, 40);
+    ode.position(900, 60);
+    ope.checked(false);
+    oe.checked(false);
+    ode.checked(false);
+    ooe.checked(false);
+  } else {
+    ooe.position(-2900, 60);
+    ooe.position(-2900, 40);
+    ode.position(-2900, 60);
+  }
+  mostraOptEnfase();
+  mostraOptPratExp();
+  mostraOptOficinaEnfase();
+  mostraOptDesenhoEnfase();
   redraw();
 }
 
@@ -120,6 +137,7 @@ function draw() {
   background(220);
 
   textFont("Helvetica");
+
   textStyle(NORMAL);
   textSize(20);
   text("Previsão de Aulas - Semestre 2024.2", 105, 45);
