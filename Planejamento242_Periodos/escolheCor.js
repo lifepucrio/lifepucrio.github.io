@@ -55,6 +55,10 @@ function escolheCor(posi) {
     calendario[posi]=='DSG1998'||calendario[posi]=='DSG1999') {
     //Optativas Desenho de Ênfase
     fill(0, 119, 165, 200);
+  }
+  //Optativas Historia da Arte e do Design
+  else if (calendario[posi]=='DSG1830'||calendario[posi]=='DSG1831'||calendario[posi]=='DSG1832') {
+    fill(169, 65, 171, 200);
   } else {
     fill(150, 150, 150, 200);
   }

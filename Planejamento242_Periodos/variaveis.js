@@ -13,6 +13,7 @@ var optPratExp='Nada';
 var optEnfase='Nada';
 var optOficinaEnfase='Nada';
 var optDesenhoEnfase='Nada';
+var optHist='Nada';
 //var preenche=color(0,0,0,0);
 //var horario, inicio, fim;
 var posSegunda=100;

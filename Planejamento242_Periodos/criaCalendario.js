@@ -53,7 +53,7 @@ function criaCalendario() {
     let periodo = tabela.get(i, 'PERIODO');
     if (periodo.includes(qualPeriodo)||periodo.includes(optPratExp)||
       periodo.includes(optEnfase)||periodo.includes(optOficinaEnfase)||
-      periodo.includes(optDesenhoEnfase)) {
+      periodo.includes(optDesenhoEnfase)||periodo.includes(optHist)) {
       console.log(qualPeriodo);
       for (let x=5; x<=9; x++) {
         let dia=tabela.get(i, x);

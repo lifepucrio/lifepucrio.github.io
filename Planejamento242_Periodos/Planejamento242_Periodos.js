@@ -41,6 +41,11 @@ function setup() {
   ode.position(-2900, 60);
   ode.changed(mostraOptDesenhoEnfase);
   ode.style('font-family:helvetica');
+
+  oh = createCheckbox('Optativas de Historia da Arte e do Design', false);
+  oh.position(-2900, 60);
+  oh.changed(mostraOptHist);
+  oh.style('font-family:helvetica');
 }
 
 function mostraOptPratExp() {
@@ -79,6 +84,15 @@ function mostraOptDesenhoEnfase() {
   redraw();
 }
 
+function mostraOptHist() {
+  if (oh.checked()) {
+    optHist='Optativas de Historia da Arte e do Design'
+  } else {
+    optHist='Nada';
+  }
+  redraw();
+}
+
 function selecionaPeriodo() {
   qualPeriodo = qs.value();
   if (qualPeriodo=='1o'||qualPeriodo=='2o') {
@@ -86,48 +100,79 @@ function selecionaPeriodo() {
     oe.position(-2900, 40);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
     //ope.position(2900, 60);
   }
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
     ope.position(900, 60);
+    oe.position(-2900, 40);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    ope.position(-2900, 60);
+    //ope.position(-2900, 60);
   }
-  if (qualPeriodo=='5o'||qualPeriodo=='6o') {
+  if (qualPeriodo=='5o') {
     oe.position(900, 20);
+    ope.position(-2900, 60);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    oe.position(-2900, 60);
+    //oe.position(-2900, 60);
+  }
+  if (qualPeriodo=='6o') {
+    oe.position(900, 20);
+    oh.position(900, 40);
+    ope.position(-2900, 60);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    ope.checked(false);
+    oe.checked(false);
+    ode.checked(false);
+    ooe.checked(false);
+    oh.checked(false);
+  } else {
+    //oe.position(-2900, 60);
+    //oh.position(-2900, 60);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
     oe.position(900, 20);
     ooe.position(900, 40);
     ode.position(900, 60);
+    oh.position(-2900, 60);
+    ope.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    ooe.position(-2900, 60);
-    ooe.position(-2900, 40);
-    ode.position(-2900, 60);
+    //ooe.position(-2900, 60);
+    //ooe.position(-2900, 40);
+    //ode.position(-2900, 60);
   }
   mostraOptEnfase();
   mostraOptPratExp();
   mostraOptOficinaEnfase();
   mostraOptDesenhoEnfase();
+  mostraOptHist();
   redraw();
 }
 
