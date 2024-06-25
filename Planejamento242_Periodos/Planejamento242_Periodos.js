@@ -2,11 +2,16 @@
 
 function preload() {
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  fontRegular = loadFont('data/SourceSans3-Semibold.ttf');
+  fontBold = loadFont('data/SourceSans3-Bold.ttf');
 }
 
 function setup() {
   createCanvas(1800, 960);
   console.log(tabela.getRowCount()+'linhas');
+  //textFont(fontBold);
+  //textSize(50);
+  textAlign(LEFT);
   rectMode(CORNER);
   qs = createSelect();
   qs.position(800, 60);
@@ -179,16 +184,20 @@ function selecionaPeriodo() {
 
 function draw() {
   noLoop();
+  noSmooth();
   background(220);
 
   textFont("Helvetica");
+  
 
   textStyle(NORMAL);
-  textSize(20);
-  text("Previsão de Aulas - Semestre 2024.2", 105, 45);
-  textStyle(BOLD);
+  textFont(fontBold);
+  textSize(40);
+  text("Previsão de Aulas - Semestre 2024.2", 105, 55);
+  //textStyle(BOLD);
+  textFont(fontRegular);
   textSize(25);
-  text(qualPeriodo+" Periodo", 105, 80);
+  text(qualPeriodo+" Periodo", 105, 85);
   //base desenho
   textSize(14);
   base();

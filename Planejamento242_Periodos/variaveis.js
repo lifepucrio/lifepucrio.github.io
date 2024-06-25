@@ -37,6 +37,8 @@ var pos19h=755;
 var posRectX;
 var posRectY;
 var altRect;
+let fontRegular, fontBold,
+  fontsize = 32;
 
 var checa=[];
 //cria o calendario
