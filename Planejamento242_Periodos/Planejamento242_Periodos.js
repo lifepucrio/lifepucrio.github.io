@@ -2,7 +2,7 @@
 
 function preload() {
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
-  fontRegular = loadFont('data/SourceSans3-Semibold.ttf');
+  fontRegular = loadFont('data/SourceSans3-SemiBold.ttf');
   fontBold = loadFont('data/SourceSans3-Bold.ttf');
 }
 
