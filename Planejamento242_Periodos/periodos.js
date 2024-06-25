@@ -1,5 +1,4 @@
 function periodos() {
-  textFont('Helvetica');
   criaCalendario();
 
   //exibe o calendario

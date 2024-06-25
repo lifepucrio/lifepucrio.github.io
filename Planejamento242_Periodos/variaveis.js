@@ -13,7 +13,6 @@ var optPratExp='Nada';
 var optEnfase='Nada';
 var optOficinaEnfase='Nada';
 var optDesenhoEnfase='Nada';
-var optHist='Nada';
 //var preenche=color(0,0,0,0);
 //var horario, inicio, fim;
 var posSegunda=100;
@@ -37,8 +36,6 @@ var pos19h=755;
 var posRectX;
 var posRectY;
 var altRect;
-let fontRegular, fontBold,
-  fontsize = 32;
 
 var checa=[];
 //cria o calendario

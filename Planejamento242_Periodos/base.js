@@ -12,8 +12,7 @@ function base(){
 
   noStroke();
   fill(0);
-  //textStyle(NORMAL);
-  textFont(fontBold);
+  textStyle(NORMAL);
   text('SEGUNDA',posSegunda+10,130);
   text('TERÇA',posTerca+10,130);
   text('QUARTA',posQuarta+10,130);
