@@ -12,12 +12,13 @@ function base(){
 
   noStroke();
   fill(0);
-  textStyle(NORMAL);
-  text('SEGUNDA',posSegunda+10,130);
-  text('TERÇA',posTerca+10,130);
-  text('QUARTA',posQuarta+10,130);
-  text('QUINTA',posQuinta+10,130);
-  text('SEXTA',posSexta+10,130);
+  textFont("Helvetica");
+  textStyle(BOLD);
+  text('SEGUNDA',posSegunda+10,140);
+  text('TERÇA',posTerca+10,140);
+  text('QUARTA',posQuarta+10,140);
+  text('QUINTA',posQuinta+10,140);
+  text('SEXTA',posSexta+10,140);
   text('7h',50,pos7h);
   text('8h',50,pos8h);
   text('9h',50,pos9h);

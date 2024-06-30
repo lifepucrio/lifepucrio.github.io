@@ -1,12 +1,20 @@
 
 
 function preload() {
+  fontRegular = loadFont('data/SourceSans3-SemiBold.ttf');
+  fontBold = loadFont('data/SourceSans3-Bold.ttf');
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  fundo = loadImage('data/mat-bkg-1920-2.jpg');
+  brasao = loadImage('data/brasao-puc-novo-preto-2.png');
 }
 
 function setup() {
-  createCanvas(1800, 960);
+  //createCanvas(1800, 960);
+  createCanvas(displayWidth, displayHeight);
   console.log(tabela.getRowCount()+'linhas');
+  let a = createA('https://dad.puc-rio.br/graduacao/matricula/',
+  '<img src="data/botao.png">');
+  a.position(posSexta, 50);
   rectMode(CORNER);
   qs = createSelect();
   qs.position(800, 60);
@@ -41,7 +49,7 @@ function setup() {
   ode.position(-2900, 60);
   ode.changed(mostraOptDesenhoEnfase);
   ode.style('font-family:helvetica');
-  
+
   oh = createCheckbox('Optativas de Historia da Arte e do Design', false);
   oh.position(-2900, 60);
   oh.changed(mostraOptHist);
@@ -100,64 +108,103 @@ function selecionaPeriodo() {
     oe.position(-2900, 40);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
     //ope.position(2900, 60);
   }
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
     ope.position(900, 60);
+    oe.position(-2900, 40);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    ope.position(-2900, 60);
+    //ope.position(-2900, 60);
   }
-  if (qualPeriodo=='5o'||qualPeriodo=='6o') {
+  if (qualPeriodo=='5o') {
     oe.position(900, 20);
+    ope.position(-2900, 60);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    oh.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    oe.position(-2900, 60);
+    //oe.position(-2900, 60);
+  }
+  if (qualPeriodo=='6o') {
+    oe.position(900, 20);
+    oh.position(900, 40);
+    ope.position(-2900, 60);
+    ode.position(-2900, 40);
+    ooe.position(-2900, 60);
+    ope.checked(false);
+    oe.checked(false);
+    ode.checked(false);
+    ooe.checked(false);
+    oh.checked(false);
+  } else {
+    //oe.position(-2900, 60);
+    //oh.position(-2900, 60);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
     oe.position(900, 20);
     ooe.position(900, 40);
     ode.position(900, 60);
+    oh.position(-2900, 60);
+    ope.position(-2900, 60);
     ope.checked(false);
     oe.checked(false);
     ode.checked(false);
     ooe.checked(false);
+    oh.checked(false);
   } else {
-    ooe.position(-2900, 60);
-    ooe.position(-2900, 40);
-    ode.position(-2900, 60);
+    //ooe.position(-2900, 60);
+    //ooe.position(-2900, 40);
+    //ode.position(-2900, 60);
   }
   mostraOptEnfase();
   mostraOptPratExp();
   mostraOptOficinaEnfase();
   mostraOptDesenhoEnfase();
+  mostraOptHist();
   redraw();
 }
 
 
 function draw() {
   noLoop();
-  background(220);
+  background(fundo);
+  
+  
+  //image(fundo,0,0,width,height);
+  tint(255,20);
+  image(brasao,width-520,10);
+  noTint();
+  textFont(fontBold);
+  //textFont("Helvetica");
 
-  textFont("Helvetica");
-
-  textStyle(NORMAL);
-  textSize(20);
-  text("Previsão de Aulas - Semestre 2024.2", 105, 45);
-  textStyle(BOLD);
+  //textStyle(NORMAL);
+  textSize(40);
+  fill(255);
+  text("Previsão de Aulas - Semestre 2024.2", 105, 60);
+  //textStyle(BOLD);
+  textFont(fontRegular);
   textSize(25);
-  text(qualPeriodo+" Periodo", 105, 80);
+  text(qualPeriodo+" Periodo", 105, 90);
   //base desenho
   textSize(14);
   base();
