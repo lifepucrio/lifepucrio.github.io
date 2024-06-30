@@ -12,9 +12,9 @@ function setup() {
   //createCanvas(1800, 960);
   createCanvas(displayWidth, displayHeight);
   console.log(tabela.getRowCount()+'linhas');
-  let a = createA('https://dad.puc-rio.br/graduacao/matricula/',
-  '<img src="data/botao.png">');
-  a.position(posSexta, 50);
+  //let a = createA('https://dad.puc-rio.br/graduacao/matricula/',
+  //'<div style="font-family:Helvetica;color: #ffffff; background-color: #ff5500; padding:5px; text-decoration: no-underline;">Voltar para a página de matrícula</div>');
+  //a.position(posSexta, 50);
   rectMode(CORNER);
   qs = createSelect();
   qs.position(800, 60);
