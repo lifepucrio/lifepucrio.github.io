@@ -39,6 +39,7 @@ var posRectY;
 var altRect;
 var fundo;
 var brasao;
+var logo;
 
 var checa=[];
 //cria o calendario

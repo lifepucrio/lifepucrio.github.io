@@ -6,6 +6,7 @@ function preload() {
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
   fundo = loadImage('data/mat-bkg-1920-2.jpg');
   brasao = loadImage('data/brasao-puc-novo-preto-2.png');
+  logo = loadImage('data/logo-dad-novo-preto-03.png');
 }
 
 function setup() {
@@ -17,7 +18,7 @@ function setup() {
   //a.position(posSexta, 50);
   rectMode(CORNER);
   qs = createSelect();
-  qs.position(800, 60);
+  qs.position(900, 55);
   qs.option('1o');
   qs.option('2o');
   qs.option('3o');
@@ -33,27 +34,27 @@ function setup() {
   ope = createCheckbox('Optativas Práticas Experimentais', false);
   ope.position(-2900, 60);
   ope.changed(mostraOptPratExp);
-  ope.style('font-family:helvetica');
+  ope.style('font-family:helvetica; font-size: 14px');
 
   oe = createCheckbox('Optativas de Ênfase', false);
   oe.position(-2900, 50);
   oe.changed(mostraOptEnfase);
-  oe.style('font-family:helvetica');
+  oe.style('font-family:helvetica; font-size: 14px');
 
   ooe = createCheckbox('Optativas Oficinas de Ênfase', false);
   ooe.position(-2900, 60);
   ooe.changed(mostraOptOficinaEnfase);
-  ooe.style('font-family:helvetica');
+  ooe.style('font-family:helvetica; font-size: 14px');
 
   ode = createCheckbox('Optativas Desenho de Ênfase', false);
   ode.position(-2900, 60);
   ode.changed(mostraOptDesenhoEnfase);
-  ode.style('font-family:helvetica');
+  ode.style('font-family:helvetica; font-size: 14px');
 
   oh = createCheckbox('Optativas de Historia da Arte e do Design', false);
   oh.position(-2900, 60);
   oh.changed(mostraOptHist);
-  oh.style('font-family:helvetica');
+  oh.style('font-family:helvetica; font-size: 14px');
 }
 
 function mostraOptPratExp() {
@@ -118,7 +119,7 @@ function selecionaPeriodo() {
     //ope.position(2900, 60);
   }
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
-    ope.position(900, 60);
+    ope.position(1000, 55);
     oe.position(-2900, 40);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -132,7 +133,7 @@ function selecionaPeriodo() {
     //ope.position(-2900, 60);
   }
   if (qualPeriodo=='5o') {
-    oe.position(900, 20);
+    oe.position(1000, 55);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -146,8 +147,8 @@ function selecionaPeriodo() {
     //oe.position(-2900, 60);
   }
   if (qualPeriodo=='6o') {
-    oe.position(900, 20);
-    oh.position(900, 40);
+    oe.position(1000, 50);
+    oh.position(1000, 70);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -161,9 +162,9 @@ function selecionaPeriodo() {
     //oh.position(-2900, 60);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
-    oe.position(900, 20);
-    ooe.position(900, 40);
-    ode.position(900, 60);
+    oe.position(1000, 42);
+    ooe.position(1000, 60);
+    ode.position(1000, 78);
     oh.position(-2900, 60);
     ope.position(-2900, 60);
     ope.checked(false);
@@ -188,23 +189,37 @@ function selecionaPeriodo() {
 function draw() {
   noLoop();
   background(fundo);
-  
-  
-  //image(fundo,0,0,width,height);
-  tint(255,20);
-  image(brasao,width-520,10);
+
+  noStroke();
+
+  image(logo, 100, 35, 93, 60);
+  tint(255, 20);
+  image(brasao, width-520, 10);
   noTint();
   textFont(fontBold);
-  //textFont("Helvetica");
 
-  //textStyle(NORMAL);
+
+  fill(255, 200);
+  rect(880, 20, 100, 80, 10);
+  fill(0);
+  textSize(16);
+  text("Período", 900, 40);
+
+  if (qualPeriodo=='3o'||qualPeriodo=='4o'||qualPeriodo=='5o'||qualPeriodo=='6o'||qualPeriodo=='7o'||qualPeriodo=='8o') {
+    fill(255, 200);
+    rect(990, 20, 300, 80, 10);
+    fill(0);
+    textSize(16);
+    text("Optativas", 1000, 40);
+  }
+
   textSize(40);
   fill(255);
-  text("Previsão de Aulas - Semestre 2024.2", 105, 60);
+  text("Previsão de Aulas - Semestre 2024.2", 220, 60);
   //textStyle(BOLD);
   textFont(fontRegular);
   textSize(25);
-  text(qualPeriodo+" Periodo", 105, 90);
+  text(qualPeriodo+" Periodo", 220, 90);
   //base desenho
   textSize(14);
   base();
