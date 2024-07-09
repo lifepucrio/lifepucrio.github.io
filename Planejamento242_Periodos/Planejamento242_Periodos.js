@@ -11,7 +11,7 @@ function preload() {
 
 function setup() {
   //createCanvas(1800, 960);
-  createCanvas(displayWidth, displayHeight);
+  createCanvas(1920, 1080);
   console.log(tabela.getRowCount()+'linhas');
   //let a = createA('https://dad.puc-rio.br/graduacao/matricula/',
   //'<div style="font-family:Helvetica;color: #ffffff; background-color: #ff5500; padding:5px; text-decoration: no-underline;">Voltar para a página de matrícula</div>');
@@ -51,7 +51,7 @@ function setup() {
   ode.changed(mostraOptDesenhoEnfase);
   ode.style('font-family:helvetica; font-size: 14px');
 
-  oh = createCheckbox('Optativas de Historia da Arte e do Design', false);
+  oh = createCheckbox('Optativas de História da Arte e do Design', false);
   oh.position(-2900, 60);
   oh.changed(mostraOptHist);
   oh.style('font-family:helvetica; font-size: 14px');
@@ -119,7 +119,7 @@ function selecionaPeriodo() {
     //ope.position(2900, 60);
   }
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
-    ope.position(1000, 55);
+    ope.position(1010, 55);
     oe.position(-2900, 40);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -133,7 +133,7 @@ function selecionaPeriodo() {
     //ope.position(-2900, 60);
   }
   if (qualPeriodo=='5o') {
-    oe.position(1000, 55);
+    oe.position(1010, 55);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -147,8 +147,8 @@ function selecionaPeriodo() {
     //oe.position(-2900, 60);
   }
   if (qualPeriodo=='6o') {
-    oe.position(1000, 50);
-    oh.position(1000, 70);
+    oe.position(1010, 50);
+    oh.position(1010, 70);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -162,9 +162,9 @@ function selecionaPeriodo() {
     //oh.position(-2900, 60);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
-    oe.position(1000, 42);
-    ooe.position(1000, 60);
-    ode.position(1000, 78);
+    oe.position(1010, 42);
+    ooe.position(1010, 60);
+    ode.position(1010, 78);
     oh.position(-2900, 60);
     ope.position(-2900, 60);
     ope.checked(false);
@@ -207,23 +207,24 @@ function draw() {
 
   if (qualPeriodo=='3o'||qualPeriodo=='4o'||qualPeriodo=='5o'||qualPeriodo=='6o'||qualPeriodo=='7o'||qualPeriodo=='8o') {
     fill(255, 200);
-    rect(990, 20, 300, 80, 10);
+    rect(990, 20, 320, 80, 10);
     fill(0);
     textSize(16);
-    text("Optativas", 1000, 40);
+    text("Optativas", 1010, 40);
   }
 
-  textSize(40);
+  textSize(38);
   fill(255);
-  text("Previsão de Aulas - Semestre 2024.2", 220, 60);
+  text("Horários das Aulas - Semestre 2024.2", 220, 60);
   //textStyle(BOLD);
   textFont(fontRegular);
   textSize(25);
-  text(qualPeriodo+" Periodo", 220, 90);
+  text(qualPeriodo+" Período", 220, 90);
   //base desenho
   textSize(14);
   base();
   periodos();
+  listaDisciplinas();
 
   //professores();
   //contagemDeCreditos();
