@@ -49,6 +49,7 @@ function listaDisciplinas() {
     text('DSG1815-Projeto: Projetar para Concretizar (6cr)', 100, 840);
     text('DSG1824-Teoria do Objeto (2cr)', 100, 860);
     text('DSG1825-História da Arte (2cr)', 100, 880);
+    text('EXT0100-Optativas de Extensão (3cr-2023.0)', 100, 900);
     text('DSG1855-Linguagem, Comunicação e Discurso no Design III (3cr)', 580, 820);
     text('DSG1856-Biônica (2cr)', 580, 840);
     text('DSG1863-Práticas Experimentais III (4cr)', 580, 860);
@@ -61,7 +62,7 @@ function listaDisciplinas() {
     text('DSG0830-Optativas de História da Arte e do Design (2cr)', 100, 880);
     text('DSG1857-Ergodesign (2cr)', 580, 820);
     text('DSG001/DSG002/DSG003/DSG004/DSG005/DSG006-Optativas de Ênfase (4cr)', 580, 840);
-    text('INT0100-Optativas do Núcleo de Fundamentação Interdisciplinar/Interdepartamental (6cr)', 580, 860);
+    text('INT0100-Optativas do Núcleo de Fundamentação Interdisciplinar/Interdepartamental (6cr-2021.0/3cr-2023.0)', 580, 860);
     text('CRE1141-Ética Cristã (2cr)', 580, 880);
   }
   if (qualPeriodo=='7o') {
