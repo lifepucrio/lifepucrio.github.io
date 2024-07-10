@@ -1,41 +1,59 @@
 let hLinha=20;
-let header=100;
+let header=140;
+var fundo;
+var brasao;
+var logo;
 
 function preload() {
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  fundo = loadImage('data/mat-bkg-1920-2.jpg');
+  brasao = loadImage('data/brasao-puc-novo-preto-2.png');
+  logo = loadImage('data/logo-dad-novo-preto-03.png');
+  fontBold = loadFont('data/SourceSans3-Bold.ttf');
 }
 
 function setup() {
-  createCanvas(1800, 7000);
+  createCanvas(1920, 7000);
 }
 
 
 function draw() {
   //noLoop();
-  background(220);
-  textFont("Helvetica");
+  //background(220);
+  background(fundo);
+  image(logo, 80, 35, 93, 60);
+  tint(255, 20);
+  image(brasao, 700, 10);
+  noTint();
+  textFont(fontBold);
+  textSize(38);
+  fill(255);
+  text("Lista de Disciplinas - Semestre 2024.2", 220, 60);
 
   textStyle(NORMAL);
   textSize(10);
+  textFont("Helvetica");
   exibeLista();
   //fill(255,150);
   //rect(0,mouseY,400,20);
+  
 }
 
 function exibeLista() {
-  text("Código", 20, 80);
-  text("Disciplina", 80, 80);
-  text("Turma", 480, 80);
-  text("Cr", 520, 80);
-  text("2a", 540, 80);
-  text("3a", 560, 80);
-  text("4a", 580, 80);
-  text("5a", 600, 80);
-  text("6a", 620, 80);
-  text("Horário", 640, 80);
-  text("Sala", 700, 80);
-  text("Professor", 760, 80);
-  
+  fill(0);
+  text("Código", 20, header-20);
+  text("Disciplina", 80, header-20);
+  text("Turma", 480, header-20);
+  text("Cr", 520, header-20);
+  text("2a", 540, header-20);
+  text("3a", 560, header-20);
+  text("4a", 580, header-20);
+  text("5a", 600, header-20);
+  text("6a", 620, header-20);
+  text("Horário", 640, header-20);
+  text("Sala", 700, header-20);
+  text("Professor", 760, header-20);
+
   for (let i=0; i<tabela.getRowCount(); i++) {
     let codigo = tabela.get(i, 'CODIGO');
     let disciplina = tabela.get(i, 'DISCIPLINA');
@@ -47,7 +65,7 @@ function exibeLista() {
     let prof = tabela.get(i, 'PROFESSORES1');
 
     noStroke();
-    fill(255);
+    fill(240,200);
 
     //codigo
     rect(16, i*hLinha+header-12, 56, 16, 4);
