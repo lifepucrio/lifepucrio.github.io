@@ -39,7 +39,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+4], posRectX+espaco, posRectY+25, largRectAula-20, 160);
-      //text(calendario[pos+5], posRectX+espaco, posRectY+85);
+      text(calendario[pos+5], posRectX+espaco, posRectY+85);
       //text(calendario[pos+6], posRectX+espaco, posRectY+82);
     }
 
@@ -68,7 +68,7 @@ function periodos() {
       textSize(8);
       text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+25, largRectAula-20, 160);
       //text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+85);
-      //text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+82);
+      text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+85);
     }
 
     ////terceira posição
@@ -89,7 +89,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+25, largRectAula-20, 160);
-      //text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+85);
+      text(calendario[pos+17], posRectX+largRectAula*2+espaco*3, posRectY+85);
       //text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
     }
     ////quarta posição
@@ -110,7 +110,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+22], posRectX+largRectAula*3+espaco*4, posRectY+25, largRectAula-20, 160);
-      //text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+85);
+      text(calendario[pos+23], posRectX+largRectAula*3+espaco*4, posRectY+85);
       //text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
     }
     ////quinta posição
@@ -131,7 +131,7 @@ function periodos() {
       textStyle(NORMAL);
       textSize(8);
       text(calendario[pos+28], posRectX+largRectAula*4+espaco*5, posRectY+25, largRectAula-20, 160);
-      //text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+85);
+      text(calendario[pos+29], posRectX+largRectAula*4+espaco*5, posRectY+85);
       //text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
     }
   }

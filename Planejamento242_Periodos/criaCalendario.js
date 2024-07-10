@@ -84,6 +84,8 @@ function criaCalendario() {
             else if (calendario[num+8]==" ") {
               //se não for o mesmo código da primeira posição
               if (codigo==calendario[num+2]) {
+                calendario[num+5]=calendario[num+5].concat(' ');
+                calendario[num+5]=calendario[num+5].concat(turma);
                 //não faz nada
               } else {
                 //preenche na segunda posição
@@ -98,6 +100,8 @@ function criaCalendario() {
             else if (calendario[num+14]==" ") {
               //se for o mesmo código da primeira ou segunda posição
               if (codigo==calendario[num+8]||codigo==calendario[num+2]) {
+                calendario[num+11]=calendario[num+11].concat(' ');
+                calendario[num+11]=calendario[num+11].concat(turma);
                 //não faz nada
               } else {
                 //preenche na terceira posição
@@ -112,6 +116,8 @@ function criaCalendario() {
             else if (calendario[num+20]==" ") {
               //se for o mesmo código da primeira ou segunda ou terceira posição
               if (codigo==calendario[num+8]||codigo==calendario[num+2]||codigo==calendario[num+14]) {
+                calendario[num+17]=calendario[num+17].concat(' ');
+                calendario[num+17]=calendario[num+17].concat(turma);
                 //não faz nada
               } else {
                 //preenche na terceira posição
