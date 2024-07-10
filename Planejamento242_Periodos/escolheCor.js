@@ -38,8 +38,8 @@ function escolheCor(posi) {
     calendario[posi]=='DSG1804'||calendario[posi]=='DSG1805'||calendario[posi]=='DSG1806'||calendario[posi]=='DSG1901'||calendario[posi]=='DSG1902') {
     //conteudos estruturantes
     fill(209, 163, 175, 200);
-  } else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1930'||
-    calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
+  } else if (calendario[posi]=='DSG1143'||calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1930'||
+    calendario[posi]=='DSG1931'||calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
     calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
     calendario[posi]=='DSG1954'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
     calendario[posi]=='DSG1964'||calendario[posi]=='DSG1965'||calendario[posi]=='DSG1966') {
