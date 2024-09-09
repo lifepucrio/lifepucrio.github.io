@@ -33,6 +33,6 @@ function setup() {
 }
 
 function draw() {
-  text(minhaLocalizacao.latitude, 20, 20);
-  text(minhaLocalizacao.longitude, 20, 30);
+  //text(minhaLocalizacao.latitude, 20, 20);
+  //text(minhaLocalizacao.longitude, 20, 30);
 }
