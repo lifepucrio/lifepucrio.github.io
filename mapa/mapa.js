@@ -8,17 +8,11 @@ var minhaLocalizacao;
 var mappa = new Mappa('Leaflet');
 
 var options = {
-  //configurações iniciais utilizando a
-  //latitude e longitude do Rio de Janeiro
-  lat:
--22.93,
-  lng:
--43.18,
-  zoom:
-6,
-  style:
-"http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-  }
+  lat:-22.93,
+  lng:-43.18,
+  zoom:6,
+  style:"http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+}
 
 function preload() {
   //acessar a posição no GPS
