@@ -43,7 +43,7 @@ function setup() {
 }
 
 function draw() {
-    text(locationData.latitude, 20, 20);
+  text(locationData.latitude, 20, 20);
   text(locationData.longitude, 20, 30);
   ////limpar o canvas para não deixar rastro
   //clear();
