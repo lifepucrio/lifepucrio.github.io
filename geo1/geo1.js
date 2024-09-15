@@ -8,15 +8,17 @@ var pos;
 
 
 var options = {
-  lat:
-0,
-  lng:
-0,
-  zoom:
-12,
-  style:
-"http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-  }
+  //configurações iniciais utilizando a
+  //latitude e longitude do Rio de Janeiro
+  lat: -22.93,
+  lng: -43.18,
+  zoom: 6,
+  //estilos de mapa: experimente comentar e descomentar as linhas abaixo
+  style: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+  //style: "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
+  //style: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
+  //style: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png"
+}
 
 function preload() {
   //acessar a posição no GPS
