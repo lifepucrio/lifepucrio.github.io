@@ -5,7 +5,7 @@
 var meuMapa;
 var mappa = new Mappa('Leaflet');
 var pos;
-
+var locationData;
 
 var options = {
   //configurações iniciais utilizando a
