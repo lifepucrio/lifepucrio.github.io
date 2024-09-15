@@ -38,8 +38,8 @@ function setup() {
   //createCanvas(windowWidth, windowHeight);
   ////criar o mapa e posicionar no canvas
   ////com a latitude e longitude escolhidas
-  //meuMapa = mappa.tileMap(options);
-  //meuMapa.overlay(canvas);
+  meuMapa = mappa.tileMap(options);
+  meuMapa.overlay(canvas);
 }
 
 function draw() {
