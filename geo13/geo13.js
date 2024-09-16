@@ -22,12 +22,12 @@ function setup() {
 
 function draw() {
   background(200);
-  textSize(50);
+  textSize(30);
   text(locationData.latitude, 20, 100);
   text(locationData.longitude, 20, 150);
-  text(timer, 20, 200);
+  //text(timer, 20, 200);
   timer++;
-  if (timer>100) {
+  if (timer>60) {
     locationData.latitude=0;
     locationData =  getCurrentPosition();
     timer=0;
