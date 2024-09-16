@@ -7,6 +7,8 @@ var meuMapa;
 //mappa para utilizar api Google
 //Referência do Leaflet: https://leafletjs.com/
 var mappa = new Mappa('Leaflet');
+var pos;
+var locationData;
 
 var options = {
   //configurações iniciais utilizando a
@@ -19,6 +21,11 @@ var options = {
   //style: "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
   //style: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
   //style: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png"
+}
+
+function preload() {
+  //acessar a posição no GPS
+  locationData =  getCurrentPosition();
 }
 
 function setup(){
