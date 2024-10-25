@@ -2,8 +2,9 @@ function contagemDeCreditos251() {
   textStyle(BOLD);
   textSize(16);
   //text('Contagem de Créditos:', 110, 800);
-  let linha=0;
+  //let linha=0;
   totalDeCreditos251=0;
+  creditos=0;
   for (let i=0; i<tabela251.getRowCount(); i++) {
     let prof1 = tabela251.get(i, 'PROFESSORES1');
     let prof2 = tabela251.get(i, 'PROFESSORES2');
@@ -19,21 +20,27 @@ function contagemDeCreditos251() {
     //aulas de projeto com horarios diferentes - duas linhas
     if (vagas!='') {
       if (prof1.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H1');
-        if(creditos==''){creditos=0;}
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        let creditos=tabela251.get(i, 'H1');
+        console.log(creditos);
+        //if (creditos=='') {
+        //  creditos=0;
+        //}
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
+        
       }
       if (prof2.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H2');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H2');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -41,12 +48,14 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof3.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H3');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H3');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -54,12 +63,14 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof4.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H4');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H4');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -67,12 +78,14 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof5.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H5');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H5');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -80,12 +93,14 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof6.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H6');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H6');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -97,8 +112,10 @@ function contagemDeCreditos251() {
         totalDeCreditos251+=int(creditos);
       }
       if (prof7.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H7');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H7');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -106,12 +123,14 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof8.includes(qualProf)) {
-        let creditos=tabela.get(i, 'H8');
-        if(creditos==''){creditos=0;}
+        let creditos=tabela251.get(i, 'H8');
+        if (creditos=='') {
+          creditos=0;
+        }
         let codigo=tabela.get(i, 'CODIGO');
         let disciplina=tabela.get(i, 'DISCIPLINA');
         let turma=tabela.get(i, 'TURMA');
@@ -119,7 +138,7 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
     }
