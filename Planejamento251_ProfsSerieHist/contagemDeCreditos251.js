@@ -22,9 +22,9 @@ function contagemDeCreditos251() {
       if (prof1.includes(qualProf)) {
         let creditos=tabela251.get(i, 'H1');
         console.log(creditos);
-        //if (creditos=='') {
-        //  creditos=0;
-        //}
+        if (creditos=='') {
+          creditos=0;
+        }
         //let codigo=tabela.get(i, 'CODIGO');
         //let disciplina=tabela.get(i, 'DISCIPLINA');
         //let turma=tabela.get(i, 'TURMA');
@@ -108,7 +108,7 @@ function contagemDeCreditos251() {
         textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
-        linha++;
+        //linha++;
         totalDeCreditos251+=int(creditos);
       }
       if (prof7.includes(qualProf)) {

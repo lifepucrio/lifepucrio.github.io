@@ -10,7 +10,7 @@ var qd;
 var qh;
 var hora;
 var diaSelecionado;
-var qualProf = "ALESSANDRA CARUSI MACHADO";
+var qualProf = "JOY HELENA WORMS TILL";
 //var horario, inicio, fim;
 var pos202=130;
 var pos211=130+largRect+espaco;
