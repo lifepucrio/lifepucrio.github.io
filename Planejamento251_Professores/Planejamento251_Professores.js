@@ -15,14 +15,14 @@ function setup() {
   qp.option('ANDRE LUIS FERREIRA BELTRAO');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
-  qp.option('BARBARA JANE NECYK');
-  qp.option('BARBARA PIRES E CASTRO');
+  //qp.option('BARBARA JANE NECYK');
+  //qp.option('BARBARA PIRES E CASTRO');
   qp.option('BERNARDO ALEVATO');
   qp.option('CARLO FRANZATO');
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
   qp.option('CELSO BRAGA WILMER');
-  qp.option('CLARISSA BIOLCHINI');
+  //qp.option('CLARISSA BIOLCHINI');
   qp.option('CLAUDIA HABIB KAYAT');
   qp.option('CLAUDIA MARIA MONTEIRO VIANNA');
   qp.option('CLAUDIA RENATA MONT ALVAO BASTOS RODRIGUES');
@@ -31,7 +31,7 @@ function setup() {
   qp.option('CLAUDIO GOMES WERNECK DE FREITAS');
   qp.option('CLEMENTINO JUNIOR');
   qp.option('CRISTINA VIANA TENENBAUM');
-  qp.option('CRISTINE NOGUEIRA NUNES');
+  //qp.option('CRISTINE NOGUEIRA NUNES');
   qp.option('DANIEL MALAGUTI CAMPOS');
   qp.option('DANIELA CORREA DE OLIVEIRA');
   qp.option('DAVISON COUTINHO');
@@ -47,7 +47,7 @@ function setup() {
   qp.option('GABRIELA DE GUSMAO PEREIRA');
   qp.option('GABRIELLA FERREIRA CHAVES VACCARI');
   qp.option('GILBERTO MENDES CORREIA JUNIOR');
-  qp.option('GISELA FRIACA DE SOUZA PEREIRA');
+  //qp.option('GISELA FRIACA DE SOUZA PEREIRA');
   qp.option('GUILHERME AZEVEDO TOLEDO');
   qp.option('GUILHERME DE ALMEIDA XAVIER');
   qp.option('GUILHERME LORENZONI DE ALMEIDA');
@@ -57,8 +57,8 @@ function setup() {
   qp.option('ISABELA CANELLAS DA MOTTA');
   qp.option('IZABEL MARIA DE OLIVEIRA');
   qp.option('JACKELINE LIMA FARBIARZ');
-  qp.option('JACQUES CHUEKE');
-  qp.option('JOANA PESSOA MOTA');
+  //qp.option('JACQUES CHUEKE');
+  //qp.option('JOANA PESSOA MOTA');
   qp.option('JOAO DE SA BONELLI');
   qp.option('JOAO VICTOR AZEVEDO DE MENEZES CORREIA DE MELO');
   qp.option('JOAQUIM DE SALLES REDIG DE CAMPOS');
@@ -112,6 +112,7 @@ function setup() {
   qp.option('WERTHER TEIXEIRA DE AZEVEDO NETO');
 
   qp.selected('ALESSANDRA CARUSI MACHADO');
+
   qp.changed(selecionaProf);
 }
 
