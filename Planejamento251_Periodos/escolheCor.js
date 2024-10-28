@@ -23,7 +23,7 @@ function escolheCor(posi) {
     fill(255, 122, 129, 150);
   }
   //projetos
-  else if (calendario[posi]=='DSG1813'||calendario[posi]=='DSG1814'||calendario[posi]=='DSG1815'||
+  else if (calendario[posi]=='DSG1813'||calendario[posi]=='DSG1814'||calendario[posi]=='DSG1815'||calendario[posi]=='DSG1500'||
     calendario[posi]=='DSG1300'||calendario[posi]=='DSG1400'||
     calendario[posi]=='DSG1816'||calendario[posi]=='DSG1900'||
     calendario[posi]=='DSG1910'||calendario[posi]=='DSG1911'||calendario[posi]=='DSG1912'||calendario[posi]=='DSG1913'||
@@ -34,24 +34,28 @@ function escolheCor(posi) {
     calendario[posi]=='DSG1824'||calendario[posi]=='DSG1825'||calendario[posi]=='DSG1826') {
     //historia e teoria
     fill(216, 104, 223, 200);
-  } else if (calendario[posi]=='DSG1801'||calendario[posi]=='DSG1802'||calendario[posi]=='DSG1803'||
+  } else if (calendario[posi]=='DSG1830'||
+    calendario[posi]=='DSG1831'||calendario[posi]=='DSG1832'||calendario[posi]=='DSG1833') {
+    //optativas historia e teoria
+    fill(169, 65, 171, 200);
+  }else if (calendario[posi]=='DSG1801'||calendario[posi]=='DSG1802'||calendario[posi]=='DSG1803'||
     calendario[posi]=='DSG1804'||calendario[posi]=='DSG1805'||calendario[posi]=='DSG1806'||calendario[posi]=='DSG1901'||calendario[posi]=='DSG1902') {
     //conteudos estruturantes
     fill(209, 163, 175, 200);
-  } else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1930'||
-    calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
-    calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
-    calendario[posi]=='DSG1954'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
-    calendario[posi]=='DSG1964'||calendario[posi]=='DSG1965'||calendario[posi]=='DSG1966') {
+  } else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1930'||calendario[posi]=='DSG1931'||
+    calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1937'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
+    calendario[posi]=='DSG1944'||calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1948'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1950'||calendario[posi]=='DSG1951'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
+    calendario[posi]=='DSG1954'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1958'||calendario[posi]=='DSG1959'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
+    calendario[posi]=='DSG1963'||calendario[posi]=='DSG1964'||calendario[posi]=='DSG1965'||calendario[posi]=='DSG1966') {
     //Optativas de Ênfase
     fill(242, 179, 58, 200);
-  } else if (calendario[posi]=='DSG1973'||calendario[posi]=='DSG1974'||calendario[posi]=='DSG1975'||
-    calendario[posi]=='DSG1976'||calendario[posi]=='DSG1977'||calendario[posi]=='DSG1978'||calendario[posi]=='DSG1981'||calendario[posi]=='DSG1982'||
-    calendario[posi]=='DSG1984'||calendario[posi]=='DSG1987'||calendario[posi]=='DSG1988'||calendario[posi]=='DSG1989'||calendario[posi]=='DSG1990'||
+  } else if (calendario[posi]=='DSG1972'||calendario[posi]=='DSG1973'||calendario[posi]=='DSG1974'||calendario[posi]=='DSG1975'||
+    calendario[posi]=='DSG1976'||calendario[posi]=='DSG1977'||calendario[posi]=='DSG1978'||calendario[posi]=='DSG1979'||calendario[posi]=='DSG1981'||calendario[posi]=='DSG1982'||
+    calendario[posi]=='DSG1983'||calendario[posi]=='DSG1984'||calendario[posi]=='DSG1985'||calendario[posi]=='DSG1986'||calendario[posi]=='DSG1987'||calendario[posi]=='DSG1988'||calendario[posi]=='DSG1989'||calendario[posi]=='DSG1990'||
     calendario[posi]=='DSG1991'||calendario[posi]=='DSG1992'||calendario[posi]=='DSG1992'||calendario[posi]=='DSG1993') {
     //Optativas Oficina de Ênfase
     fill(39, 123, 61, 200);
-  } else if (calendario[posi]=='DSG1995'||calendario[posi]=='DSG1996'||calendario[posi]=='DSG1997'||
+  } else if (calendario[posi]=='DSG1969'||calendario[posi]=='DSG1995'||calendario[posi]=='DSG1996'||calendario[posi]=='DSG1997'||
     calendario[posi]=='DSG1998'||calendario[posi]=='DSG1999') {
     //Optativas Desenho de Ênfase
     fill(0, 119, 165, 200);
