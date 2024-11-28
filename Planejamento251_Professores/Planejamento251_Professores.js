@@ -12,6 +12,7 @@ function setup() {
   qp.position(740, 60);
   qp.option('ALESSANDRA CARUSI MACHADO');
   qp.option('ALEXANDRE CANTINI REZENDE');
+  qp.option('ANDRE WELLER');
   qp.option('ANDRE LUIS FERREIRA BELTRAO');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
