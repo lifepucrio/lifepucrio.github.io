@@ -14,11 +14,11 @@ function base(){
   fill(0);
   textFont("Helvetica");
   textStyle(BOLD);
-  text('SEGUNDA',posSegunda+10,140);
-  text('TERÇA',posTerca+10,140);
-  text('QUARTA',posQuarta+10,140);
-  text('QUINTA',posQuinta+10,140);
-  text('SEXTA',posSexta+10,140);
+  text('SEGUNDA',posSegunda+10,pos7h-20);
+  text('TERÇA',posTerca+10,pos7h-20);
+  text('QUARTA',posQuarta+10,pos7h-20);
+  text('QUINTA',posQuinta+10,pos7h-20);
+  text('SEXTA',posSexta+10,pos7h-20);
   text('7h',50,pos7h);
   text('8h',50,pos8h);
   text('9h',50,pos9h);

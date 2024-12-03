@@ -25,7 +25,7 @@ function periodos() {
       let dia=calendario[pos];
       let inicio=calendario[pos+1];
       let fim=calendario[pos+3];
-      console.log(inicio);
+      //console.log(inicio);
       coordenadasDiaHoraDuracao(dia, inicio, fim);
       escolheCor(pos+2);
       noStroke();
