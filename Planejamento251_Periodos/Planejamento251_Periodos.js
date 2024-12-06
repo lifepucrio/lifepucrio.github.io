@@ -12,10 +12,13 @@ function preload() {
 function setup() {
   //createCanvas(1800, 960);
   createCanvas(1920, 1080);
+  smooth();
   //console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
+  
+  //SELECIONA PERIODO
   qs = createSelect();
-  qs.position(900, 55);
+  qs.position(900, 50);
   qs.option('1o');
   qs.option('2o');
   qs.option('3o');
@@ -24,15 +27,17 @@ function setup() {
   qs.option('6o');
   qs.option('7o');
   qs.option('8o');
-
   qs.selected('1o');
   qs.changed(selecionaPeriodo);
+  qs.style('font-family: "Source Sans 3"; font-weight: regular; font-size: 12px');
 
+  //OPTATIVAS PRÁTICAS EXPERIMENTAIS
   ope = createCheckbox('Optativas Práticas Experimentais', false);
   ope.position(-2900, 60);
   ope.changed(mostraOptPratExp);
-  ope.style('font-family:helvetica; font-size: 14px');
+  ope.style('font-family: "Source Sans 3"; font-weight: normal; font-size: 14px');
 
+  //OPTATIVAS DE ÊNFASE
   oe = createSelect();
   oe.option('Selecionar ênfase');
   oe.option('Interação e experiência digital', 'EID');
@@ -44,16 +49,9 @@ function setup() {
   oe.selected('Selecionar ênfase');
   oe.position(-2900, 50);
   oe.changed(mostraOptEnfase);
-  oe.style('font-family:helvetica; font-size: 12px');
+  oe.style('font-family: "Source Sans 3"; font-weight: regular; font-size: 12px');
 
-
-  //ooe = createCheckbox('Optativas Oficinas de Ênfase', false);
-  //ooe.position(-2900, 60);
-  //ooe.changed(mostraOptOficinaEnfase);
-  //ooe.style('font-family:helvetica; font-size: 14px');
-
-
-
+  //OPTATIVAS OFICINA DE ÊNFASE
   ooe = createSelect();
   ooe.option('Selecionar ênfase');
   ooe.option('Interação e experiência digital', 'EID');
@@ -65,19 +63,19 @@ function setup() {
   ooe.selected('Selecionar ênfase');
   ooe.position(-2900, 60);
   ooe.changed(mostraOptOficinaEnfase);
-  ooe.style('font-family:helvetica; font-size: 12px');
+  ooe.style('font-family: "Source Sans 3"; font-weight: regular; font-size: 12px');
 
-
-
-  ode = createCheckbox('Optativas Desenho de Ênfase', false);
+  //OPTATIVAS DESENHO DE ÊNFASE
+  ode = createCheckbox('Optativas desenho de ênfase', false);
   ode.position(-2900, 60);
   ode.changed(mostraOptDesenhoEnfase);
-  ode.style('font-family:helvetica; font-size: 14px');
+  ode.style('font-family: "Source Sans 3"; font-weight: regular; font-size: 14px');
 
+  //OPTATIVAS DE HISTÓRIA
   oh = createCheckbox('Optativas de História da Arte e do Design', false);
   oh.position(-2900, 60);
   oh.changed(mostraOptHist);
-  oh.style('font-family:helvetica; font-size: 14px');
+  oh.style('font-family: "Source Sans 3"; font-weight: regular; font-size: 14px');
 }
 
 function mostraOptPratExp() {
@@ -134,7 +132,7 @@ function selecionaPeriodo() {
     //ope.position(2900, 60);
   }
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
-    ope.position(1010, 55);
+    ope.position(1000, 50);
     oe.position(-2900, 40);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -150,7 +148,7 @@ function selecionaPeriodo() {
     //ope.position(-2900, 60);
   }
   if (qualPeriodo=='5o') {
-    oe.position(1150, 55);
+    oe.position(1130, 48);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -166,8 +164,8 @@ function selecionaPeriodo() {
     //oe.position(-2900, 60);
   }
   if (qualPeriodo=='6o') {
-    oe.position(1150, 55);
-    oh.position(1010, 75);
+    oe.position(1130, 48);
+    oh.position(995, 75);
     ope.position(-2900, 60);
     ode.position(-2900, 40);
     ooe.position(-2900, 60);
@@ -183,9 +181,9 @@ function selecionaPeriodo() {
     //oh.position(-2900, 60);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
-    oe.position(1180, 55);
-    ooe.position(1180, 75);
-    ode.position(1005, 95);
+    oe.position(1170, 48);
+    ooe.position(1170, 71);
+    ode.position(995, 90);
     oh.position(-2900, 60);
     ope.position(-2900, 60);
     ope.checked(false);
@@ -225,38 +223,38 @@ function draw() {
 
   //BOXES BRANCOS
   fill(255, 200);
-  rect(880, 20, 100, 80, 10);
+  rect(880, 20, 90, 70, 10);
   fill(0);
   textSize(16);
   text("Período", 900, 40);
   
   if (qualPeriodo=='3o'||qualPeriodo=='4o') {
     fill(255, 200);
-    rect(990, 20, 320, 80, 10);
+    rect(980, 20, 320, 70, 10);
     fill(0);
     textSize(16);
-    text("Optativas", 1010, 40);
+    text("Optativas", 1000, 40);
   }
   if (qualPeriodo=='5o'||qualPeriodo=='6o') {
     fill(255, 200);
-    rect(990, 20, 450, 100, 10);
+    rect(980, 20, 450, 90, 10);
     fill(0);
     textSize(16);
-    text("Optativas", 1010, 40);
+    text("Optativas", 1000, 40);
     textFont(fontRegular)
     textSize(14);
-    text("Optativas de ênfase", 1010, 70);
+    text("Optativas de ênfase", 1000, 65);
   }
   if (qualPeriodo=='7o'||qualPeriodo=='8o') {
     fill(255, 200);
-    rect(990, 20, 470, 100, 10);
+    rect(980, 20, 470, 100, 10);
     fill(0);
     textSize(16);
-    text("Optativas", 1010, 40);
+    text("Optativas", 1000, 40);
     textFont(fontRegular)
     textSize(14);
-    text("Optativas de ênfase", 1010, 70);
-    text("Optativas oficina de ênfase", 1010, 90);
+    text("Optativas de ênfase", 1000, 65);
+    text("Optativas oficina de ênfase", 1000, 85);
   }
 
   textSize(38);
