@@ -172,6 +172,7 @@ function salas() {
 
 
       //escolheCor
+      //linguagens
       if (calendario[pos+2]=='DSG1841'||calendario[pos+2]=='DSG1843'||
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
@@ -179,33 +180,65 @@ function salas() {
         calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
         calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
-        //linguagens
         fill(23, 173, 245, 150);
-      } else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
+      }
+      //praticas experimentais
+      else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
         calendario[pos+2]=='DSG1847'||calendario[pos+2]=='DSG1861'||calendario[pos+2]=='DSG1862'||
         calendario[pos+2]=='DSG1863'||
         calendario[pos+2]=='DSG1864'||calendario[pos+2]=='DSG1865'||
         calendario[pos+2]=='DSG1866'||calendario[pos+2]=='DSG1867') {
-        //praticas experimentais
         fill(0, 176, 160, 150);
-      } else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812'){
-        //estudios
-        fill(255,122,129,150);
-      }else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
-        //projetos
-        fill(248, 0, 24, 150);
-      } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
-        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
-        //historia e teoria
-        fill(216, 104, 218, 150);
-      } else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
-        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
-        //conteudos estruturantes
-        fill(209, 163, 175, 150);
       }
-      else {
-        fill(242, 179, 58, 150);
+      //estudios
+      else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812') {
+        fill(255, 122, 129, 150);
+      }
+      //projetos
+      else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||calendario[pos+2]=='DSG1500'||
+        calendario[pos+2]=='DSG1300'||calendario[pos+2]=='DSG1400'||
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG1914'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
+        fill(248, 0, 24, 200);
+      }
+      //historia e teoria
+      else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
+        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
+        fill(216, 104, 223, 200);
+      }
+      //optativas historia e teoria
+      else if (calendario[pos+2]=='DSG1423'||calendario[pos+2]=='DSG1830'||
+        calendario[pos+2]=='DSG1831'||calendario[pos+2]=='DSG1832'||calendario[pos+2]=='DSG1833') {
+        fill(169, 65, 171, 200);
+      }
+      //conteudos estruturantes
+      else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
+        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
+        fill(209, 163, 175, 200);
+      }
+      //Optativas de Ênfase
+      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
+        calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1943'||
+        calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
+        calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
+        calendario[pos+2]=='DSG1963'||calendario[pos+2]=='DSG1964'||calendario[pos+2]=='DSG1965'||calendario[pos+2]=='DSG1966') {
+        fill(242, 179, 58, 200);
+      }
+      //Optativas Oficina de Ênfase
+      else if (calendario[pos+2]=='DSG1972'||calendario[pos+2]=='DSG1973'||calendario[pos+2]=='DSG1974'||calendario[pos+2]=='DSG1975'||
+        calendario[pos+2]=='DSG1976'||calendario[pos+2]=='DSG1977'||calendario[pos+2]=='DSG1978'||calendario[pos+2]=='DSG1979'||calendario[pos+2]=='DSG1981'||calendario[pos+2]=='DSG1982'||
+        calendario[pos+2]=='DSG1983'||calendario[pos+2]=='DSG1984'||calendario[pos+2]=='DSG1985'||calendario[pos+2]=='DSG1986'||calendario[pos+2]=='DSG1987'||calendario[pos+2]=='DSG1988'||calendario[pos+2]=='DSG1989'||calendario[pos+2]=='DSG1990'||
+        calendario[pos+2]=='DSG1991'||calendario[pos+2]=='DSG1992'||calendario[pos+2]=='DSG1993'||calendario[pos+2]=='DSG1994') {
+        fill(39, 123, 61, 200);
+      }
+      //Optativas Desenho de Ênfase
+      else if (calendario[pos+2]=='DSG1969'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1995'||calendario[pos+2]=='DSG1996'||calendario[pos+2]=='DSG1997'||
+        calendario[pos+2]=='DSG1998'||calendario[pos+2]=='DSG1999') {
+        fill(0, 119, 165, 200);
+      } else {
+        fill(150, 150, 150, 200);
       }
 
       noStroke();
@@ -297,6 +330,7 @@ function salas() {
 
 
       //escolheCor
+      //linguagens
       if (calendario[pos+2]=='DSG1841'||calendario[pos+2]=='DSG1843'||
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
@@ -304,33 +338,65 @@ function salas() {
         calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
         calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
-        //linguagens
         fill(23, 173, 245, 150);
-      } else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
+      }
+      //praticas experimentais
+      else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
         calendario[pos+2]=='DSG1847'||calendario[pos+2]=='DSG1861'||calendario[pos+2]=='DSG1862'||
         calendario[pos+2]=='DSG1863'||
         calendario[pos+2]=='DSG1864'||calendario[pos+2]=='DSG1865'||
         calendario[pos+2]=='DSG1866'||calendario[pos+2]=='DSG1867') {
-        //praticas experimentais
         fill(0, 176, 160, 150);
-      } else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812'){
-        //estudios
-        fill(255,122,129,150);
-      }else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
-        //projetos
-        fill(248, 0, 24, 150);
-      } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
-        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
-        //historia e teoria
-        fill(216, 104, 218, 150);
-      } else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
-        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
-        //conteudos estruturantes
-        fill(209, 163, 175, 150);
       }
-      else {
-        fill(242, 179, 58, 150);
+      //estudios
+      else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812') {
+        fill(255, 122, 129, 150);
+      }
+      //projetos
+      else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||calendario[pos+2]=='DSG1500'||
+        calendario[pos+2]=='DSG1300'||calendario[pos+2]=='DSG1400'||
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG1914'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
+        fill(248, 0, 24, 200);
+      }
+      //historia e teoria
+      else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
+        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
+        fill(216, 104, 223, 200);
+      }
+      //optativas historia e teoria
+      else if (calendario[pos+2]=='DSG1423'||calendario[pos+2]=='DSG1830'||
+        calendario[pos+2]=='DSG1831'||calendario[pos+2]=='DSG1832'||calendario[pos+2]=='DSG1833') {
+        fill(169, 65, 171, 200);
+      }
+      //conteudos estruturantes
+      else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
+        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
+        fill(209, 163, 175, 200);
+      }
+      //Optativas de Ênfase
+      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
+        calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1943'||
+        calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
+        calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
+        calendario[pos+2]=='DSG1963'||calendario[pos+2]=='DSG1964'||calendario[pos+2]=='DSG1965'||calendario[pos+2]=='DSG1966') {
+        fill(242, 179, 58, 200);
+      }
+      //Optativas Oficina de Ênfase
+      else if (calendario[pos+2]=='DSG1972'||calendario[pos+2]=='DSG1973'||calendario[pos+2]=='DSG1974'||calendario[pos+2]=='DSG1975'||
+        calendario[pos+2]=='DSG1976'||calendario[pos+2]=='DSG1977'||calendario[pos+2]=='DSG1978'||calendario[pos+2]=='DSG1979'||calendario[pos+2]=='DSG1981'||calendario[pos+2]=='DSG1982'||
+        calendario[pos+2]=='DSG1983'||calendario[pos+2]=='DSG1984'||calendario[pos+2]=='DSG1985'||calendario[pos+2]=='DSG1986'||calendario[pos+2]=='DSG1987'||calendario[pos+2]=='DSG1988'||calendario[pos+2]=='DSG1989'||calendario[pos+2]=='DSG1990'||
+        calendario[pos+2]=='DSG1991'||calendario[pos+2]=='DSG1992'||calendario[pos+2]=='DSG1993'||calendario[pos+2]=='DSG1994') {
+        fill(39, 123, 61, 200);
+      }
+      //Optativas Desenho de Ênfase
+      else if (calendario[pos+2]=='DSG1969'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1995'||calendario[pos+2]=='DSG1996'||calendario[pos+2]=='DSG1997'||
+        calendario[pos+2]=='DSG1998'||calendario[pos+2]=='DSG1999') {
+        fill(0, 119, 165, 200);
+      } else {
+        fill(150, 150, 150, 200);
       }
 
 
@@ -424,6 +490,7 @@ function salas() {
 
 
       //escolheCor
+      //linguagens
       if (calendario[pos+2]=='DSG1841'||calendario[pos+2]=='DSG1843'||
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
@@ -431,33 +498,65 @@ function salas() {
         calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
         calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
-        //linguagens
         fill(23, 173, 245, 150);
-      } else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
+      }
+      //praticas experimentais
+      else if (calendario[pos+2]=='DSG1842'||calendario[pos+2]=='DSG1844'||
         calendario[pos+2]=='DSG1847'||calendario[pos+2]=='DSG1861'||calendario[pos+2]=='DSG1862'||
         calendario[pos+2]=='DSG1863'||
         calendario[pos+2]=='DSG1864'||calendario[pos+2]=='DSG1865'||
         calendario[pos+2]=='DSG1866'||calendario[pos+2]=='DSG1867') {
-        //praticas experimentais
         fill(0, 176, 160, 150);
-      } else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812'){
-        //estudios
-        fill(255,122,129,150);
-      }else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||
-        calendario[pos+2]=='DSG1816') {
-        //projetos
-        fill(248, 0, 24, 150);
-      } else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
-        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
-        //historia e teoria
-        fill(216, 104, 218, 150);
-      } else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
-        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
-        //conteudos estruturantes
-        fill(209, 163, 175, 150);
       }
-      else {
-        fill(242, 179, 58, 150);
+      //estudios
+      else if (calendario[pos+2]=='DSG1811'||calendario[pos+2]=='DSG1812') {
+        fill(255, 122, 129, 150);
+      }
+      //projetos
+      else if (calendario[pos+2]=='DSG1813'||calendario[pos+2]=='DSG1814'||calendario[pos+2]=='DSG1815'||calendario[pos+2]=='DSG1500'||
+        calendario[pos+2]=='DSG1300'||calendario[pos+2]=='DSG1400'||
+        calendario[pos+2]=='DSG1816'||calendario[pos+2]=='DSG1900'||
+        calendario[pos+2]=='DSG1910'||calendario[pos+2]=='DSG1911'||calendario[pos+2]=='DSG1912'||calendario[pos+2]=='DSG1913'||
+        calendario[pos+2]=='DSG1914'||calendario[pos+2]=='DSG1915'||calendario[pos+2]=='DSG1920'||calendario[pos+2]=='DSG1921'||
+        calendario[pos+2]=='DSG1922'||calendario[pos+2]=='DSG1923'||calendario[pos+2]=='DSG1924'||calendario[pos+2]=='DSG1925') {
+        fill(248, 0, 24, 200);
+      }
+      //historia e teoria
+      else if (calendario[pos+2]=='DSG1821'||calendario[pos+2]=='DSG1822'||calendario[pos+2]=='DSG1823'||
+        calendario[pos+2]=='DSG1824'||calendario[pos+2]=='DSG1825'||calendario[pos+2]=='DSG1826') {
+        fill(216, 104, 223, 200);
+      }
+      //optativas historia e teoria
+      else if (calendario[pos+2]=='DSG1423'||calendario[pos+2]=='DSG1830'||
+        calendario[pos+2]=='DSG1831'||calendario[pos+2]=='DSG1832'||calendario[pos+2]=='DSG1833') {
+        fill(169, 65, 171, 200);
+      }
+      //conteudos estruturantes
+      else if (calendario[pos+2]=='DSG1801'||calendario[pos+2]=='DSG1802'||calendario[pos+2]=='DSG1803'||
+        calendario[pos+2]=='DSG1804'||calendario[pos+2]=='DSG1805'||calendario[pos+2]=='DSG1806'||calendario[pos+2]=='DSG1901'||calendario[pos+2]=='DSG1902') {
+        fill(209, 163, 175, 200);
+      }
+      //Optativas de Ênfase
+      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
+        calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1943'||
+        calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
+        calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
+        calendario[pos+2]=='DSG1963'||calendario[pos+2]=='DSG1964'||calendario[pos+2]=='DSG1965'||calendario[pos+2]=='DSG1966') {
+        fill(242, 179, 58, 200);
+      }
+      //Optativas Oficina de Ênfase
+      else if (calendario[pos+2]=='DSG1972'||calendario[pos+2]=='DSG1973'||calendario[pos+2]=='DSG1974'||calendario[pos+2]=='DSG1975'||
+        calendario[pos+2]=='DSG1976'||calendario[pos+2]=='DSG1977'||calendario[pos+2]=='DSG1978'||calendario[pos+2]=='DSG1979'||calendario[pos+2]=='DSG1981'||calendario[pos+2]=='DSG1982'||
+        calendario[pos+2]=='DSG1983'||calendario[pos+2]=='DSG1984'||calendario[pos+2]=='DSG1985'||calendario[pos+2]=='DSG1986'||calendario[pos+2]=='DSG1987'||calendario[pos+2]=='DSG1988'||calendario[pos+2]=='DSG1989'||calendario[pos+2]=='DSG1990'||
+        calendario[pos+2]=='DSG1991'||calendario[pos+2]=='DSG1992'||calendario[pos+2]=='DSG1993'||calendario[pos+2]=='DSG1994') {
+        fill(39, 123, 61, 200);
+      }
+      //Optativas Desenho de Ênfase
+      else if (calendario[pos+2]=='DSG1969'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1995'||calendario[pos+2]=='DSG1996'||calendario[pos+2]=='DSG1997'||
+        calendario[pos+2]=='DSG1998'||calendario[pos+2]=='DSG1999') {
+        fill(0, 119, 165, 200);
+      } else {
+        fill(150, 150, 150, 200);
       }
 
 

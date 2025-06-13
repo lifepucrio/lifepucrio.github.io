@@ -1,5 +1,3 @@
-
-
 function preload() {
   tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
 }
