@@ -16,9 +16,7 @@ function setup() {
   qp.option('ANDRE LUIS FERREIRA BELTRAO');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
-  //qp.option('BARBARA JANE NECYK');
-  //qp.option('BARBARA PIRES E CASTRO');
-  qp.option('BERNARDO ALEVATO');
+  qp.option('BERNARDO GOMES ALEVATO');
   qp.option('CARLO FRANZATO');
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
@@ -30,12 +28,12 @@ function setup() {
   qp.option('CLAUDIA STAMATO');
   qp.option('CLAUDIO FREITAS DE MAGALHAES');
   qp.option('CLAUDIO GOMES WERNECK DE FREITAS');
-  qp.option('CLEMENTINO JUNIOR');
+  qp.option('CLEMENTINO LUIZ DE JESUS JUNIOR');
   qp.option('CRISTINA VIANA TENENBAUM');
   //qp.option('CRISTINE NOGUEIRA NUNES');
   qp.option('DANIEL MALAGUTI CAMPOS');
   qp.option('DANIELA CORREA DE OLIVEIRA');
-  qp.option('DAVISON COUTINHO');
+  qp.option('DAVISON DA SILVA COUTINHO');
   qp.option('DENISE BERRUEZO PORTINARI');
   qp.option('EDUARDO ROCHA DE OLIVEIRA FILHO');
   qp.option('ELIANE GARCIA PEREIRA');

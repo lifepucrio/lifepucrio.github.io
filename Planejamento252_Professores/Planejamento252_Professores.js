@@ -21,16 +21,13 @@ function setup() {
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
   qp.option('CELSO BRAGA WILMER');
-  //qp.option('CLARISSA BIOLCHINI');
   qp.option('CLAUDIA HABIB KAYAT');
   qp.option('CLAUDIA MARIA MONTEIRO VIANNA');
   qp.option('CLAUDIA RENATA MONT ALVAO BASTOS RODRIGUES');
-  //qp.option('CLAUDIA STAMATO');
   qp.option('CLAUDIO FREITAS DE MAGALHAES');
   qp.option('CLAUDIO GOMES WERNECK DE FREITAS');
   qp.option('CLEMENTINO LUIZ DE JESUS JUNIOR');
   qp.option('CRISTINA VIANA TENENBAUM');
-  //qp.option('CRISTINE NOGUEIRA NUNES');
   qp.option('DANIEL MALAGUTI CAMPOS');
   qp.option('DANIELA CORREA DE OLIVEIRA');
   qp.option('DAVISON DA SILVA COUTINHO');
@@ -46,7 +43,6 @@ function setup() {
   qp.option('GABRIELA DE GUSMAO PEREIRA');
   qp.option('GABRIELLA FERREIRA CHAVES VACCARI');
   qp.option('GILBERTO MENDES CORREIA JUNIOR');
-  //qp.option('GISELA FRIACA DE SOUZA PEREIRA');
   qp.option('GUILHERME AZEVEDO TOLEDO');
   qp.option('GUILHERME DE ALMEIDA XAVIER');
   qp.option('GUILHERME LORENZONI DE ALMEIDA');
@@ -56,8 +52,6 @@ function setup() {
   qp.option('ISABELA CANELLAS DA MOTTA');
   qp.option('IZABEL MARIA DE OLIVEIRA');
   qp.option('JACKELINE LIMA FARBIARZ');
-  //qp.option('JACQUES CHUEKE');
-  //qp.option('JOANA PESSOA MOTA');
   qp.option('JOAO DE SA BONELLI');
   qp.option('JOAO VICTOR AZEVEDO DE MENEZES CORREIA DE MELO');
   qp.option('JOAQUIM DE SALLES REDIG DE CAMPOS');
@@ -65,7 +59,6 @@ function setup() {
   qp.option('JORGE ROBERTO LOPES DOS SANTOS');
   qp.option('JOSE AUGUSTO BRANDAO ESTELLITA LINS');
   qp.option('JOSE ROBERTO SANSEVERINO');
-  //qp.option('JOY HELENA WORMS TILL');
   qp.option('JULIETA COSTA SOBRAL');
   qp.option('LEONARDO CARDARELLI LEITE');
   qp.option('LEONIDAS AUGUSTO CORREIA DE MORAES');
@@ -95,20 +88,16 @@ function setup() {
   //qp.option('PRISCILA ANDRADE SILVA');
   qp.option('RENATA MATTOS EYER DE ARAUJO');
   qp.option('RIAN OLIVEIRA REZENDE');
-  //qp.option('RICARDO DA CUNHA FONTES');
   qp.option('RITA MARIA DE SOUZA COUTO');
   qp.option('ROBERTA PORTAS GONCALVES RODRIGUES');
   qp.option('ROMULO MIYAZAWA MATTEONI');
-  //qp.option('SHEILA DAIN');
   qp.option('SILVIA HELENA SOARES DA COSTA');
   qp.option('SIMONE CARVALHO DE FORMIGA XAVIER');
   qp.option('SUZANA VALLADARES FONSECA');
-  //qp.option('TATIANA BARBOSA CARVALHO');
   qp.option('VERA LUCIA MOREIRA DOS SANTOS NOJIMA');
   qp.option('VERA MARIA CAVALCANTI BERNARDES');
   qp.option('VERA MARIA MARSICANO DAMAZIO');
   qp.option('WALVYKER ALVES DE SOUZA');
-  //qp.option('WERTHER TEIXEIRA DE AZEVEDO NETO');
 
   qp.selected('ALESSANDRA CARUSI MACHADO');
 
