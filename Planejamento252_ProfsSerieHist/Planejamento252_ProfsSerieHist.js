@@ -1,45 +1,41 @@
 
 
 function preload() {
-  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=0&single=true&output=csv', 'csv', 'header');
-  tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=341439767&single=true&output=csv', 'csv', 'header');
-  tabela251=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=0&single=true&output=csv', 'csv', 'header');
-  tabela251=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  //tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=2122385506&single=true&output=csv', 'csv', 'header');
+  //tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=341439767&single=true&output=csv', 'csv', 'header');
+  tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=2122385506&single=true&output=csv', 'csv', 'header');
+  //tabela251=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=0&single=true&output=csv', 'csv', 'header');
   tabela252=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
 
 }
 
 function setup() {
   createCanvas(1400, 960);
-  console.log(tabela.getRowCount()+'linhas');
+  //console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qp = createSelect();
   qp.position(740, 60);
   qp.option('ALESSANDRA CARUSI MACHADO');
   qp.option('ALEXANDRE CANTINI REZENDE');
   qp.option('ANDRE LUIS FERREIRA BELTRAO');
+  qp.option('ANDRE WELLER');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
-  //qp.option('BARBARA JANE NECYK');
-  //qp.option('BARBARA PIRES E CASTRO');
-  qp.option('BERNARDO ALEVATO');
+  qp.option('BERNARDO GOMES ALEVATO');
   qp.option('CARLO FRANZATO');
   qp.option('CARLOS ANDRE LAMEIRAO CORTES');
   qp.option('CARLOS EDUARDO FELIX DA COSTA');
   qp.option('CELSO BRAGA WILMER');
-  //qp.option('CLARISSA BIOLCHINI');
   qp.option('CLAUDIA HABIB KAYAT');
   qp.option('CLAUDIA MARIA MONTEIRO VIANNA');
   qp.option('CLAUDIA RENATA MONT ALVAO BASTOS RODRIGUES');
-  //qp.option('CLAUDIA STAMATO');
   qp.option('CLAUDIO FREITAS DE MAGALHAES');
   qp.option('CLAUDIO GOMES WERNECK DE FREITAS');
-  qp.option('CLEMENTINO JUNIOR');
+  qp.option('CLEMENTINO LUIZ DE JESUS JUNIOR');
   qp.option('CRISTINA VIANA TENENBAUM');
-  //qp.option('CRISTINE NOGUEIRA NUNES');
   qp.option('DANIEL MALAGUTI CAMPOS');
   qp.option('DANIELA CORREA DE OLIVEIRA');
-  qp.option('DAVISON COUTINHO');
+  qp.option('DAVISON DA SILVA COUTINHO');
   qp.option('DENISE BERRUEZO PORTINARI');
   qp.option('EDUARDO ROCHA DE OLIVEIRA FILHO');
   qp.option('ELIANE GARCIA PEREIRA');
@@ -52,7 +48,6 @@ function setup() {
   qp.option('GABRIELA DE GUSMAO PEREIRA');
   qp.option('GABRIELLA FERREIRA CHAVES VACCARI');
   qp.option('GILBERTO MENDES CORREIA JUNIOR');
-  qp.option('GISELA FRIACA DE SOUZA PEREIRA');
   qp.option('GUILHERME AZEVEDO TOLEDO');
   qp.option('GUILHERME DE ALMEIDA XAVIER');
   qp.option('GUILHERME LORENZONI DE ALMEIDA');
@@ -62,8 +57,6 @@ function setup() {
   qp.option('ISABELA CANELLAS DA MOTTA');
   qp.option('IZABEL MARIA DE OLIVEIRA');
   qp.option('JACKELINE LIMA FARBIARZ');
-  qp.option('JACQUES CHUEKE');
-  qp.option('JOANA PESSOA MOTA');
   qp.option('JOAO DE SA BONELLI');
   qp.option('JOAO VICTOR AZEVEDO DE MENEZES CORREIA DE MELO');
   qp.option('JOAQUIM DE SALLES REDIG DE CAMPOS');
@@ -71,7 +64,6 @@ function setup() {
   qp.option('JORGE ROBERTO LOPES DOS SANTOS');
   qp.option('JOSE AUGUSTO BRANDAO ESTELLITA LINS');
   qp.option('JOSE ROBERTO SANSEVERINO');
-  qp.option('JOY HELENA WORMS TILL');
   qp.option('JULIETA COSTA SOBRAL');
   qp.option('LEONARDO CARDARELLI LEITE');
   qp.option('LEONIDAS AUGUSTO CORREIA DE MORAES');
@@ -98,23 +90,17 @@ function setup() {
   qp.option('MONICA SABOIA SADDI');
   qp.option('NATHALIA CHEHAB DE SA CAVALCANTE');
   qp.option('NILTON GONCALVES GAMBA JUNIOR');
-  qp.option('PRISCILA ANDRADE SILVA');
   qp.option('RENATA MATTOS EYER DE ARAUJO');
   qp.option('RIAN OLIVEIRA REZENDE');
-  qp.option('RICARDO DA CUNHA FONTES');
   qp.option('RITA MARIA DE SOUZA COUTO');
   qp.option('ROBERTA PORTAS GONCALVES RODRIGUES');
   qp.option('ROMULO MIYAZAWA MATTEONI');
-  qp.option('SHEILA DAIN');
   qp.option('SILVIA HELENA SOARES DA COSTA');
   qp.option('SIMONE CARVALHO DE FORMIGA XAVIER');
   qp.option('SUZANA VALLADARES FONSECA');
-  qp.option('TATIANA BARBOSA CARVALHO');
   qp.option('VERA LUCIA MOREIRA DOS SANTOS NOJIMA');
-  qp.option('VERA MARIA CAVALCANTI BERNARDES');
   qp.option('VERA MARIA MARSICANO DAMAZIO');
   qp.option('WALVYKER ALVES DE SOUZA');
-  qp.option('WERTHER TEIXEIRA DE AZEVEDO NETO');
 
   qp.selected('ALESSANDRA CARUSI MACHADO');
   qp.changed(selecionaProf);
@@ -150,8 +136,6 @@ function draw() {
 
   //base desenho
   base();
-  contagemDeCreditos();
-  contagemDeCreditos251();
   contagemDeCreditos252();
   montaSerie();
 }

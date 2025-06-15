@@ -41,11 +41,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -56,11 +56,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -71,11 +71,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -86,11 +86,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -101,11 +101,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -116,11 +116,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
@@ -131,11 +131,11 @@ function contagemDeCreditos252() {
         if (creditos=='') {
           creditos=0;
         }
-        let codigo=tabela.get(i, 'CODIGO');
-        let disciplina=tabela.get(i, 'DISCIPLINA');
-        let turma=tabela.get(i, 'TURMA');
-        textSize(12);
-        textStyle(NORMAL);
+        //let codigo=tabela.get(i, 'CODIGO');
+        //let disciplina=tabela.get(i, 'DISCIPLINA');
+        //let turma=tabela.get(i, 'TURMA');
+        //textSize(12);
+        //textStyle(NORMAL);
         //text(codigo+' '+turma+' '+disciplina, 110, linha*14+820);
         //text(creditos, 700, linha*14+820);
         //linha++;
