@@ -85,7 +85,7 @@ function setup() {
   qp.option('MONICA SABOIA SADDI');
   qp.option('NATHALIA CHEHAB DE SA CAVALCANTE');
   qp.option('NILTON GONCALVES GAMBA JUNIOR');
-  //qp.option('PRISCILA ANDRADE SILVA');
+  qp.option('RAQUEL CORREA CORDEIRO');
   qp.option('RENATA MATTOS EYER DE ARAUJO');
   qp.option('RIAN OLIVEIRA REZENDE');
   qp.option('RITA MARIA DE SOUZA COUTO');
