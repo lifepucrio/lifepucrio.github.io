@@ -177,7 +177,7 @@ function salas() {
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
         calendario[pos+2]=='DSG1849'||calendario[pos+2]=='DSG1851'||
-        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
+        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1854'||
         calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
         fill(23, 173, 245, 150);
@@ -219,7 +219,7 @@ function salas() {
         fill(209, 163, 175, 200);
       }
       //Optativas de Ênfase
-      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
+      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1926'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
         calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1943'||
         calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
         calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
@@ -227,7 +227,7 @@ function salas() {
         fill(242, 179, 58, 200);
       }
       //Optativas Oficina de Ênfase
-      else if (calendario[pos+2]=='DSG1972'||calendario[pos+2]=='DSG1973'||calendario[pos+2]=='DSG1974'||calendario[pos+2]=='DSG1975'||
+      else if (calendario[pos+2]=='DSG1927'||calendario[pos+2]=='DSG1928'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1972'||calendario[pos+2]=='DSG1973'||calendario[pos+2]=='DSG1974'||calendario[pos+2]=='DSG1975'||
         calendario[pos+2]=='DSG1976'||calendario[pos+2]=='DSG1977'||calendario[pos+2]=='DSG1978'||calendario[pos+2]=='DSG1979'||calendario[pos+2]=='DSG1981'||calendario[pos+2]=='DSG1982'||
         calendario[pos+2]=='DSG1983'||calendario[pos+2]=='DSG1984'||calendario[pos+2]=='DSG1985'||calendario[pos+2]=='DSG1986'||calendario[pos+2]=='DSG1987'||calendario[pos+2]=='DSG1988'||calendario[pos+2]=='DSG1989'||calendario[pos+2]=='DSG1990'||
         calendario[pos+2]=='DSG1991'||calendario[pos+2]=='DSG1992'||calendario[pos+2]=='DSG1993'||calendario[pos+2]=='DSG1994') {
@@ -335,8 +335,8 @@ function salas() {
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
         calendario[pos+2]=='DSG1849'||calendario[pos+2]=='DSG1851'||
-        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
-        calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
+        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1854'||
+        calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
         fill(23, 173, 245, 150);
       }
@@ -414,7 +414,7 @@ function salas() {
       text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+70);
       text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+82);
     }
-    
+
     //terceira posição
     if (calendario[pos+12]!=" ") {
       let dia=calendario[pos];
@@ -495,8 +495,8 @@ function salas() {
         calendario[pos+2]=='DSG1845'||calendario[pos+2]=='DSG1846'||
         calendario[pos+2]=='DSG1848'||calendario[pos+2]=='DSG1850'||
         calendario[pos+2]=='DSG1849'||calendario[pos+2]=='DSG1851'||
-        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1854'||
-        calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1855'||
+        calendario[pos+2]=='DSG1852'||calendario[pos+2]=='DSG1853'||calendario[pos+2]=='DSG1854'||
+        calendario[pos+2]=='DSG1855'||
         calendario[pos+2]=='DSG1856'||calendario[pos+2]=='DSG1857') {
         fill(23, 173, 245, 150);
       }

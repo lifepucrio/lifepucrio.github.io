@@ -46,7 +46,7 @@ function escolheCor(posi) {
     fill(209, 163, 175, 200);
   }
   //Optativas de Ênfase
-  else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1930'||calendario[posi]=='DSG1931'||
+  else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1926'||calendario[posi]=='DSG1930'||calendario[posi]=='DSG1931'||
     calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1937'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
     calendario[posi]=='DSG1944'||calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1948'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1950'||calendario[posi]=='DSG1951'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
     calendario[posi]=='DSG1954'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1958'||calendario[posi]=='DSG1959'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
@@ -54,7 +54,7 @@ function escolheCor(posi) {
     fill(242, 179, 58, 200);
   }
   //Optativas Oficina de Ênfase
-  else if (calendario[posi]=='DSG1972'||calendario[posi]=='DSG1973'||calendario[posi]=='DSG1974'||calendario[posi]=='DSG1975'||
+  else if (calendario[posi]=='DSG1927'||calendario[posi]=='DSG1928'||calendario[posi]=='DSG1971'||calendario[posi]=='DSG1972'||calendario[posi]=='DSG1973'||calendario[posi]=='DSG1974'||calendario[posi]=='DSG1975'||
     calendario[posi]=='DSG1976'||calendario[posi]=='DSG1977'||calendario[posi]=='DSG1978'||calendario[posi]=='DSG1979'||calendario[posi]=='DSG1981'||calendario[posi]=='DSG1982'||
     calendario[posi]=='DSG1983'||calendario[posi]=='DSG1984'||calendario[posi]=='DSG1985'||calendario[posi]=='DSG1986'||calendario[posi]=='DSG1987'||calendario[posi]=='DSG1988'||calendario[posi]=='DSG1989'||calendario[posi]=='DSG1990'||
     calendario[posi]=='DSG1991'||calendario[posi]=='DSG1992'||calendario[posi]=='DSG1993'||calendario[posi]=='DSG1994') {
