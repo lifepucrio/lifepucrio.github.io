@@ -3,7 +3,7 @@
 function preload() {
   fontRegular = loadFont('data/SourceSans3-SemiBold.ttf');
   fontBold = loadFont('data/SourceSans3-Bold.ttf');
-  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
+  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
   fundo = loadImage('data/mat-bkg-1920-2.jpg');
   brasao = loadImage('data/brasao-puc-novo-preto-2.png');
   logo = loadImage('data/logo-dad-novo-preto-03.png');
