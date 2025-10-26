@@ -1,0 +1,26 @@
+arquivo,origem,destino
+GPSLOG42.csv,Laranjeiras,Gavea
+GPSLOG43.csv,Jardim Botanico,Laranjeiras
+GPSLOG44.csv,Laranjeiras,Gavea
+GPSLOG48.csv,Jardim Botanico,Tijuca
+GPSLOG49.csv,Tijuca,Gavea
+GPSLOG50.csv,Gavea,Tijuca
+GPSLOG51.csv,Tijuca,Gavea
+GPSLOG54.csv,Tijuca,Tijuca
+GPSLOG56.csv,Gavea,Fonte da Saudade
+GPSLOG59.csv,Jardim Botanico,Botafogo
+GPSLOG64.csv,Fonte da Saudade,Gavea
+GPSLOG68.csv,Laranjeiras,Petropolis
+GPSLOG69.csv,Petropolis,Laranjeiras
+GPSLOG72.csv,Gavea,Engenho da Rainha
+GPSLOG74.csv,Engenho da Rainha,Engenho da Rainha
+GPSLOG75.csv,Engenho da Rainha,Gavea
+GPS13.csv,Gavea,Barra da Tijuca
+GPS14.csv,Barra da Tijuca,Gavea
+GPS16.csv,Gavea,Barra da Tijuca
+GPS17.csv,Barra da Tijuca,Gavea
+GPS20.csv,Gavea,Urca
+GPS22.csv,Urca,Centro
+GPS25.csv,Centro,Urca
+GPS26.csv,Urca,Gavea
+GPS27.csv,Gavea,Urca
