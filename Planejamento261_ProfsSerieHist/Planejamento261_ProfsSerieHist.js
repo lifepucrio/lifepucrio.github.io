@@ -1,19 +1,25 @@
 
 
 function preload() {
-  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
+  //tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=2122385506&single=true&output=csv', 'csv', 'header');
+  //tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3ibCpyHukTAxOHYl4vefnT2he08SYwb8rC7R23dTI3nIJEf1Pvnhr4JUPLjlZg7VxoDrsm6jvSLQb/pub?gid=341439767&single=true&output=csv', 'csv', 'header');
+  tabelaSerieHist=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=2122385506&single=true&output=csv', 'csv', 'header');
+  //tabela251=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKEf27k56Rg78Et_fZoBLHsCTvHrMaSRHM7QKX412-a-JEMEOoblLHHr8nItvMCT2BeWuSAMxIDcMV/pub?gid=0&single=true&output=csv', 'csv', 'header');
+  //tabela252=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
+  tabela261=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=682566435&single=true&output=csv', 'csv', 'header');
+
 }
 
 function setup() {
-  createCanvas(1200, 960);
-  console.log(tabela.getRowCount()+'linhas');
+  createCanvas(1400, 960);
+  //console.log(tabela.getRowCount()+'linhas');
   rectMode(CORNER);
   qp = createSelect();
   qp.position(740, 60);
   qp.option('ALESSANDRA CARUSI MACHADO');
   qp.option('ALEXANDRE CANTINI REZENDE');
-  qp.option('ANDRE WELLER');
   qp.option('ANDRE LUIS FERREIRA BELTRAO');
+  qp.option('ANDRE WELLER');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
   qp.option('BERNARDO GOMES ALEVATO');
@@ -81,11 +87,10 @@ function setup() {
   qp.option('MARIO AUGUSTO PINTO DE SOUZA SEIXAS');
   qp.option('MATEU DE ATHAYDE VELASCO');
   qp.option('MIGUEL SANTOS DE CARVALHO');
-  //qp.option('MONICA FROTA LEAO FEITOSA');
+  qp.option('MONICA FROTA LEAO FEITOSA');
   qp.option('MONICA SABOIA SADDI');
   qp.option('NATHALIA CHEHAB DE SA CAVALCANTE');
   qp.option('NILTON GONCALVES GAMBA JUNIOR');
-  qp.option('RAQUEL CORREA CORDEIRO');
   qp.option('RENATA MATTOS EYER DE ARAUJO');
   qp.option('RIAN OLIVEIRA REZENDE');
   qp.option('RITA MARIA DE SOUZA COUTO');
@@ -95,12 +100,10 @@ function setup() {
   qp.option('SIMONE CARVALHO DE FORMIGA XAVIER');
   qp.option('SUZANA VALLADARES FONSECA');
   qp.option('VERA LUCIA MOREIRA DOS SANTOS NOJIMA');
-  qp.option('VERA MARIA CAVALCANTI BERNARDES');
   qp.option('VERA MARIA MARSICANO DAMAZIO');
   qp.option('WALVYKER ALVES DE SOUZA');
 
   qp.selected('ALESSANDRA CARUSI MACHADO');
-
   qp.changed(selecionaProf);
 }
 
@@ -115,15 +118,25 @@ function draw() {
   background(220);
   textFont("Helvetica");
   textStyle(NORMAL);
+  textAlign(LEFT);
   textSize(20);
-  text("Previsão de Aulas - Semestre 2025.2", 105, 45);
+  text("Contagem de Créditos - Série Histórica", 105, 45);
   textStyle(BOLD);
   textSize(25);
+  fill(0);
   text(qualProf, 105, 80);
-  //base desenho
   textSize(14);
-  base();
+  textStyle(NORMAL);
+  for (let i=0; i<tabelaSerieHist.getRowCount(); i++) {
+    let prof = tabelaSerieHist.get(i, 'PROFESSORES');
+    if (prof.includes(qualProf)) {
+      let admiss=tabelaSerieHist.get(i, 'ADMISSAO');
+      text("Admissão em "+admiss, 105, 100);
+    }
+  }
 
-  professores();
-  contagemDeCreditos();
+  //base desenho
+  base();
+  contagemDeCreditos261();
+  montaSerie();
 }

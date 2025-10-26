@@ -3,7 +3,7 @@
 function preload() {
   fontRegular = loadFont('data/SourceSans3-SemiBold.ttf');
   fontBold = loadFont('data/SourceSans3-Bold.ttf');
-  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
+  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=682566435&single=true&output=csv', 'csv', 'header');
   fundo = loadImage('data/mat-bkg-1920-2.jpg');
   brasao = loadImage('data/brasao-puc-novo-preto-2.png');
   logo = loadImage('data/logo-dad-novo-preto-03.png');
@@ -259,7 +259,7 @@ function draw() {
 
   textSize(38);
   fill(255);
-  text("Horários das Aulas - Semestre 2025.2", 220, 60);
+  text("Horários das Aulas - Semestre 2026.1", 220, 60);
   //textStyle(BOLD);
   textFont(fontRegular);
   textSize(25);

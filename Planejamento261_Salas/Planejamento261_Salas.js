@@ -1,5 +1,5 @@
 function preload() {
-  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=397762419&single=true&output=csv', 'csv', 'header');
+  tabela=loadTable('https://docs.google.com/spreadsheets/d/e/2PACX-1vQKABcRBZCtZZLGf9xQJQWEAHhNAm19532fuZNiMoibn2BSaora9noPJSIKATyZSliXNSwSpFLTVM3B/pub?gid=682566435&single=true&output=csv', 'csv', 'header');
 }
 
 function setup() {
@@ -52,7 +52,7 @@ function draw() {
   textFont("Helvetica");
   textStyle(NORMAL);
   textSize(20);
-  text("Previsão de Aulas - Semestre 2025.2", 105, 45);
+  text("Previsão de Aulas - Semestre 2026.1", 105, 45);
   textStyle(BOLD);
   textSize(25);
   text(qualSala, 105, 80);
