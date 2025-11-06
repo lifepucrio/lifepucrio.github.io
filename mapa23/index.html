@@ -1,0 +1,138 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="mapa23.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+  <!-- This line removes any default padding and style.
+       You might only need one of these values set. -->
+ <style>
+    /* Remove margens padrão */
+    body { 
+      margin: 0; 
+      padding: 0; 
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Faz o mapa ocupar a tela inteira */
+    #map { 
+      position: absolute; 
+      top: 0; 
+      bottom: 0; 
+      width: 100%; 
+    }
+    
+    /* Estiliza o "caixote" dos menus */
+    #menu-container {
+      position: absolute;
+      top: 20px;
+      left: 100px; 
+      z-index: 1000; /* Garante que fica SOBRE o mapa */
+      background: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Espaço entre as linhas do menu */
+    }
+    
+    /* Alinha os rótulos e os menus */
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 8px; /* Espaço entre o rótulo e o menu */
+    }
+    
+    .menu-item label {
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    
+    /* Estilos para informação da viagem */
+    #info-container {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #eee; /* Linha divisória */
+      font-size: 0.9em;
+    }
+    
+    .info-item {
+      display: flex;
+      justify-content: space-between; /* Alinha rótulo e valor */
+      margin: 4px 0;
+    }
+    
+    .info-item label {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .info-item span {
+      color: #555;
+      /* Fonte monoespaçada fica boa para exibir horários */
+      font-family: 'Courier New', Courier, monospace; 
+      font-weight: bold;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Onde o mapa Leaflet vai viver -->
+  <div id="map"></div>
+
+  <!-- O "caixote" que segura os nossos menus -->
+  <div id="menu-container">
+    <div class="menu-item">
+      <label for="menu-origem">Origem:</label>
+      <select id="menu-origem"></select>
+    </div>
+    <div class="menu-item">
+      <label for="menu-destino">Destino:</label>
+      <select id="menu-destino"></select>
+    </div>
+    
+    <!-- Seção de Informação -->
+    <div id="info-container">
+      <p class="info-item">
+        <label>Partida:</label>
+        <span id="info-partida">--:--:--</span>
+      </p>
+      <p class="info-item">
+        <label>Chegada:</label>
+        <span id="info-chegada">--:--:--</span>
+      </p>
+      <p class="info-item">
+        <label>Duração:</label>
+        <span id="info-duracao">-- min</span>
+      </p>
+      <p class="info-item">
+        <label>Distância:</label>
+        <span id="info-distancia">-- km</span>
+      </p>
+      <!-- --- NOVO CAMPO DE VELOCIDADE --- -->
+      <p class="info-item">
+        <label>Vel. Média:</label>
+        <span id="info-velocidade">-- km/h</span>
+      </p>
+      <!-- --- FIM DA MUDANÇA --- -->
+    </div>
+    
+  </div>
+
+  <!-- Carrega o nosso script (do Canvas) -->
+  <script src="sketch.js"></script>
+
+</body>
+</html>
