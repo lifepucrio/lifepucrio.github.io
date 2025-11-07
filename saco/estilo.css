@@ -3,6 +3,7 @@
 
 body{
 	background-color:#aaaaaa;
+	margin: 50px;
 }
 h1{
   font-family: "Source Sans 3", sans-serif;
@@ -28,12 +29,13 @@ p{
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-	margin: 5px;
+	margin-bottom: 5px;
 }
 
 p a{
 	color: #000000;
 	text-decoration:none;
+	margin-left:-4px;
 	padding-left: 4px;
 	padding-right: 4px;
 }
