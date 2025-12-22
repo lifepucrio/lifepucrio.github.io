@@ -113,7 +113,7 @@ function draw() {
   textFont("Helvetica");
   textStyle(NORMAL);
   textSize(20);
-  text("Previsão de Aulas - Semestre 2026.1", 105, 45);
+  text("Aulas - Semestre 2026.1", 105, 45);
   textStyle(BOLD);
   textSize(25);
   text(qualProf, 105, 80);
