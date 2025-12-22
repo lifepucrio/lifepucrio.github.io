@@ -219,10 +219,10 @@ function salas() {
         fill(209, 163, 175, 200);
       }
       //Optativas de Ênfase
-      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1926'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
-        calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1943'||
-        calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
-        calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
+      else if (calendario[pos+2]=='DSG1145'||calendario[pos+2]=='DSG1424'||calendario[pos+2]=='DSG1926'||calendario[pos+2]=='DSG1929'||calendario[pos+2]=='DSG1930'||calendario[pos+2]=='DSG1931'||
+        calendario[pos+2]=='DSG1932'||calendario[pos+2]=='DSG1933'||calendario[pos+2]=='DSG1934'||calendario[pos+2]=='DSG1937'||calendario[pos+2]=='DSG1938'||calendario[pos+2]=='DSG1941'||calendario[pos+2]=='DSG1942'||calendario[pos+2]=='DSG1943'||
+        calendario[pos+2]=='DSG1944'||calendario[pos+2]=='DSG1945'||calendario[pos+2]=='DSG1946'||calendario[pos+2]=='DSG1947'||calendario[pos+2]=='DSG1948'||calendario[pos+2]=='DSG1949'||calendario[pos+2]=='DSG1950'||calendario[pos+2]=='DSG1951'||calendario[pos+2]=='DSG1952'||calendario[pos+2]=='DSG1953'||
+        calendario[pos+2]=='DSG1954'||calendario[pos+2]=='DSG1955'||calendario[pos+2]=='DSG1956'||calendario[pos+2]=='DSG1957'||calendario[pos+2]=='DSG1958'||calendario[pos+2]=='DSG1959'||calendario[pos+2]=='DSG1961'||calendario[pos+2]=='DSG1962'||
         calendario[pos+2]=='DSG1963'||calendario[pos+2]=='DSG1964'||calendario[pos+2]=='DSG1965'||calendario[pos+2]=='DSG1966') {
         fill(242, 179, 58, 200);
       }
@@ -234,7 +234,7 @@ function salas() {
         fill(39, 123, 61, 200);
       }
       //Optativas Desenho de Ênfase
-      else if (calendario[pos+2]=='DSG1969'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1995'||calendario[pos+2]=='DSG1996'||calendario[pos+2]=='DSG1997'||
+      else if (calendario[pos+2]=='DSG1807'||calendario[pos+2]=='DSG1808'||calendario[pos+2]=='DSG1969'||calendario[pos+2]=='DSG1971'||calendario[pos+2]=='DSG1995'||calendario[pos+2]=='DSG1996'||calendario[pos+2]=='DSG1997'||
         calendario[pos+2]=='DSG1998'||calendario[pos+2]=='DSG1999') {
         fill(0, 119, 165, 200);
       } else {

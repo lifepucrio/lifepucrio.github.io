@@ -46,10 +46,10 @@ function escolheCor(posi) {
     fill(209, 163, 175, 200);
   }
   //Optativas de Ênfase
-  else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1926'||calendario[posi]=='DSG1930'||calendario[posi]=='DSG1931'||
-    calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1937'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1943'||
-    calendario[posi]=='DSG1944'||calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1948'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1950'||calendario[posi]=='DSG1951'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
-    calendario[posi]=='DSG1954'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1958'||calendario[posi]=='DSG1959'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
+  else if (calendario[posi]=='DSG1145'||calendario[posi]=='DSG1424'||calendario[posi]=='DSG1926'||calendario[posi]=='DSG1929'||calendario[posi]=='DSG1930'||calendario[posi]=='DSG1931'||
+    calendario[posi]=='DSG1932'||calendario[posi]=='DSG1933'||calendario[posi]=='DSG1934'||calendario[posi]=='DSG1937'||calendario[posi]=='DSG1938'||calendario[posi]=='DSG1941'||calendario[posi]=='DSG1942'||calendario[posi]=='DSG1943'||
+    calendario[posi]=='DSG1944'||calendario[posi]=='DSG1945'||calendario[posi]=='DSG1946'||calendario[posi]=='DSG1947'||calendario[posi]=='DSG1948'||calendario[posi]=='DSG1949'||calendario[posi]=='DSG1950'||calendario[posi]=='DSG1951'||calendario[posi]=='DSG1952'||calendario[posi]=='DSG1953'||
+    calendario[posi]=='DSG1954'||calendario[posi]=='DSG1955'||calendario[posi]=='DSG1956'||calendario[posi]=='DSG1957'||calendario[posi]=='DSG1958'||calendario[posi]=='DSG1959'||calendario[posi]=='DSG1961'||calendario[posi]=='DSG1962'||
     calendario[posi]=='DSG1963'||calendario[posi]=='DSG1964'||calendario[posi]=='DSG1965'||calendario[posi]=='DSG1966') {
     fill(242, 179, 58, 200);
   }
@@ -61,7 +61,7 @@ function escolheCor(posi) {
     fill(39, 123, 61, 200);
   }
   //Optativas Desenho de Ênfase
-  else if (calendario[posi]=='DSG1969'||calendario[posi]=='DSG1994'||calendario[posi]=='DSG1995'||calendario[posi]=='DSG1996'||calendario[posi]=='DSG1997'||
+  else if (calendario[posi]=='DSG1807'||calendario[posi]=='DSG1808'||calendario[posi]=='DSG1969'||calendario[posi]=='DSG1994'||calendario[posi]=='DSG1995'||calendario[posi]=='DSG1996'||calendario[posi]=='DSG1997'||
     calendario[posi]=='DSG1998'||calendario[posi]=='DSG1999') {
     fill(0, 119, 165, 200);
   } else {
