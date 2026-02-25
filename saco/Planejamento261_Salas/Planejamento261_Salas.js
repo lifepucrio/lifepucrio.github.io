@@ -52,7 +52,7 @@ function draw() {
   textFont("Helvetica");
   textStyle(NORMAL);
   textSize(20);
-  text("Previsão de Aulas - Semestre 2026.1", 105, 45);
+  text("Ocupação das Salas de Aula - Semestre 2026.1", 105, 45);
   textStyle(BOLD);
   textSize(25);
   text(qualSala, 105, 80);

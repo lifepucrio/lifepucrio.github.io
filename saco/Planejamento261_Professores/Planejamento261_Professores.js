@@ -117,7 +117,7 @@ function draw() {
   textFont("Helvetica");
   textStyle(NORMAL);
   textSize(20);
-  text("Previsão de Aulas - Semestre 2026.1", 105, 45);
+  text("Horários e Salas de Aula do Professor - Semestre 2026.1", 105, 45);
   textStyle(BOLD);
   textSize(25);
   text(qualProf, 105, 80);
@@ -126,5 +126,5 @@ function draw() {
   base();
 
   professores();
-  contagemDeCreditos();
+  //contagemDeCreditos();
 }
