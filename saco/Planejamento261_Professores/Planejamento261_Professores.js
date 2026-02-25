@@ -11,10 +11,8 @@ function setup() {
   qp = createSelect();
   qp.position(740, 60);
   qp.option('ALESSANDRA CARUSI MACHADO');
-  qp.option('ALEXANDRE CANTINI REZENDE');
   qp.option('ANDERSON ANTONIO PEDROSO');
   qp.option('ANDRE WELLER');
-  qp.option('ANDRE LUIS FERREIRA BELTRAO');
   qp.option('AUGUSTO SEIBEL MACHADO');
   qp.option('BARBARA DE OLIVEIRA E CRUZ');
   qp.option('BERNARDO GOMES ALEVATO');
@@ -33,7 +31,6 @@ function setup() {
   qp.option('DANIELA CORREA DE OLIVEIRA');
   qp.option('DAVISON DA SILVA COUTINHO');
   qp.option('DENISE BERRUEZO PORTINARI');
-  qp.option('EDUARDO ROCHA DE OLIVEIRA FILHO');
   qp.option('ELIANE GARCIA PEREIRA');
   qp.option('EVELYN GRUMACH');
   qp.option('FABIANA PRADO');
@@ -67,12 +64,10 @@ function setup() {
   qp.option('LUCIANA GRETHER DE MELLO CARVALHO');
   qp.option('LUIS VICENTE BARROS CARDOSO DE MELO');
   qp.option('LUIZ EDUARDO DUTRA COELHO DA ROCHA');
-  qp.option('LUIZ TORRES LUDWIG');
   qp.option('LUIZA FERRO COSTA MARCIER');
   qp.option('LUIZA MARIA INTERLENGHI');
   qp.option('LUIZA NOVAES');
   qp.option('MARCELO FERNANDES PEREIRA');
-  qp.option('MARCO ANTONIO MAGALHAES LIMA');
   qp.option('MARCOS AMARANTE DE ALMEIDA MAGALHAES');
   qp.option('MARIA CLAUDIA BOLSHAW GOMES');
   qp.option('MARIA DAS GRACAS DE ALMEIDA CHAGAS');
@@ -96,7 +91,6 @@ function setup() {
   qp.option('SIMONE CARVALHO DE FORMIGA XAVIER');
   qp.option('SUZANA VALLADARES FONSECA');
   qp.option('VERA LUCIA MOREIRA DOS SANTOS NOJIMA');
-  qp.option('VERA MARIA CAVALCANTI BERNARDES');
   qp.option('VERA MARIA MARSICANO DAMAZIO');
   qp.option('WALVYKER ALVES DE SOUZA');
 
