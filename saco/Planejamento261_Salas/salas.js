@@ -253,7 +253,7 @@ function salas() {
       textSize(9);
       text(calendario[pos+4], posRectX+espaco, posRectY+25, largRectAula-20, 160);
       text(calendario[pos+5], posRectX+espaco, posRectY+70);
-      text(calendario[pos+6], posRectX+espaco, posRectY+82);
+      //text(calendario[pos+6], posRectX+espaco, posRectY+82);
     }
     //segunda posição
     if (calendario[pos+7]!=" ") {
@@ -412,7 +412,7 @@ function salas() {
       textSize(9);
       text(calendario[pos+9], posRectX+largRectAula+espaco*2, posRectY+25, largRectAula-20, 160);
       text(calendario[pos+10], posRectX+largRectAula+espaco*2, posRectY+70);
-      text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+82);
+      //text(calendario[pos+11], posRectX+largRectAula+espaco*2, posRectY+82);
     }
 
     //terceira posição
@@ -572,7 +572,7 @@ function salas() {
       textSize(9);
       text(calendario[pos+14], posRectX+largRectAula*2+espaco*3, posRectY+25, largRectAula-20, 160);
       text(calendario[pos+15], posRectX+largRectAula*2+espaco*3, posRectY+70);
-      text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
+      //text(calendario[pos+16], posRectX+largRectAula*2+espaco*3, posRectY+82);
     }
   }
 }
