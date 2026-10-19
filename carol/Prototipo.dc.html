@@ -16,7 +16,7 @@
 <style>
     * { scrollbar-width: none; -ms-overflow-style: none; }
     *::-webkit-scrollbar { width: 0; height: 0; display: none; }
-  html,body{margin:0;background:#000000;overflow:hidden;}
+  html,body{margin:0;background:#000000;overflow:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation;overscroll-behavior:none;}
   button{font-family:'Manrope','Segoe UI',system-ui,sans-serif;}
 </style>
 </helmet>
@@ -112,9 +112,24 @@ class Component extends DCLogic {
     let vw = 0;
     let vh = 0;
     try {
+      // Viewport mobile (iPhone 15 = 393×852 pt): sem isso o Safari usa 980px e o protótipo fica minúsculo
+      const ensureMeta = (name, content) => {
+        let m = document.querySelector('meta[name="' + name + '"]');
+        if (!m) { m = document.createElement('meta'); m.setAttribute('name', name); document.head.appendChild(m); }
+        m.setAttribute('content', content);
+      };
+      ensureMeta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+      ensureMeta('apple-mobile-web-app-capable', 'yes');
+      ensureMeta('mobile-web-app-capable', 'yes');
+      ensureMeta('apple-mobile-web-app-status-bar-style', 'black');
+      ensureMeta('theme-color', '#000000');
       vw = window.innerWidth;
       vh = window.innerHeight;
-      window.addEventListener('resize', () => this.setState({ vw: window.innerWidth, vh: window.innerHeight }));
+      const measure = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
+      window.addEventListener('resize', measure);
+      window.addEventListener('orientationchange', () => setTimeout(measure, 150));
+      setTimeout(measure, 60);
+      setTimeout(measure, 400);
     } catch (err) { /* sem janela: tamanho original */ }
     const saved = this.loadSaved();
     const myCfg = saved.avatarCfg ? Object.assign({}, this.avatarConfigs()['@marina.rolls'], saved.avatarCfg) : this.avatarConfigs()['@marina.rolls'];
@@ -654,7 +669,9 @@ class Component extends DCLogic {
     const screen = this.state.screen;
     const vw = this.state.vw;
     const vh = this.state.vh;
-    const fit = (vw >= 200 && vh >= 200) ? Math.min(1, vw / 390, vh / 844) : 1;
+    // Escala para preencher a tela do aparelho (aumenta ou reduz), mantendo a proporção 390×844
+    const fit = (vw >= 200 && vh >= 200) ? Math.min(vw / 390, vh / 844) : 1;
+    const padTop = (vh >= 200) ? Math.max(0, Math.floor((vh - 844 * fit) / 2)) : 0;
     const fitFont = "font-family:'Manrope','Segoe UI',system-ui,sans-serif;color:#ECEDEE;";
     const layer = (id) => 'position:absolute;left:0;top:0;width:390px;height:776px;overflow:hidden;display:' + (screen === id ? 'block' : 'none') + ';';
     const defs = [
@@ -717,7 +734,7 @@ class Component extends DCLogic {
     });
     const ratePerson = rt && rt.pix24 ? this.buildReviewer(rt.handle) : rt;
     return {
-      fitOuter: 'position:relative;width:' + Math.floor(390 * fit) + 'px;height:' + Math.floor(844 * fit) + 'px;overflow:hidden;margin:0 auto;background:#000000;',
+      fitOuter: 'position:relative;width:' + Math.floor(390 * fit) + 'px;height:' + Math.floor(844 * fit) + 'px;overflow:hidden;margin:' + padTop + 'px auto 0;background:#000000;',
       fitInner: 'position:relative;width:390px;height:844px;background:#000000;overflow:hidden;' + fitFont + 'transform:scale(' + fit + ');transform-origin:0 0;',
       go: this.go,
       savePrefs: this.savePrefs,
