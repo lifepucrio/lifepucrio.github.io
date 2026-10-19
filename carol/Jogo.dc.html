@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Página do jogo</title>
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+  <style>
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    body { margin: 0; background: #000000; color: #ECEDEE; font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    button { font-family: inherit; }
+    .jg-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; letter-spacing: -0.01em; }
+    .jg-sheet { position: absolute; inset: 0; background: #000000; z-index: 30; display: flex; flex-direction: column; transform: translateY(100%); transition: transform .3s cubic-bezier(.32,.72,0,1); }
+    .jg-sheet.open { transform: translateY(0); }
+    .jg-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #71717A; margin: 0 0 10px; display: block; }
+    .jg-field { width: 100%; background: #18181B; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 14px; color: #ECEDEE; font-family: 'Manrope', sans-serif; font-size: 14px; }
+    .jg-chip { font-family: 'Manrope', sans-serif; display: inline-flex; align-items: center; padding: 8px 13px; border-radius: 999px; background: #18181B; border: 1px solid rgba(255,255,255,0.08); color: #D4D4D8; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+    .jg-chip.on { background: rgba(0,111,238,0.16); border-color: rgba(0,111,238,.45); color: #8FC7FF; }
+    .jg-chip.off { opacity: .4; cursor: default; }
+    .jg-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0); opacity: 0; pointer-events: none; transition: opacity .22s ease, background .22s ease; z-index: 40; }
+    .jg-scrim.open { opacity: 1; pointer-events: auto; background: rgba(0,0,0,.62); }
+    .jg-save { position: absolute; left: 0; right: 0; bottom: 0; max-height: 78%; background: #18181B; border-radius: 22px 22px 0 0; transform: translateY(100%); transition: transform .3s cubic-bezier(.32,.72,0,1); z-index: 41; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.16); }
+    .jg-save.open { transform: translateY(0); }
+    .jg-clamp2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</helmet>
+<div style="position: relative; width: 390px; height: 776px; overflow: hidden; background: #000000;">
+
+<div style="width: 390px; height: 776px; overflow-y: auto; background: #000000; padding-bottom: 32px;">
+
+  <!-- HERO -->
+  <div style="position: relative; height: 150px; background-color: {{art.bg}}; background-image: {{art.img}}; background-size: cover; background-position: center;">
+    <div style="position: absolute; inset: 0; background-image: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, #000000 100%);"></div>
+    <button type="button" onClick="{{goBack}}" aria-label="Voltar" style="position: absolute; left: 14px; top: 14px; width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: rgba(0,0,0,0.55); color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </button>
+  </div>
+
+  <div style="display: flex; align-items: flex-end; gap: 14px; padding: 0 16px; margin-top: -64px; position: relative;">
+    <div style="width: 96px; height: 128px; flex-shrink: 0; border-radius: 12px; background-color: {{art.bg}}; background-image: {{art.img}}; background-size: cover; background-position: center; box-shadow: 0 0 0 3px #000000, 0 0 0 4px rgba(255,255,255,0.14), 0 12px 24px rgba(0,0,0,0.5);"></div>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding-bottom: 2px;">
+      <div class="jg-title" style="font-size: 24px; font-weight: 700; line-height: 1.12; text-wrap: balance;">{{game.title}}</div>
+      <div style="font-size: 12.5px; color: #A1A1AA;">{{game.studio}} · {{game.year}}</div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 16px 0;">
+    <span style="height: 26px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 700; background: rgba(0,111,238,0.16); color: #8FC7FF;">{{game.kindLabel}}</span>
+    <sc-for list="{{game.genres}}" as="g" hint-placeholder-count="2">
+      <span style="height: 26px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; background: #27272A; color: #D4D4D8;">{{g.label}}</span>
+    </sc-for>
+  </div>
+
+  <!-- RESUMO DE NOTAS -->
+  <div style="margin: 16px 16px 0; background: #18181B; border-radius: 14px; padding: 16px; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15); display: flex; gap: 18px; align-items: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 5px; width: 84px; flex-shrink: 0;">
+      <div class="jg-title" style="font-size: 38px; font-weight: 700; letter-spacing: -0.03em; line-height: 1;">{{stats.avgLabel}}</div>
+      <div style="display: flex; gap: 2px;">
+        <sc-for list="{{stats.stars}}" as="s" hint-placeholder-count="5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="{{s.fill}}"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z"></path></svg>
+        </sc-for>
+      </div>
+      <div style="font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; color: #A1A1AA; text-align: center;">{{stats.countLabel}}</div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+      <sc-for list="{{stats.dist}}" as="d" hint-placeholder-count="5">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="width: 10px; font-size: 11px; font-weight: 700; color: #A1A1AA; text-align: right;">{{d.label}}</span>
+          <div style="flex: 1; height: 6px; border-radius: 999px; background: #3F3F46; overflow: hidden;">
+            <div style="height: 6px; border-radius: 999px; width: {{d.pct}}%; background: {{d.color}};"></div>
+          </div>
+          <span style="width: 30px; font-size: 11px; color: #71717A;">{{d.pct}}%</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{stats.hasFriends}}" hint-placeholder-val="{{false}}">
+    <div style="margin: 10px 16px 0; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #8FC7FF; background: rgba(0,111,238,0.1); border: 1px solid rgba(0,111,238,0.28); border-radius: 12px; padding: 10px 12px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      <span>{{stats.friendsLabel}}</span>
+    </div>
+  </sc-if>
+
+  <!-- AÇÕES -->
+  <div style="display: flex; gap: 10px; padding: 14px 16px 0;">
+    <button type="button" onClick="{{openSheet}}" style="flex: 1.4; height: 48px; border: none; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>{{rateLabel}}
+    </button>
+    <button type="button" onClick="{{openSave}}" aria-label="{{saveAria}}" aria-haspopup="dialog" style="flex: none; width: 48px; height: 48px; padding: 0; border-radius: 14px; border: 1px solid {{saveBorder}}; background: {{saveBg}}; color: {{saveColor}}; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="{{saveFill}}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+    </button>
+  </div>
+
+  <!-- SOBRE -->
+  <div style="padding: 22px 16px 0; display: flex; flex-direction: column; gap: 10px;">
+    <div class="jg-title" style="font-size: 16px; font-weight: 600;">Sobre o jogo</div>
+    <div style="font-size: 13.5px; line-height: 1.55; color: #D4D4D8; text-wrap: pretty;">{{game.desc}}</div>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #A1A1AA;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{game.meta}}
+    </div>
+    <div style="font-size: 11px; color: #71717A;">{{game.credit}}</div>
+  </div>
+
+  <!-- ABAS -->
+  <div style="padding: 24px 16px 0;">
+    <div style="display: flex; gap: 22px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <button type="button" onClick="{{pickReviews}}" style="padding: 0 0 10px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: {{tabs.reviews.weight}}; color: {{tabs.reviews.color}};">Avaliações<span style="min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; background: #27272A; color: #A1A1AA;">{{reviewsTotal}}</span></span>
+        <div style="height: 2px; width: 100%; border-radius: 2px; background: {{tabs.reviews.bar}};"></div>
+      </button>
+      <button type="button" onClick="{{pickTopics}}" style="padding: 0 0 10px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: {{tabs.topics.weight}}; color: {{tabs.topics.color}};">Discussões<span style="min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; background: #27272A; color: #A1A1AA;">{{topicsTotal}}</span></span>
+        <div style="height: 2px; width: 100%; border-radius: 2px; background: {{tabs.topics.bar}};"></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- LISTA DE AVALIAÇÕES -->
+  <sc-if value="{{showReviews}}" hint-placeholder-val="{{true}}">
+    <div style="display: flex; gap: 8px; padding: 14px 16px 0; overflow-x: auto;">
+      <sc-for list="{{filterChips}}" as="f" hint-placeholder-count="3">
+        <button type="button" onClick="{{f.onClick}}" style="{{f.style}}">{{f.label}}</button>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-direction: column; padding: 4px 16px 0;">
+      <sc-if value="{{noReviews}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 36px 24px; text-align: center; font-size: 13px; line-height: 1.55; color: #71717A;">Nenhum amigo avaliou este jogo ainda.</div>
+      </sc-if>
+      <sc-for list="{{reviews}}" as="r" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button type="button" onClick="{{r.openAuthor}}" aria-label="Ver perfil de {{r.name}}" style="display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; padding: 0; border: none; background: transparent; cursor: pointer; text-align: left; color: inherit; font-family: inherit;">
+              <svg width="30" height="30" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; border-radius: 7px;">
+                <rect x="0" y="0" width="24" height="24" fill="{{r.avBg}}"></rect>
+                <rect x="4" y="2" width="16" height="8" fill="{{r.avBody}}"></rect>
+                <rect x="0" y="6" width="4" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="20" y="6" width="4" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="6" y="8" width="12" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="8" y="12" width="3" height="3" fill="{{r.avAccent}}"></rect>
+                <rect x="13" y="12" width="3" height="3" fill="{{r.avAccent}}"></rect>
+                <rect x="9" y="17" width="6" height="2" fill="{{r.avAccent}}"></rect>
+              <image href="{{r.avUri}}" x="0" y="0" width="24" height="24"></image></svg>
+              <div style="display: flex; flex-direction: column; min-width: 0;">
+                <div style="font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px;"><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{r.name}}</span><sc-if value="{{r.isFriend}}" hint-placeholder-val="{{false}}"><span style="height: 17px; padding: 0 6px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; background: rgba(0,111,238,0.16); color: #8FC7FF; flex-shrink: 0;">Amigo</span></sc-if></div>
+                <div style="font-size: 11px; color: #71717A;">{{r.when}}</div>
+              </div>
+            </button>
+            <sc-if value="{{r.isMine}}" hint-placeholder-val="{{false}}">
+              <span style="flex-shrink: 0; height: 20px; padding: 0 8px; border-radius: 999px; display: flex; align-items: center; font-size: 10.5px; font-weight: 700; background: rgba(23,201,100,0.14); color: #17C964;">Sua avaliação</span>
+            </sc-if>
+          </div>
+          <div style="display: flex; gap: 2px;">
+            <sc-for list="{{r.stars}}" as="s" hint-placeholder-count="5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="{{s.fill}}"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z"></path></svg>
+            </sc-for>
+          </div>
+          <sc-if value="{{r.hasText}}" hint-placeholder-val="{{true}}">
+            <div style="font-size: 13.5px; line-height: 1.5; color: #D4D4D8; text-wrap: pretty;">{{r.text}}</div>
+          </sc-if>
+          <sc-if value="{{r.hasTags}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+              <sc-for list="{{r.tagChips}}" as="t" hint-placeholder-count="2">
+                <span style="height: 22px; display: flex; align-items: center; padding: 0 8px; border-radius: 999px; background: #27272A; font-size: 11px; font-weight: 600; color: #D4D4D8;">{{t.label}}</span>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <button type="button" onClick="{{r.toggleLike}}" style="display: flex; align-items: center; gap: 5px; border: none; background: transparent; cursor: pointer; padding: 0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="{{r.likeFill}}" stroke="{{r.likeStroke}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"></path></svg>
+              <span style="font-size: 12px; font-weight: 600; color: #A1A1AA;">{{r.likeCount}}</span>
+            </button>
+            <sc-if value="{{r.isMine}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{r.onEdit}}" style="margin-left: auto; border: none; background: transparent; cursor: pointer; padding: 0; color: #8FC7FF; font-size: 12px; font-weight: 700;">Editar</button>
+              <button type="button" onClick="{{r.onDelete}}" style="border: none; background: transparent; cursor: pointer; padding: 0; color: #71717A; font-size: 12px; font-weight: 600;">Excluir</button>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- LISTA DE DISCUSSÕES -->
+  <sc-if value="{{showTopics}}" hint-placeholder-val="{{false}}">
+    <div style="display: flex; flex-direction: column; padding: 4px 16px 0;">
+      <sc-if value="{{noTopics}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 36px 24px 14px; text-align: center; font-size: 13px; line-height: 1.55; color: #71717A;">Ninguém abriu uma discussão sobre este jogo ainda.</div>
+      </sc-if>
+      <sc-for list="{{topics}}" as="t" hint-placeholder-count="2">
+        <button type="button" onClick="{{t.open}}" style="width: 100%; padding: 16px 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 7px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="height: 19px; padding: 0 8px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: {{t.forumSoft}}; color: {{t.forumColor}};">{{t.forum}}</span>
+            <span style="font-size: 11px; color: #71717A;">{{t.when}}</span>
+          </div>
+          <div class="jg-title jg-clamp2" style="font-size: 15px; font-weight: 700; line-height: 1.3;">{{t.title}}</div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #A1A1AA;">
+            <span style="font-weight: 600; color: #D4D4D8;">{{t.by}}</span>
+            <span style="display: flex; align-items: center; gap: 4px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>{{t.count}} respostas
+            </span>
+          </div>
+        </button>
+      </sc-for>
+      <button type="button" onClick="{{goForums}}" style="margin-top: 14px; height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: transparent; color: #ECEDEE; font-size: 13.5px; font-weight: 700; cursor: pointer;">{{forumsCta}}</button>
+    </div>
+  </sc-if>
+
+</div>
+
+<!-- AVALIAR (folha) -->
+<div class="{{sheetClass}}" role="dialog" aria-label="Avaliar {{game.title}}" data-sheet="rate" onTouchStart="{{dnStart}}" onTouchMove="{{dnMove}}" onTouchEnd="{{dnEnd}}" onTouchCancel="{{dnEnd}}">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); flex: none;">
+    <button type="button" onClick="{{closeSheet}}" aria-label="Fechar" style="width: 38px; height: 38px; padding: 0; border-radius: 11px; border: 1px solid rgba(255,255,255,0.08); background: #212124; color: #D4D4D8; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+    </button>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+      <div class="jg-title" style="font-size: 17px; font-weight: 700;">{{sheetTitle}}</div>
+      <div style="font-size: 12px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{game.title}}</div>
+    </div>
+  </div>
+  <div style="flex: 1; overflow-y: auto; padding: 18px 16px 12px; display: flex; flex-direction: column; gap: 24px;">
+    <div>
+      <span class="jg-label">Sua nota</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; gap: 6px;">
+          <sc-for list="{{starPicks}}" as="s" hint-placeholder-count="5">
+            <button type="button" onClick="{{s.onPick}}" aria-label="{{s.label}}" style="padding: 0; border: none; background: transparent; cursor: pointer; display: block;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="{{s.fill}}" stroke="{{s.stroke}}" stroke-width="1.5" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z"></path></svg>
+            </button>
+          </sc-for>
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: {{ratingColor}};">{{ratingLabel}}</div>
+      </div>
+    </div>
+    <div>
+      <label for="jg-text" class="jg-label">O que achou? <span style="text-transform: none; letter-spacing: 0; font-weight: 500;">(opcional)</span></label>
+      <textarea id="jg-text" class="jg-field" rows="5" placeholder="Conte como foi a experiência, sem spoilers." value="{{sText}}" onInput="{{onText}}" style="resize: none; line-height: 1.5;"></textarea>
+      <div style="text-align: right; font-size: 11.5px; color: #71717A; margin-top: 6px;">{{textCount}}/280</div>
+    </div>
+    <div>
+      <span class="jg-label">Destaques <span style="text-transform: none; letter-spacing: 0; font-weight: 500;">(até 3)</span></span>
+      <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+        <sc-for list="{{tagPicks}}" as="t" hint-placeholder-count="6">
+          <button type="button" class="{{t.cls}}" onClick="{{t.onPick}}">{{t.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <div style="flex: none; padding: 12px 16px 16px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <button type="button" onClick="{{publish}}" style="{{publishStyle}}">{{publishLabel}}</button>
+  </div>
+</div>
+
+<div class="{{saveScrimClass}}" onClick="{{closeSave}}"></div>
+<div class="{{saveClass}}" role="dialog" aria-label="Salvar em uma lista" data-sheet="save" onTouchStart="{{dnStart}}" onTouchMove="{{dnMove}}" onTouchEnd="{{dnEnd}}" onTouchCancel="{{dnEnd}}">
+  <div style="display: flex; justify-content: center; padding-top: 9px; flex: none;"><div style="width: 34px; height: 4px; background: rgba(255,255,255,0.16); border-radius: 999px;"></div></div>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 18px 6px; flex: none;">
+    <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+      <div class="jg-title" style="font-size: 17px; font-weight: 700;">Salvar em lista</div>
+      <div style="font-size: 12px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{game.title}}</div>
+    </div>
+    <button type="button" onClick="{{closeSave}}" aria-label="Fechar" style="width: 34px; height: 34px; padding: 0; flex-shrink: 0; border-radius: 11px; border: 1px solid rgba(255,255,255,0.08); background: #212124; color: #D4D4D8; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+    </button>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 4px 18px 8px; display: flex; flex-direction: column;">
+    <sc-if value="{{noLists}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 18px 12px 14px;">
+        <span style="width: 52px; height: 52px; border-radius: 16px; background: #212124; display: flex; align-items: center; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path></svg>
+        </span>
+        <div style="font-size: 15px; font-weight: 700;">Você ainda não tem listas</div>
+        <div style="font-size: 12.5px; line-height: 1.5; color: #A1A1AA;">Crie a primeira para guardar este jogo e achar de novo depois.</div>
+      </div>
+    </sc-if>
+    <sc-for list="{{lists}}" as="l" hint-placeholder-count="3">
+      <button type="button" role="checkbox" aria-checked="{{l.checked}}" onClick="{{l.onToggle}}" style="width: 100%; padding: 10px 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+        <div style="width: 38px; height: 50px; flex-shrink: 0; border-radius: 7px; background-color: {{l.bg}}; background-image: {{l.img}}; background-size: cover; background-position: center; box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.08);"></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-size: 14.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{l.title}}</div>
+          <div style="font-size: 12px; color: #A1A1AA;">{{l.countLabel}}</div>
+        </div>
+        <span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; border: 2px solid {{l.checkBorder}}; background: {{l.checkBg}}; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{l.checkOpacity}};"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="flex: none; padding: 12px 18px 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px;">
+    <sc-if value="{{showCreate}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; gap: 8px;">
+        <input class="jg-field" aria-label="Nome da nova lista" maxlength="40" placeholder="Nome da lista" value="{{newName}}" onInput="{{onNewName}}" onKeyDown="{{onNewKey}}" style="flex: 1; min-width: 0; padding: 0 14px; height: 46px;">
+        <button type="button" onClick="{{createList}}" style="{{createStyle}}">Criar e salvar</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{showNewBtn}}" hint-placeholder-val="{{true}}">
+      <button type="button" onClick="{{startCreate}}" style="height: 46px; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.24); background: transparent; color: #ECEDEE; font-size: 13.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Criar nova lista
+      </button>
+    </sc-if>
+    <sc-if value="{{hasLists}}" hint-placeholder-val="{{true}}">
+      <button type="button" onClick="{{closeSave}}" style="height: 46px; border: none; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">Concluído</button>
+    </sc-if>
+  </div>
+</div>
+
+<sc-if value="{{cfOpen}}" hint-placeholder-val="{{false}}">
+  <div onClick="{{cfNo}}" style="position: absolute; inset: 0; z-index: 90; background: rgba(0,0,0,0.66);"></div>
+  <div role="alertdialog" aria-modal="true" aria-label="{{cfTitle}}" style="position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 91; background: #18181B; border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; padding: 22px 18px 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif; color: #ECEDEE;">
+    <div style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 18px; font-weight: 700;">{{cfTitle}}</div>
+    <div style="font-size: 13.5px; line-height: 1.55; color: #A1A1AA;">{{cfText}}</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;">
+      <button type="button" onClick="{{cfNo}}" style="height: 46px; border: none; border-radius: 12px; background: #27272A; color: #ECEDEE; font-size: 14px; font-weight: 600; cursor: pointer;">Cancelar</button>
+      <button type="button" onClick="{{cfYes}}" style="height: 46px; border: none; border-radius: 12px; background: #F31260; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">{{cfLabel}}</button>
+    </div>
+  </div>
+</sc-if>
+<div style="{{toastStyle}}">{{toastText}}</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"game":{"editor":null},"myReviews":{"editor":null},"publishReview":{"editor":null},"deleteReview":{"editor":null},"friends":{"editor":null},"avatars":{"editor":null},"openPerson":{"editor":null},"openTopic":{"editor":null},"navigate":{"editor":null},"lists":{"editor":null},"toggleInList":{"editor":null},"createList":{"editor":null},"back":{"editor":null},"$preview":{"width":390,"height":776}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'reviews', rf: 'todas', liked: {}, sheetOpen: false, sRating: 0, sText: '', sTags: [], saveOpen: false, creating: false, newName: '', toast: '' };
+  }
+
+  coverId(title) {
+    const ids = {"Hollow Knight":"277d28967fa386097af861953e14c25f","Portal 2":"f69e027e61a24f07a19a3433aaecdfe1","Frostpunk":"d742b55ab9327ec41279d35e7c1b47bf","It Takes Two":"25796a36da18db9bcdd877ad619ed6cf","Firewatch":"e827863b8b1a27c4d177ceb3e4186395","Counter-Strike 2":"b8dfc9323e08ff0d93f2e392ca123355","Outer Wilds":"84956e4bd9cc98eb7fc3a4cc59f78199","Stardew Valley":"103f33fce63cae312c88a26ac07c7325","Celeste":"740c979d64acc42d4ba3a58f7ffa6a07","Disco Elysium":"d6115fe460bc39f64134a3402745b571","Elden Ring":"7e6cc755eda69cc8903a3b38f4003be8","A Short Hike":"24ffd7c04c925b38abc331f4ff276712","Ticket to Ride":"7be1e7e9ef4d7e068198aea62e5c9b73","The Resistance: Avalon":"6f872a9e1e47c881c8c363eaacffe9fe","Cartographers":"2bbafa5ca50297d2d82527d2f186cea3","Coup":"1020e23c2256a72d35ce37bb20e32668","Terraforming Mars":"0fa40174c3d845217e68f9c6e4ed684b","7 Wonders":"3bf63fefca0970a962b3e1bde7616f94","Azul":"c4c2cd9b0c44034d4efe02e766897765","Agricola":"6c7e1dacf1122287d23526e948240fca","Pandemic":"5ebd23f87077370fb8d2eaa31bf425a2","Catan":"da39f348cf772fc5ff8bba976f206c34","Cascadia":"64320339d4d335373144fc3d8dc5c754","Wingspan":"8c5229074fe8117741b15f1bb1b7d3cc","Santorini":"2983ff88878edaad77e2467d03683778","Splendor":"145b0ba42fa5438cc488c322647af2c8","Camel Up":"4944f8f284daf231f3db3f754042e43a","Cosmic Encounter":"ecc4d9078a1524ea374f44a8cf0e9968","Century: Spice Road":"365ca0c856c7d6417ed0bf9d65de4a73","Patchwork":"fb10dbfa1f8dc3011920e51b6ecd4700","Carcassonne":"47b380e0b6a3c8cecefd66cd986a44de"};
+    return ids[title];
+  }
+
+  artFor(title, idx) {
+    const id = this.coverId(title);
+    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    return this.art(idx);
+  }
+
+  art(i) {
+    const set = [
+      { bg: '#221E22', img: 'radial-gradient(circle at 50% 56%, #E4572E 0 30%, rgba(0,0,0,0) 30%)' },
+      { bg: '#12161B', img: 'linear-gradient(122deg, #6C8EAD 0 46%, rgba(0,0,0,0) 46%)' },
+      { bg: '#14110F', img: 'conic-gradient(from 208deg at 50% 104%, #C9A227 0 44deg, rgba(0,0,0,0) 44deg)' },
+      { bg: '#10130F', img: 'linear-gradient(0deg, #3E5641 0 34%, rgba(0,0,0,0) 34%), radial-gradient(circle at 68% 28%, #A8C686 0 13%, rgba(0,0,0,0) 13%)' },
+      { bg: '#17111F', img: 'linear-gradient(45deg, #7A3E9D 0 50%, rgba(0,0,0,0) 50%)' },
+      { bg: '#1A1114', img: 'radial-gradient(circle at 50% 48%, rgba(0,0,0,0) 0 24%, #D64550 24% 33%, rgba(0,0,0,0) 33%)' },
+      { bg: '#0F1417', img: 'repeating-linear-gradient(180deg, #2B4A5A 0 9px, rgba(0,0,0,0) 9px 20px)' },
+      { bg: '#1C1A15', img: 'linear-gradient(90deg, #D8CFC0 0 22%, rgba(0,0,0,0) 22%)' },
+      { bg: '#161B18', img: 'conic-gradient(from 90deg at 30% 40%, #4E8C7D 0 90deg, rgba(0,0,0,0) 90deg)' },
+      { bg: '#1B1620', img: 'radial-gradient(circle at 26% 74%, #B07BAC 0 22%, rgba(0,0,0,0) 22%)' },
+      { bg: '#101A17', img: 'linear-gradient(160deg, #2F6F5E 0 38%, rgba(0,0,0,0) 38%), radial-gradient(circle at 74% 76%, #E8C468 0 11%, rgba(0,0,0,0) 11%)' },
+      { bg: '#1A1518', img: 'repeating-linear-gradient(90deg, #8C4A5A 0 6px, rgba(0,0,0,0) 6px 18px)' },
+      { bg: '#131A22', img: 'conic-gradient(from 20deg at 70% 20%, #5B7DB1 0 70deg, rgba(0,0,0,0) 70deg)' },
+      { bg: '#1D1913', img: 'radial-gradient(circle at 30% 32%, #C4763A 0 18%, rgba(0,0,0,0) 18%), linear-gradient(200deg, #6B4A2A 0 26%, rgba(0,0,0,0) 26%)' }
+    ];
+    return set[i % set.length];
+  }
+
+  palette() {
+    return [
+      { bg: '#1F2A24', body: '#3E7D5A', accent: '#0B0F0D' },
+      { bg: '#221E22', body: '#E4572E', accent: '#141014' },
+      { bg: '#12161B', body: '#6C8EAD', accent: '#0A0D10' },
+      { bg: '#14110F', body: '#C9A227', accent: '#0C0906' },
+      { bg: '#17111F', body: '#9B5DE5', accent: '#0D0912' },
+      { bg: '#1A1114', body: '#D64550', accent: '#100B0D' },
+      { bg: '#101A17', body: '#2F6F5E', accent: '#0A100E' },
+      { bg: '#1D1913', body: '#C4763A', accent: '#100E0A' },
+      { bg: '#1B1620', body: '#B07BAC', accent: '#110D14' }
+    ];
+  }
+
+  people() {
+    return {
+      '@marina.rolls': { name: 'Você', pal: 0 },
+      '@yaz.codes': { name: 'Yasmin Prado', pal: 1 },
+      '@rafabtt': { name: 'Rafa Bittencourt', pal: 2 },
+      '@cadu.plays': { name: 'Camila Duarte', pal: 3 },
+      '@diegom': { name: 'Diego M.', pal: 4 },
+      '@sofi.alm': { name: 'Sofia Almeida', pal: 5 },
+      '@theov': { name: 'Théo Vasques', pal: 6 },
+      '@lari.dados': { name: 'Larissa K.', pal: 7 },
+      '@pedrosalg': { name: 'Pedro Salgado', pal: 8 },
+      '@biarabelo': { name: 'Bianca R.', pal: 0 }
+    };
+  }
+
+  hash(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 100003;
+    return h;
+  }
+
+  // [título, modo, arte, estúdio, ano, gêneros, meta, descrição]
+  games() {
+    return [
+      ['Patchwork', 'analog', 3, 'Lookout Games', 2014, 'Estratégia abstrata|Quebra-cabeça|Economia', '2 jogadores · 15 a 30 min', 'Duelo para duas pessoas: compre retalhos e costure a colcha mais bonita e lucrativa.'],
+      ['Carcassonne', 'analog', 4, 'Hans im Glück', 2000, 'Peças|Medieval|Território', '2 a 5 jogadores · 30 a 45 min', 'Monte a paisagem peça a peça e coloque seguidores em cidades, estradas e campos para pontuar.'],
+      ['Hollow Knight', 'digital', 6, 'Team Cherry', 2017, 'Ação|Aventura|Indie', 'PC · Mac · Linux · Um jogador', 'Explore as cavernas de um reino de insetos arruinado, enfrente chefes difíceis e descubra o mapa aos poucos, em um metroidvania desenhado à mão.'],
+      ['Portal 2', 'digital', 5, 'Valve', 2011, 'Quebra-cabeça|Ação|Aventura', 'PC · Linux · Um jogador e cooperativo', 'Resolva câmaras de teste com portais, sozinho ou em dupla no modo cooperativo, sob a voz sarcástica de uma inteligência artificial.'],
+      ['Frostpunk', 'digital', 1, '11 bit studios', 2018, 'Simulação|Estratégia', 'PC · Um jogador', 'Comande a última cidade da Terra num mundo congelado e equilibre sobrevivência, esperança e decisões morais difíceis.'],
+      ['It Takes Two', 'digital', 0, 'Hazelight Studios', 2021, 'Ação|Aventura|Cooperativo', 'PC · Console · Cooperativo para 2 pessoas', 'Aventura feita só para duas pessoas, com desafios que mudam a cada fase e exigem trabalho em equipe.'],
+      ['Firewatch', 'digital', 9, 'Campo Santo', 2016, 'Aventura|Indie|Narrativo', 'PC · Mac · Linux · Um jogador', 'Mistério em primeira pessoa numa floresta de Wyoming, em que a sua única companhia é a voz de uma colega no rádio.'],
+      ['Counter-Strike 2', 'digital', 4, 'Valve', 2023, 'Ação|Competitivo|Gratuito', 'PC · Multijogador', 'Tiro tático em equipes, com partidas curtas, economia de rodada e ranking.'],
+      ['Outer Wilds', 'digital', 2, 'Mobius Digital', 2020, 'Aventura|Exploração|Mistério', 'PC · Um jogador', 'Explore um sistema solar preso em um ciclo de tempo e desvende o mistério a cada nova volta.'],
+      ['Stardew Valley', 'digital', 11, 'ConcernedApe', 2016, 'Simulação|RPG|Indie', 'PC · Mac · Linux · Cooperativo para até 4', 'Largue a vida na cidade, recupere a fazenda do seu avô e viva no ritmo das estações, sozinho ou com amigos.'],
+      ['Celeste', 'digital', 7, 'Maddy Makes Games', 2018, 'Plataforma|Indie|Desafio', 'PC · Mac · Linux · Um jogador', 'Escale uma montanha em fases curtas e exigentes, com uma história sensível sobre ansiedade.'],
+      ['Disco Elysium', 'digital', 3, 'ZA/UM', 2019, 'RPG|Narrativo', 'PC · Mac · Um jogador', 'Detetive amnésico numa cidade em ruínas. Um RPG sem combate tradicional, em que conversas e habilidades decidem tudo.'],
+      ['Elden Ring', 'digital', 12, 'FromSoftware', 2022, 'Ação|RPG|Mundo aberto', 'PC · Console · Um jogador e multijogador', 'Mundo aberto cheio de chefes e segredos, com muita liberdade para montar a sua build.'],
+      ['A Short Hike', 'digital', 8, 'adamgryu', 2019, 'Aventura|Indie|Curto', 'PC · Mac · Linux · Um jogador', 'Uma caminhada até o topo de uma ilha, com paisagens para explorar e gente para conhecer em poucas horas.'],
+      ['Ticket to Ride', 'analog', 0, 'Days of Wonder', 2004, 'Trens|Família|Rotas', '2 a 5 jogadores · 30 a 60 min', 'Colecione cartas de vagão e construa rotas de trem entre cidades para completar bilhetes de destino.'],
+      ['The Resistance: Avalon', 'analog', 1, 'Indie Boards & Cards', 2012, 'Dedução social|Blefe|Fantasia', '5 a 10 jogadores · 30 min', 'Na corte do Rei Arthur, leais tentam completar missões enquanto espiões sabotam sem serem descobertos.'],
+      ['Cartographers', 'analog', 2, 'Thunderworks Games', 2019, 'Fantasia|Território|Desenho', 'Qualquer número de jogadores · 30 a 45 min', 'Cada pessoa desenha o seu mapa ao mesmo tempo, seguindo as mesmas cartas, para pontuar com o melhor reino.'],
+      ['Coup', 'analog', 3, 'Indie Boards & Cards', 2012, 'Blefe|Cartas|Dedução', '2 a 6 jogadores · 15 min', 'Blefe rápido com poucas cartas de influência: elimine os rivais sem ser pego mentindo.'],
+      ['Terraforming Mars', 'analog', 4, 'FryxGames', 2016, 'Economia|Ficção científica|Civilização', '1 a 5 jogadores · 120 min', 'Corporações disputam para tornar Marte habitável, elevando temperatura, oxigênio e oceanos.'],
+      ['7 Wonders', 'analog', 5, 'Repos Production', 2010, 'Draft de cartas|Civilização|Antiguidade', '2 a 7 jogadores · 30 min', 'Cada pessoa lidera uma civilização antiga e monta a sua cidade em três eras, escolhendo cartas por draft.'],
+      ['Azul', 'analog', 6, 'Next Move Games', 2017, 'Estratégia abstrata|Peças|Família', '2 a 4 jogadores · 30 a 45 min', 'Escolha azulejos coloridos para decorar o palácio real, planejando para não sobrar peça no chão.'],
+      ['Agricola', 'analog', 7, 'Lookout Games', 2007, 'Economia|Fazenda|Colocação de trabalhadores', '1 a 5 jogadores · 30 a 150 min', 'Cuide de uma fazenda: alimente a família, cultive e amplie a casa em poucas rodadas apertadas.'],
+      ['Pandemic', 'analog', 8, 'Z-Man Games', 2008, 'Cooperativo|Médico|Viagem', '2 a 4 jogadores · 45 min', 'Uma equipe de especialistas coopera para curar quatro doenças antes que os surtos tomem o mapa.'],
+      ['Catan', 'analog', 9, 'KOSMOS', 1995, 'Negociação|Economia|Família', '3 a 4 jogadores · 60 a 120 min', 'Colonize uma ilha trocando recursos com os adversários e construindo estradas e vilas.'],
+      ['Cascadia', 'analog', 10, 'Flatout Games', 2021, 'Peças|Natureza|Quebra-cabeça', '1 a 4 jogadores · 30 a 45 min', 'Monte um ecossistema encaixando peças de habitat e animais para formar o melhor território.'],
+      ['Wingspan', 'analog', 11, 'Stonemaier Games', 2019, 'Cartas|Natureza|Construção de motor', '1 a 5 jogadores · 40 a 70 min', 'Atraia aves para os seus habitats e monte uma reserva cujos efeitos se encadeiam a cada rodada.'],
+      ['Santorini', 'analog', 12, 'Roxley', 2016, 'Estratégia abstrata|Mitologia', '2 a 4 jogadores · 20 min', 'Duelo abstrato em que você constrói torres e sobe antes do adversário, com poderes divinos opcionais.'],
+      ['Splendor', 'analog', 13, 'Space Cowboys', 2014, 'Cartas|Economia|Renascimento', '2 a 4 jogadores · 30 min', 'Colecione gemas e compre cartas de desenvolvimento para atrair a nobreza no comércio da Renascença.'],
+      ['Camel Up', 'analog', 0, 'eggertspiele', 2014, 'Corrida|Dados|Apostas', '2 a 8 jogadores · 20 a 30 min', 'Aposte em qual camelo vai ganhar a corrida, enquanto eles empilham e se carregam pelo caminho.'],
+      ['Cosmic Encounter', 'analog', 1, 'Fantasy Flight Games', 2008, 'Negociação|Blefe|Ficção científica', '3 a 5 jogadores · 60 a 120 min', 'Cada raça alienígena quebra uma regra do jogo. Formem alianças, negociem e conquistem colônias.'],
+      ['Century: Spice Road', 'analog', 2, 'Plan B Games', 2017, 'Cartas|Economia|Medieval', '2 a 5 jogadores · 30 a 45 min', 'Troque especiarias e melhore as suas caravanas para entregar pedidos valiosos antes dos rivais.'],
+    ];
+  }
+
+  // [jogo, autor, nota, texto, curtidas, comentários]
+  pinned() {
+    return [
+      ['Hollow Knight', '@yaz.codes', 5, 'Terminei em uma madrugada só e comecei de novo na manhã seguinte.', 284, 37],
+      ['Firewatch', '@rafabtt', 4, 'A trilha sonora carrega o jogo inteiro nas costas.', 196, 22],
+      ['Counter-Strike 2', '@cadu.plays', 3, 'Tiroteio preciso e partidas tensas, mas o ranked cobra muita paciência.', 152, 14],
+      ['Outer Wilds', '@biarabelo', 4, 'Puzzle ambiental que ensina só olhando, nenhum tutorial em texto.', 118, 9],
+      ['Stardew Valley', '@theov', 3, 'Relaxante demais pra quem queria desafio.', 64, 5],
+      ['Stardew Valley', '@pedrosalg', 3, 'Bonito de assistir, entediante de jogar depois da segunda hora.', 9, 1],
+      ['Celeste', '@lari.dados', 5, 'Level design que ensina cada mecânica sem precisar de uma linha de texto.', 210, 28],
+      ['Celeste', '@cadu.plays', 4, 'Achei a plataforma frustrante até entender o ritmo do pulo.', 15, 2],
+      ['Disco Elysium', '@sofi.alm', 4, 'Final ambíguo que ainda estou processando uma semana depois.', 87, 16],
+      ['Elden Ring', '@yaz.codes', 4, 'Build de fogo quebrou o jogo de um jeito muito satisfatório.', 132, 12],
+      ['Elden Ring', '@lari.dados', 4, 'Montei uma build exagerada e virei praticamente invencível.', 31, 5],
+      ['Portal 2', '@diegom', 4, 'Fiquei preso na mesma sala por quarenta minutos e valeu cada segundo.', 41, 6],
+      ['Frostpunk', '@sofi.alm', 5, 'O primeiro jogo em anos que me fez anotar tudo num caderno de verdade.', 63, 9],
+      ['A Short Hike', '@theov', 3, 'Bonito, curto, e some da memória rápido demais.', 28, 3],
+      ['It Takes Two', '@rafabtt', 5, 'Zerei junto com minha dupla de sofá, melhor coop do ano.', 22, 4],
+      ['Ticket to Ride', '@lari.dados', 5, 'Partida rápida de explicar e todo mundo pediu revanche.', 231, 45],
+      ['Terraforming Mars', '@pedrosalg', 4, 'As regras assustam no papel, mas fluem sozinhas na segunda rodada.', 178, 19],
+      ['Cartographers', '@biarabelo', 4, 'Ganhei três vezes seguidas e ainda assim quero jogar de novo hoje.', 140, 11],
+      ['7 Wonders', '@yaz.codes', 5, 'Draft tenso do início ao fim, ninguém revelou a mão até o final.', 165, 21],
+      ['Azul', '@theov', 4, 'Bonito de montar e de jogar. Funciona até com quem nunca jogou.', 98, 10],
+      ['Agricola', '@diegom', 3, 'Bom jogo, péssimo pra grupos grandes: trava demais com cinco.', 54, 7],
+      ['Coup', '@sofi.alm', 5, 'Blefei até o fim e ganhei sem revelar uma carta sequer.', 187, 24],
+      ['Pandemic', '@cadu.plays', 4, 'Cooperativo difícil de verdade, perdemos as três primeiras vezes.', 76, 13],
+      ['The Resistance: Avalon', '@rafabtt', 3, 'Traição boa, mas quem erra a leitura no começo acaba carregando a partida.', 34, 8],
+      ['Catan', '@cadu.plays', 5, 'Perdi a rota inteira pra um bloqueio e mesmo assim foi a melhor partida do ano.', 52, 7],
+      ['Cascadia', '@diegom', 4, 'Mesa silenciosa por vinte minutos só calculando onde encaixar cada habitat.', 19, 2],
+      ['Wingspan', '@yaz.codes', 4, 'Economia lenta no começo, decola de vez na segunda rodada.', 12, 2],
+      ['Santorini', '@pedrosalg', 5, 'Peças lindas que a mesa inteira parou pra admirar antes de jogar.', 27, 4],
+      ['Splendor', '@biarabelo', 3, 'Fichas lindas e regras simples, mas a corrida por cartas é impiedosa.', 8, 1],
+      ['Camel Up', '@lari.dados', 4, 'Partida rápida que virou três seguidas sem ninguém perceber a hora.', 21, 3],
+      ['Cosmic Encounter', '@theov', 5, 'Negociação hostil que quase acabou em amizade desfeita. Nota dez.', 39, 6]
+    ];
+  }
+
+  textBank(mode) {
+    return mode === 'digital'
+      ? ['Direção de arte impecável e sistemas que se encaixam bem.', 'Começa devagar, mas depois que engrena não dá para largar.', 'Rejogável e com finais que mudam de verdade a campanha.', 'Boa ideia, execução irregular. Vale pelo primeiro ato.', 'Controles precisos e uma curva de dificuldade honesta.', 'Zerei em duas noites e já estou pensando em recomeçar.', 'Poucos jogos me deixaram tão curioso para ver o próximo capítulo.', 'Tem uns picos de dificuldade injustos, mas compensa.']
+      : ['Regras se explicam em dez minutos e a mesa inteira entra no jogo.', 'Parte do tempo é espera, mas o fim de partida compensa.', 'Funciona melhor com quatro pessoas e um bom mediador.', 'Decisões difíceis e muito bem equilibradas.', 'Componentes lindos e partida que flui sozinha depois da primeira rodada.', 'Levei para a mesa de domingo e todo mundo pediu revanche.', 'Fácil de ensinar, difícil de dominar. Combinação rara.', 'O manual poderia ser melhor, mas o jogo se defende.'];
+  }
+
+  topicsByGame() {
+    return {
+      'Pandemic': [['p7', 'Perdemos três vezes seguidas', 'Théo Vasques', 31, 'há 2 h', 'f3']],
+      'Azul': [['s5', 'Vale o preço? Funciona com iniciantes?', 'Rafa Bittencourt', 3, 'há 1 dia', 'f2']],
+      '7 Wonders': [['j1', 'Vale jogar 7 Wonders com duas pessoas?', 'Pedro Salgado', 14, 'há 6 h', 'f2']],
+      'Outer Wilds': [['j3', 'Zerei sem abrir o diário da nave', 'Larissa K.', 27, 'há 4 h', 'f6']],
+      'It Takes Two': [['j5', 'Vale jogar com quem não joga muito?', 'Camila Duarte', 6, 'há 2 dias', 'f3']],
+      'Hollow Knight': [['t1', 'Dicas para quem está começando', 'Yasmin Prado', 19, 'há 5 h', 'f1']],
+      'Counter-Strike 2': [['t2', 'Como vocês montam o time para o ranked?', 'Rafa Bittencourt', 12, 'há 8 h', 'f4']],
+      'Catan': [['t3', 'Mesa de quarta com vaga para mais duas pessoas', 'Camila Duarte', 16, 'há 1 dia', 'f5']],
+      'Stardew Valley': [['t4', 'Vale jogar Stardew em dupla?', 'Bianca R.', 21, 'há 3 h', 'f3']],
+      'Century: Spice Road': [['t5', 'Dá para ensinar em dez minutos?', 'Sofia Almeida', 8, 'há 9 h', 'f2']],
+      'A Short Hike': [['t6', 'Indies que merecem mais atenção', 'Diego M.', 38, 'há 12 h', 'f6']]
+    };
+  }
+
+  forumMeta(id) {
+    return { f1: ['Metroidvanias', '#9B5DE5'], f2: ['Estratégia de mesa', '#F5A524'], f3: ['Coop e jogos para duas pessoas', '#17C964'], f4: ['Competitivo e ranked', '#F31260'], f5: ['Mesas de São Paulo', '#22D3EE'], f6: ['Indies e aventuras', '#338EF7'] }[id];
+  }
+
+  soft(hex, alpha) {
+    const n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255) + ', ' + alpha + ')';
+  }
+
+  gameInfo(title, artHint) {
+    const row = this.games().filter((g) => g[0] === title)[0];
+    if (row) return { title: title, mode: row[1], art: artHint !== undefined && artHint !== null ? artHint : row[2], studio: row[3], year: row[4], genres: row[5].split('|'), meta: row[6], desc: row[7] };
+    const h = this.hash(title);
+    return { title: title, mode: 'digital', art: artHint !== undefined && artHint !== null ? artHint : h % 14, studio: 'Estúdio independente', year: 2021 + (h % 5), genres: ['Indie'], meta: 'Informações em breve', desc: 'Ainda não temos uma descrição para este jogo. As notas e os comentários abaixo vêm da comunidade.' };
+  }
+
+  buildReviews(info, mine, friends) {
+    const people = this.people();
+    const handles = Object.keys(people).filter((h) => h !== '@marina.rolls');
+    const whens = ['há 3 dias', 'há 1 semana', 'há 2 semanas', 'há 3 semanas', 'há 1 mês', 'há 2 meses'];
+    const list = [];
+    this.pinned().filter((p) => p[0] === info.title).forEach((p, i) => list.push({ id: 'p' + i, handle: p[1], rating: p[2], text: p[3], likes: p[4], when: whens[i % 3] }));
+    const bank = this.textBank(info.mode);
+    const need = Math.max(3, 6 - list.length);
+    const used = {};
+    list.forEach((r) => { used[r.handle] = true; });
+    let k = 0;
+    let added = 0;
+    while (added < need && k < 40) {
+      const h = handles[(this.hash(info.title) + k * 4) % handles.length];
+      k++;
+      if (used[h]) continue;
+      used[h] = true;
+      const seed = this.hash(info.title + h);
+      list.push({ id: 'g' + added, handle: h, rating: 3 + (seed % 3), text: bank[seed % bank.length], likes: 4 + (seed % 120), when: whens[(added + 2) % whens.length] });
+      added++;
+    }
+    return list;
+  }
+
+  starRows(avg, n) {
+    const w = [1, 2, 3, 4, 5].map((k) => Math.exp(-Math.pow(k - avg, 2) / (2 * 0.75 * 0.75)));
+    const sum = w.reduce((a, b) => a + b, 0);
+    return [5, 4, 3, 2, 1].map((k) => ({ star: k, pct: Math.round((w[k - 1] / sum) * 100) }));
+  }
+
+  tagOptions(mode) {
+    return mode === 'digital'
+      ? ['História', 'Trilha sonora', 'Desafio', 'Visual', 'Cooperativo', 'Relaxante']
+      : ['Rápido', 'Estratégico', 'Bom com amigos', 'Regras complexas', 'Cooperativo', 'Competitivo'];
+  }
+
+  ask = (title, text, label, run) => this.setState({ confirm: { title: title, text: text, label: label, run: run } });
+  cfNo = () => this.setState({ confirm: null });
+  cfYes = () => {
+    const c = this.state.confirm;
+    this.setState({ confirm: null });
+    if (c && c.run) c.run();
+  };
+
+  dnStart = (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const scale = el.offsetHeight ? rect.height / el.offsetHeight : 1;
+    if ((t.clientY - rect.top) / (scale || 1) > 72) { this._dn = null; return; }
+    this._dn = { el: el, key: el.getAttribute('data-sheet'), x0: t.clientX, y0: t.clientY, scale: scale || 1, active: false, dy: 0, t0: Date.now() };
+  };
+  dnMove = (e) => {
+    const s = this._dn;
+    if (!s) return;
+    const t = e.touches[0];
+    const dy = (t.clientY - s.y0) / s.scale;
+    const dx = (t.clientX - s.x0) / s.scale;
+    if (!s.active) {
+      if (Math.abs(dx) > 16 && Math.abs(dx) > Math.abs(dy)) { this._dn = null; return; }
+      if (dy > 10 && dy > Math.abs(dx) * 1.3) s.active = true; else return;
+    }
+    s.dy = Math.max(0, dy);
+    s.el.style.transition = 'none';
+    s.el.style.transform = 'translateY(' + s.dy + 'px)';
+  };
+  dnEnd = () => {
+    const s = this._dn;
+    this._dn = null;
+    if (!s || !s.active) return;
+    const el = s.el;
+    const clear = () => { try { el.style.transition = ''; el.style.transform = ''; } catch (err) { /* elemento removido */ } };
+    const fast = s.dy > 40 && s.dy / Math.max(1, Date.now() - s.t0) > 0.6;
+    if (s.dy > 110 || fast) {
+      el.style.transition = 'transform .2s ease-out';
+      el.style.transform = 'translateY(' + (el.offsetHeight + 40) + 'px)';
+      setTimeout(() => { this.dnClose(s.key); setTimeout(clear, 80); }, 190);
+    } else {
+      el.style.transition = 'transform .2s ease';
+      el.style.transform = 'translateY(0)';
+      setTimeout(clear, 220);
+    }
+  };
+  dnClose = (key) => {
+    if (key === 'rate') this.closeSheet();
+    else if (key === 'save') this.setState({ saveOpen: false, creating: false, newName: '' });
+  };
+
+  flash(text) {
+    this.setState({ toast: text });
+    setTimeout(() => this.setState({ toast: '' }), 2000);
+  }
+
+  doCreate = (title) => {
+    const name = (this.state.newName || '').trim();
+    if (name.length < 2) return;
+    if (this.props.createList) this.props.createList(name, title);
+    this.setState({ creating: false, newName: '' });
+    this.flash('Lista “' + name + '” criada com o jogo.');
+  };
+
+  openSheet = (existing) => {
+    const ex = existing && existing.rating ? existing : null;
+    this.setState({ sheetOpen: true, sRating: ex ? ex.rating : 0, sText: ex ? (ex.text || '') : '', sTags: ex ? (ex.tags || []).slice() : [] });
+  };
+  closeSheet = () => this.setState({ sheetOpen: false });
+
+  openAuthor = (handle) => {
+    if (handle === '@marina.rolls') { if (this.props.navigate) this.props.navigate('perfil'); }
+    else if (this.props.openPerson) this.props.openPerson(handle);
+  };
+
+  renderVals() {
+    const accent = this.props.accent ?? '#006FEE';
+    const g = this.props.game || { title: 'Ticket to Ride' };
+    const info = this.gameInfo(g.title, g.art);
+    const s = this.state;
+    const liked = s.liked;
+    const friends = this.props.friends || [];
+    const people = this.people();
+    const pal = this.palette();
+    const art = this.artFor(info.title, info.art);
+
+    const mineAll = (this.props.myReviews || []).filter((m) => m.game === info.title);
+    const mine = mineAll[0] || null;
+
+    // estatísticas
+    const baseAvg = 3.5 + (this.hash(info.title + 'avg') % 13) / 10;
+    const baseN = 140 + (this.hash(info.title + 'n') % 2200);
+    const n = baseN + (mine ? 1 : 0);
+    const avg = mine ? (baseAvg * baseN + mine.rating) / n : baseAvg;
+    const rows = this.starRows(avg, n);
+    const barColors = { 5: accent, 4: accent, 3: '#71717A', 2: '#71717A', 1: '#71717A' };
+
+    const base = this.buildReviews(info, mine, friends);
+    const rev = base.map((r) => {
+      const p = people[r.handle] || { name: r.handle, pal: 0 };
+      const c = pal[p.pal % pal.length];
+      return { id: r.id, handle: r.handle, name: p.name, avBg: c.bg, avBody: c.body, avAccent: c.accent, rating: r.rating, text: r.text, likes: r.likes, when: r.when, isMine: false, tags: [] };
+    });
+    const mineRev = mine ? [{ id: mine.id, handle: '@marina.rolls', name: 'Carol Guimarães', avBg: pal[0].bg, avBody: pal[0].body, avAccent: pal[0].accent, rating: mine.rating, text: mine.text || '', likes: 0, when: 'agora', isMine: true, tags: mine.tags || [], raw: mine }] : [];
+
+    const friendRevs = rev.filter((r) => friends.indexOf(r.handle) >= 0);
+    const friendsAvg = friendRevs.length ? friendRevs.reduce((a, r) => a + r.rating, 0) / friendRevs.length : 0;
+
+    let shown = mineRev.concat(rev);
+    if (s.rf === 'amigos') shown = mineRev.concat(friendRevs);
+    else if (s.rf === 'curtidas') shown = mineRev.concat(rev.slice().sort((a, b) => b.likes - a.likes));
+
+    const reviews = shown.map((r) => {
+      const key = 'l:' + r.id;
+      return {
+        name: r.name, avBg: r.avBg, avBody: r.avBody, avAccent: r.avAccent, when: r.when, avUri: (this.props.avatars || {})[r.handle] || '',
+        isFriend: friends.indexOf(r.handle) >= 0, isMine: r.isMine,
+        stars: [0, 1, 2, 3, 4].map((i) => ({ fill: i < r.rating ? accent : '#3F3F46' })),
+        hasText: !!r.text, text: r.text, hasTags: (r.tags || []).length > 0, tagChips: (r.tags || []).map((t) => ({ label: t })),
+        likeCount: r.likes + (liked[key] ? 1 : 0), likeFill: liked[key] ? accent : 'none', likeStroke: liked[key] ? accent : '#A1A1AA',
+        toggleLike: () => this.setState({ liked: Object.assign({}, liked, { [key]: !liked[key] }) }),
+        openAuthor: () => this.openAuthor(r.handle),
+        onEdit: () => this.openSheet(r.raw),
+        onDelete: () => this.ask('Excluir sua avaliação?', 'Sua avaliação será removida desta página e do seu perfil. Não dá para desfazer.', 'Excluir', () => { if (this.props.deleteReview) this.props.deleteReview(r.id); this.flash('Avaliação excluída.'); })
+      };
+    });
+
+    // discussões
+    const topicRows = (this.topicsByGame()[info.title] || []).map((t) => {
+      const f = this.forumMeta(t[5]);
+      return { title: t[1], by: t[2], count: t[3], when: t[4], forum: f[0], forumColor: f[1], forumSoft: this.soft(f[1], 0.16), open: () => { if (this.props.openTopic) this.props.openTopic(t[0], { title: info.title, art: info.art }); } };
+    });
+
+    const myLists = this.props.lists || [];
+    const listRows = myLists.map((l) => {
+      const checked = l.titles.indexOf(info.title) >= 0;
+      const first = l.titles[0];
+      const cover = first ? this.artFor(first, this.hash(first) % 14) : { bg: '#27272A', img: 'none' };
+      return {
+        title: l.title, bg: cover.bg, img: cover.img,
+        countLabel: l.titles.length + (l.titles.length === 1 ? ' jogo' : ' jogos'),
+        checked: checked ? 'true' : 'false',
+        checkBg: checked ? accent : 'transparent', checkBorder: checked ? accent : '#52525B', checkOpacity: checked ? 1 : 0,
+        onToggle: () => {
+          if (this.props.toggleInList) this.props.toggleInList(l.id, info.title);
+          this.flash(checked ? 'Removido de “' + l.title + '”.' : 'Salvo em “' + l.title + '”.');
+        }
+      };
+    });
+    const savedAny = listRows.some((l) => l.checked === 'true');
+    const newName = s.newName.trim();
+    const canCreate = newName.length >= 2;
+    const chip = (id, label) => ({
+      label: label,
+      style: 'flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; border: 1px solid ' + (s.rf === id ? accent : 'rgba(255,255,255,0.12)') + '; background: ' + (s.rf === id ? 'rgba(0,111,238,0.18)' : '#18181B') + '; color: ' + (s.rf === id ? '#8FC7FF' : '#D4D4D8') + ';',
+      onClick: () => this.setState({ rf: id })
+    });
+
+    // folha de avaliação
+    const labels = ['Toque para dar sua nota', 'Fraco', 'Regular', 'Bom', 'Ótimo', 'Obra-prima'];
+    const starPicks = [1, 2, 3, 4, 5].map((k) => ({ label: k + (k === 1 ? ' estrela' : ' estrelas'), fill: k <= s.sRating ? accent : 'none', stroke: k <= s.sRating ? accent : '#52525B', onPick: () => this.setState({ sRating: k }) }));
+    const tagPicks = this.tagOptions(info.mode).map((label) => {
+      const picked = s.sTags.indexOf(label) >= 0;
+      const full = !picked && s.sTags.length >= 3;
+      return { label: label, cls: 'jg-chip' + (picked ? ' on' : '') + (full ? ' off' : ''), onPick: () => {
+        if (picked) this.setState({ sTags: s.sTags.filter((x) => x !== label) });
+        else if (!full) this.setState({ sTags: s.sTags.concat([label]) });
+      } };
+    });
+    const valid = s.sRating >= 1;
+
+    return {
+      accent: accent,
+      art: art,
+      game: { title: info.title, studio: info.studio, year: info.year, kindLabel: info.mode === 'digital' ? 'Jogo digital' : 'Jogo de mesa', genres: info.genres.map((x) => ({ label: x })), meta: info.meta, desc: info.desc, credit: info.mode === 'analog' ? 'Dados e capa: BoardGameGeek' : 'Dados e capa: Steam' },
+      goBack: () => { if (this.props.back) this.props.back(); },
+      stats: {
+        avgLabel: avg.toFixed(1).replace('.', ','),
+        stars: [0, 1, 2, 3, 4].map((i) => ({ fill: i < Math.round(avg) ? accent : '#3F3F46' })),
+        countLabel: n.toLocaleString('pt-BR') + ' avaliações',
+        dist: rows.map((r) => ({ label: String(r.star), pct: r.pct, color: barColors[r.star] })),
+        hasFriends: friendRevs.length > 0,
+        friendsLabel: friendRevs.length + (friendRevs.length === 1 ? ' amigo avaliou' : ' amigos avaliaram') + ' este jogo · média ' + friendsAvg.toFixed(1).replace('.', ',')
+      },
+      rateLabel: mine ? 'Editar minha avaliação' : 'Avaliar este jogo',
+      openSheet: () => this.openSheet(mine),
+      saveAria: savedAny ? 'Salvo em uma lista. Alterar listas' : 'Salvar em uma lista',
+      saveFill: savedAny ? 'currentColor' : 'none',
+      saveBg: savedAny ? 'rgba(0,111,238,0.16)' : 'transparent',
+      saveBorder: savedAny ? 'rgba(0,111,238,0.5)' : 'rgba(255,255,255,0.16)',
+      saveColor: savedAny ? '#8FC7FF' : '#ECEDEE',
+      openSave: () => this.setState({ saveOpen: true, creating: false, newName: '' }),
+      closeSave: () => this.setState({ saveOpen: false, creating: false, newName: '' }),
+      saveScrimClass: 'jg-scrim' + (s.saveOpen ? ' open' : ''),
+      saveClass: 'jg-save' + (s.saveOpen ? ' open' : ''),
+      lists: listRows,
+      hasLists: listRows.length > 0,
+      noLists: listRows.length === 0,
+      showCreate: listRows.length === 0 || s.creating,
+      showNewBtn: listRows.length > 0 && !s.creating,
+      startCreate: () => this.setState({ creating: true }),
+      newName: s.newName,
+      onNewName: (e) => this.setState({ newName: e.target.value }),
+      onNewKey: (e) => { if (e.key === 'Enter') this.doCreate(info.title); },
+      createList: () => this.doCreate(info.title),
+      createStyle: 'flex-shrink: 0; height: 46px; padding: 0 14px; border: none; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: ' + (canCreate ? 'pointer' : 'default') + '; background: ' + (canCreate ? accent : '#27272A') + '; color: ' + (canCreate ? '#FFFFFF' : '#71717A') + ';',
+      tabs: { reviews: s.tab === 'reviews' ? { color: '#ECEDEE', weight: 700, bar: accent } : { color: '#A1A1AA', weight: 500, bar: 'transparent' }, topics: s.tab === 'topics' ? { color: '#ECEDEE', weight: 700, bar: accent } : { color: '#A1A1AA', weight: 500, bar: 'transparent' } },
+      pickReviews: () => this.setState({ tab: 'reviews' }),
+      pickTopics: () => this.setState({ tab: 'topics' }),
+      reviewsTotal: n.toLocaleString('pt-BR'),
+      topicsTotal: topicRows.length,
+      showReviews: s.tab === 'reviews',
+      showTopics: s.tab === 'topics',
+      filterChips: [chip('todas', 'Todas'), chip('amigos', 'De amigos'), chip('curtidas', 'Mais curtidas')],
+      reviews: reviews,
+      noReviews: reviews.length === 0,
+      topics: topicRows,
+      noTopics: topicRows.length === 0,
+      forumsCta: topicRows.length === 0 ? 'Iniciar uma discussão nos Fóruns' : 'Ver todos os Fóruns',
+      goForums: () => { if (this.props.navigate) this.props.navigate('foruns'); },
+
+      sheetClass: 'jg-sheet' + (s.sheetOpen ? ' open' : ''),
+      sheetTitle: mine ? 'Editar avaliação' : 'Nova avaliação',
+      dnStart: this.dnStart,
+      dnMove: this.dnMove,
+      dnEnd: this.dnEnd,
+      closeSheet: this.closeSheet,
+      starPicks: starPicks,
+      ratingLabel: labels[s.sRating],
+      ratingColor: s.sRating > 0 ? '#ECEDEE' : '#71717A',
+      sText: s.sText,
+      onText: (e) => this.setState({ sText: e.target.value.slice(0, 280) }),
+      textCount: (s.sText || '').length,
+      tagPicks: tagPicks,
+      publishLabel: valid ? (mine ? 'Salvar avaliação' : 'Publicar avaliação') : 'Dê uma nota',
+      publishStyle: 'width: 100%; height: 50px; border: none; border-radius: 14px; font-size: 15px; font-weight: 800; cursor: ' + (valid ? 'pointer' : 'default') + '; background: ' + (valid ? accent : '#27272A') + '; color: ' + (valid ? '#FFFFFF' : '#71717A') + ';',
+      publish: () => {
+        if (!valid) return;
+        if (mine && this.props.deleteReview) this.props.deleteReview(mine.id);
+        const review = { id: 'me' + Date.now(), mode: info.mode, game: info.title, gameIdx: info.art, rating: s.sRating, text: (s.sText || '').trim(), tags: s.sTags.slice() };
+        if (this.props.publishReview) this.props.publishReview(review);
+        this.setState({ sheetOpen: false, tab: 'reviews', rf: 'todas' });
+        this.flash('Avaliação publicada.');
+      },
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastText: s.toast,
+      cfOpen: !!s.confirm,
+      cfTitle: s.confirm ? s.confirm.title : '',
+      cfText: s.confirm ? s.confirm.text : '',
+      cfLabel: s.confirm ? s.confirm.label : '',
+      cfNo: this.cfNo,
+      cfYes: this.cfYes
+    };
+  }
+}
+</script>
+</body>
+</html>

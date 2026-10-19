@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Configurações da conta</title>
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+  <style>
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    body { margin: 0; background: #000000; color: #ECEDEE; font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    button { font-family: inherit; }
+    .cf-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; letter-spacing: -0.01em; }
+    .cf-label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #71717A; margin: 0 0 8px; }
+    .cf-field { width: 100%; height: 48px; background: #212124; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0 14px; color: #ECEDEE; font-family: 'Manrope', sans-serif; font-size: 14.5px; outline: none; }
+    .cf-field:focus { border-color: rgba(51,142,247,0.7); }
+    .cf-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0); opacity: 0; pointer-events: none; transition: opacity .22s ease, background .22s ease; z-index: 40; }
+    .cf-scrim.open { opacity: 1; pointer-events: auto; background: rgba(0,0,0,.66); }
+    .cf-sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 86%; background: #18181B; border-radius: 22px 22px 0 0; transform: translateY(100%); transition: transform .3s cubic-bezier(.32,.72,0,1); z-index: 41; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.16); }
+    .cf-sheet.open { transform: translateY(0); }
+  </style>
+</helmet>
+<div style="position: relative; width: 390px; height: 776px; overflow: hidden; background: #000000; display: flex; flex-direction: column;">
+
+  <div style="flex: none; display: flex; align-items: center; gap: 12px; padding: 14px 16px 12px;">
+    <button type="button" onClick="{{goBack}}" aria-label="Voltar" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </button>
+    <div class="cf-title" style="font-size: 22px; font-weight: 700;">Configurações</div>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 4px 16px 32px; display: flex; flex-direction: column; gap: 24px;">
+
+    <div style="display: flex; align-items: center; gap: 14px; background: #18181B; border-radius: 16px; padding: 14px; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15);">
+      <sc-if value="{{hasAvatar}}" hint-placeholder-val="{{false}}">
+        <img src="{{avatarUri}}" alt="" width="52" height="52" style="display: block; border-radius: 14px; flex-shrink: 0;">
+      </sc-if>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+        <div class="cf-title" style="font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{handle}}</div>
+        <div style="font-size: 12.5px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{email}}</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cf-label">Conta</div>
+      <div style="background: #18181B; border-radius: 16px; overflow: hidden; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15);">
+        <sc-for list="{{accountRows}}" as="r" hint-placeholder-count="3">
+          <button type="button" onClick="{{r.onOpen}}" style="width: 100%; min-height: 62px; padding: 10px 14px; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); background: transparent; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 13px; font-weight: 700;">{{r.label}}</div>
+              <div style="font-size: 13px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{r.value}}</div>
+              <sc-if value="{{r.hasNote}}" hint-placeholder-val="{{false}}"><div style="font-size: 11.5px; color: #F5A524;">{{r.note}}</div></sc-if>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <div class="cf-label">Privacidade</div>
+      <div style="background: #18181B; border-radius: 16px; overflow: hidden; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15);">
+        <sc-for list="{{privacyRows}}" as="r" hint-placeholder-count="2">
+          <div style="padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 13.5px; font-weight: 700;">{{r.label}}</div>
+              <div style="font-size: 12px; line-height: 1.4; color: #A1A1AA;">{{r.desc}}</div>
+            </div>
+            <button type="button" role="switch" aria-checked="{{r.checked}}" aria-label="{{r.label}}" onClick="{{r.onToggle}}" style="{{r.trackStyle}}"><span style="{{r.knobStyle}}"></span></button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <div class="cf-label">Notificações</div>
+      <div style="background: #18181B; border-radius: 16px; overflow: hidden; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15);">
+        <sc-for list="{{notifRows}}" as="r" hint-placeholder-count="3">
+          <div style="padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 13.5px; font-weight: 700;">{{r.label}}</div>
+              <div style="font-size: 12px; line-height: 1.4; color: #A1A1AA;">{{r.desc}}</div>
+            </div>
+            <button type="button" role="switch" aria-checked="{{r.checked}}" aria-label="{{r.label}}" onClick="{{r.onToggle}}" style="{{r.trackStyle}}"><span style="{{r.knobStyle}}"></span></button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <button type="button" onClick="{{askLogout}}" style="height: 48px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.16); background: transparent; color: #ECEDEE; font-size: 14px; font-weight: 700; cursor: pointer;">Sair da conta</button>
+      <button type="button" onClick="{{askDelete}}" style="height: 48px; border-radius: 14px; border: none; background: transparent; color: #F31260; font-size: 14px; font-weight: 700; cursor: pointer;">Excluir conta</button>
+    </div>
+  </div>
+
+  <!-- folha de edição -->
+  <div class="{{scrimClass}}" onClick="{{closeSheet}}"></div>
+  <div class="{{sheetClass}}" role="dialog" aria-label="{{sheetTitle}}" data-sheet="sheet" onTouchStart="{{dnStart}}" onTouchMove="{{dnMove}}" onTouchEnd="{{dnEnd}}" onTouchCancel="{{dnEnd}}">
+    <div style="display: flex; justify-content: center; padding-top: 9px; flex: none;"><div style="width: 34px; height: 4px; background: rgba(255,255,255,0.16); border-radius: 999px;"></div></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 18px 6px; flex: none;">
+      <div class="cf-title" style="font-size: 18px; font-weight: 700;">{{sheetTitle}}</div>
+      <button type="button" onClick="{{closeSheet}}" aria-label="Fechar" style="width: 34px; height: 34px; padding: 0; border-radius: 11px; border: 1px solid rgba(255,255,255,0.08); background: #212124; color: #D4D4D8; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+      </button>
+    </div>
+
+    <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 8px 18px 8px; display: flex; flex-direction: column; gap: 14px;">
+
+      <sc-if value="{{isUser}}" hint-placeholder-val="{{false}}">
+        <div>
+          <label for="cf-user" class="cf-label">Novo nome de usuário</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 14px; top: 0; height: 48px; display: flex; align-items: center; color: #71717A; font-size: 14.5px; font-weight: 600;">@</span>
+            <input id="cf-user" class="cf-field" maxlength="20" autocapitalize="none" value="{{uDraft}}" onInput="{{onUser}}" style="padding-left: 32px;">
+          </div>
+          <div style="margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: {{uColor}};">{{uMsg}}</div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #71717A;">Seu @ aparece no perfil, nas avaliações e nos fóruns. Os links antigos deixam de funcionar.</div>
+      </sc-if>
+
+      <sc-if value="{{isEmail}}" hint-placeholder-val="{{false}}">
+        <div>
+          <label for="cf-email" class="cf-label">Novo e-mail</label>
+          <input id="cf-email" class="cf-field" type="email" autocapitalize="none" placeholder="voce@exemplo.com" value="{{eDraft}}" onInput="{{onEmail}}">
+          <div style="margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: {{eColor}};">{{eMsg}}</div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #71717A;">Enviaremos um link de confirmação para o novo endereço. O e-mail só muda depois que você confirmar.</div>
+      </sc-if>
+
+      <sc-if value="{{isPass}}" hint-placeholder-val="{{false}}">
+        <div>
+          <label for="cf-p0" class="cf-label">Senha atual</label>
+          <input id="cf-p0" class="cf-field" type="{{passType}}" autocomplete="current-password" value="{{pCur}}" onInput="{{onPCur}}">
+        </div>
+        <div>
+          <label for="cf-p1" class="cf-label">Nova senha</label>
+          <input id="cf-p1" class="cf-field" type="{{passType}}" autocomplete="new-password" value="{{pNew}}" onInput="{{onPNew}}">
+          <div style="margin-top: 8px; height: 6px; border-radius: 999px; background: #3F3F46; overflow: hidden;"><div style="height: 6px; border-radius: 999px; width: {{strengthPct}}%; background: {{strengthColor}}; transition: width .2s ease;"></div></div>
+          <div style="margin-top: 6px; font-size: 12px; color: #A1A1AA;">{{strengthLabel}}</div>
+        </div>
+        <div>
+          <label for="cf-p2" class="cf-label">Confirmar nova senha</label>
+          <input id="cf-p2" class="cf-field" type="{{passType}}" autocomplete="new-password" value="{{pConf}}" onInput="{{onPConf}}">
+          <div style="margin-top: 8px; font-size: 12.5px; color: #F31260;">{{pError}}</div>
+        </div>
+        <button type="button" onClick="{{toggleShowPass}}" style="align-self: flex-start; padding: 0; border: none; background: transparent; color: #8FC7FF; font-size: 12.5px; font-weight: 700; cursor: pointer;">{{showPassLabel}}</button>
+      </sc-if>
+
+      <sc-if value="{{isLogout}}" hint-placeholder-val="{{false}}">
+        <div style="font-size: 14px; line-height: 1.55; color: #D4D4D8;">Você vai precisar entrar de novo com o seu e-mail e a sua senha.</div>
+      </sc-if>
+
+      <sc-if value="{{isDelete}}" hint-placeholder-val="{{false}}">
+        <div style="font-size: 14px; line-height: 1.55; color: #D4D4D8;">Excluir a conta apaga o seu perfil, suas avaliações, listas e mensagens. Não dá para desfazer.</div>
+        <div>
+          <label for="cf-del" class="cf-label">Digite EXCLUIR para confirmar</label>
+          <input id="cf-del" class="cf-field" autocapitalize="characters" value="{{delText}}" onInput="{{onDel}}">
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="flex: none; display: flex; gap: 10px; padding: 12px 18px 18px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <sc-if value="{{showCancel}}" hint-placeholder-val="{{false}}">
+        <button type="button" onClick="{{closeSheet}}" style="flex: 1; height: 48px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.16); background: transparent; color: #ECEDEE; font-size: 14px; font-weight: 700; cursor: pointer;">Cancelar</button>
+      </sc-if>
+      <button type="button" onClick="{{confirm}}" style="{{confirmStyle}}">{{confirmLabel}}</button>
+    </div>
+  </div>
+
+  <div style="{{toastStyle}}">{{toastText}}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"account":{"editor":null},"settings":{"editor":null},"onUpdate":{"editor":null},"onSetting":{"editor":null},"onLogout":{"editor":null},"avatarUri":{"editor":null},"back":{"editor":null},"$preview":{"width":390,"height":776}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sheet: null, uDraft: '', eDraft: '', pCur: '', pNew: '', pConf: '', showPass: false, delText: '', toast: '' };
+  }
+
+  taken() { return ['admin', 'circulo', 'suporte', 'marina', 'yaz.codes', 'rafabtt', 'cadu.plays', 'diegom', 'sofi.alm', 'theov', 'lari.dados', 'pedrosalg', 'biarabelo']; }
+  acc() { return Object.assign({ username: 'carolguimaraes', email: 'carol@exemplo.com', pendingEmail: '', passInfo: 'Alterada há 3 meses' }, this.props.account || {}); }
+  cfg() { return Object.assign({ publicProfile: true, inMatch: true, notifMsg: true, notifForum: true, notifFollow: true }, this.props.settings || {}); }
+
+  flash(text) { this.setState({ toast: text }); setTimeout(() => this.setState({ toast: '' }), 2200); }
+
+  open = (sheet) => {
+    const a = this.acc();
+    this.setState({ sheet: sheet, uDraft: a.username, eDraft: '', pCur: '', pNew: '', pConf: '', showPass: false, delText: '' });
+  };
+  dnStart = (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const scale = el.offsetHeight ? rect.height / el.offsetHeight : 1;
+    if ((t.clientY - rect.top) / (scale || 1) > 72) { this._dn = null; return; }
+    this._dn = { el: el, key: el.getAttribute('data-sheet'), x0: t.clientX, y0: t.clientY, scale: scale || 1, active: false, dy: 0, t0: Date.now() };
+  };
+  dnMove = (e) => {
+    const s = this._dn;
+    if (!s) return;
+    const t = e.touches[0];
+    const dy = (t.clientY - s.y0) / s.scale;
+    const dx = (t.clientX - s.x0) / s.scale;
+    if (!s.active) {
+      if (Math.abs(dx) > 16 && Math.abs(dx) > Math.abs(dy)) { this._dn = null; return; }
+      if (dy > 10 && dy > Math.abs(dx) * 1.3) s.active = true; else return;
+    }
+    s.dy = Math.max(0, dy);
+    s.el.style.transition = 'none';
+    s.el.style.transform = 'translateY(' + s.dy + 'px)';
+  };
+  dnEnd = () => {
+    const s = this._dn;
+    this._dn = null;
+    if (!s || !s.active) return;
+    const el = s.el;
+    const clear = () => { try { el.style.transition = ''; el.style.transform = ''; } catch (err) { /* elemento removido */ } };
+    const fast = s.dy > 40 && s.dy / Math.max(1, Date.now() - s.t0) > 0.6;
+    if (s.dy > 110 || fast) {
+      el.style.transition = 'transform .2s ease-out';
+      el.style.transform = 'translateY(' + (el.offsetHeight + 40) + 'px)';
+      setTimeout(() => { this.dnClose(s.key); setTimeout(clear, 80); }, 190);
+    } else {
+      el.style.transition = 'transform .2s ease';
+      el.style.transform = 'translateY(0)';
+      setTimeout(clear, 220);
+    }
+  };
+  dnClose = (key) => {
+    if (key === 'sheet') this.closeSheet();
+  };
+
+  closeSheet = () => this.setState({ sheet: null });
+
+  userState(draft, current) {
+    const d = (draft || '').toLowerCase();
+    if (d === current) return { ok: false, color: '#A1A1AA', msg: 'Este já é o seu nome de usuário.' };
+    if (!/^[a-z0-9._]{3,20}$/.test(d)) return { ok: false, color: '#A1A1AA', msg: 'Use de 3 a 20 caracteres: letras minúsculas, números, ponto e sublinhado.' };
+    if (this.taken().indexOf(d) >= 0) return { ok: false, color: '#F31260', msg: '@' + d + ' já está em uso. Tente outro.' };
+    return { ok: true, color: '#17C964', msg: '@' + d + ' está disponível.' };
+  }
+
+  emailState(draft, current) {
+    const d = (draft || '').trim().toLowerCase();
+    if (!d) return { ok: false, color: '#A1A1AA', msg: 'Digite o novo endereço.' };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d)) return { ok: false, color: '#F31260', msg: 'Esse e-mail não parece válido.' };
+    if (d === current.toLowerCase()) return { ok: false, color: '#F5A524', msg: 'Esse já é o seu e-mail atual.' };
+    return { ok: true, color: '#17C964', msg: 'Pronto para enviar a confirmação.' };
+  }
+
+  strength(p) {
+    let score = 0;
+    if (p.length >= 8) score++;
+    if (p.length >= 12) score++;
+    if (/[A-Z]/.test(p) && /[a-z]/.test(p)) score++;
+    if (/[0-9]/.test(p)) score++;
+    if (/[^A-Za-z0-9]/.test(p)) score++;
+    return score;
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#006FEE';
+    const s = this.state;
+    const a = this.acc();
+    const cfg = this.cfg();
+    const set = (key) => (v) => { if (this.props.onSetting) this.props.onSetting(key, v); };
+    const track = (on) => 'flex-shrink: 0; width: 46px; height: 28px; padding: 0; border: none; border-radius: 999px; cursor: pointer; position: relative; background: ' + (on ? accent : '#3F3F46') + '; transition: background .15s ease;';
+    const knob = (on) => 'position: absolute; top: 3px; left: ' + (on ? '21px' : '3px') + '; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; transition: left .15s ease;';
+    const toggleRow = (key, label, desc) => ({ label: label, desc: desc, checked: cfg[key] ? 'true' : 'false', trackStyle: track(cfg[key]), knobStyle: knob(cfg[key]), onToggle: () => set(key)(!cfg[key]) });
+
+    const sheet = s.sheet;
+    const us = this.userState(s.uDraft, a.username);
+    const es = this.emailState(s.eDraft, a.email);
+    const score = this.strength(s.pNew);
+    const strengthColor = score <= 2 ? '#F31260' : (score === 3 ? '#F5A524' : '#17C964');
+    const strengthLabel = !s.pNew ? 'Use 8 caracteres ou mais, com letras, números e símbolos.' : (score <= 2 ? 'Senha fraca' : (score === 3 ? 'Senha média' : 'Senha forte'));
+    let pError = '';
+    if (s.pConf && s.pNew !== s.pConf) pError = 'As senhas não são iguais.';
+    else if (s.pNew && s.pNew.length < 8) pError = 'A nova senha precisa ter pelo menos 8 caracteres.';
+    const passOk = s.pCur.length > 0 && s.pNew.length >= 8 && s.pNew === s.pConf;
+    const delOk = s.delText.trim().toUpperCase() === 'EXCLUIR';
+
+    const titles = { user: 'Nome de usuário', email: 'E-mail', pass: 'Alterar senha', logout: 'Sair da conta?', delete: 'Excluir conta?' };
+    let confirmLabel = 'Salvar';
+    let enabled = false;
+    let danger = false;
+    if (sheet === 'user') { confirmLabel = 'Salvar nome de usuário'; enabled = us.ok; }
+    else if (sheet === 'email') { confirmLabel = 'Enviar confirmação'; enabled = es.ok; }
+    else if (sheet === 'pass') { confirmLabel = 'Alterar senha'; enabled = passOk; }
+    else if (sheet === 'logout') { confirmLabel = 'Sair'; enabled = true; }
+    else if (sheet === 'delete') { confirmLabel = 'Excluir minha conta'; enabled = delOk; danger = true; }
+
+    const upd = (patch) => { if (this.props.onUpdate) this.props.onUpdate(patch); };
+    const confirm = () => {
+      if (!enabled) return;
+      if (sheet === 'user') { upd({ username: s.uDraft.toLowerCase() }); this.flash('Nome de usuário alterado para @' + s.uDraft.toLowerCase() + '.'); }
+      else if (sheet === 'email') { upd({ pendingEmail: s.eDraft.trim() }); this.flash('Enviamos um link para ' + s.eDraft.trim() + '.'); }
+      else if (sheet === 'pass') { upd({ passInfo: 'Alterada agora' }); this.flash('Senha alterada.'); }
+      else if (sheet === 'logout') { if (this.props.onLogout) this.props.onLogout('Você saiu da conta. (simulado)'); }
+      else if (sheet === 'delete') { if (this.props.onLogout) this.props.onLogout('Conta excluída. (simulado)'); }
+      this.setState({ sheet: null });
+    };
+
+    return {
+      goBack: () => { if (this.props.back) this.props.back(); },
+      hasAvatar: !!this.props.avatarUri,
+      avatarUri: this.props.avatarUri || '',
+      handle: '@' + a.username,
+      email: a.email,
+      accountRows: [
+        { label: 'Nome de usuário', value: '@' + a.username, hasNote: false, note: '', onOpen: () => this.open('user') },
+        { label: 'E-mail', value: a.email, hasNote: !!a.pendingEmail, note: 'Aguardando confirmação de ' + a.pendingEmail, onOpen: () => this.open('email') },
+        { label: 'Senha', value: '••••••••••', hasNote: false, note: a.passInfo, onOpen: () => this.open('pass') }
+      ].map((r) => Object.assign({}, r, { value: r.label === 'Senha' ? '••••••••••  ·  ' + a.passInfo : r.value })),
+      privacyRows: [
+        toggleRow('publicProfile', 'Perfil público', 'Qualquer pessoa pode ver seu perfil, avaliações e listas. Desligado, só amigos veem.'),
+        toggleRow('inMatch', 'Aparecer no Duo', 'Outras pessoas podem encontrar você ao explorar perfis.')
+      ],
+      notifRows: [
+        toggleRow('notifMsg', 'Mensagens', 'Avisar quando amigos ou duos escreverem para você.'),
+        toggleRow('notifForum', 'Respostas nos fóruns', 'Avisar quando responderem aos seus tópicos e comentários.'),
+        toggleRow('notifFollow', 'Seguidores e novos Duos', 'Avisar sobre novos seguidores e novos Duos.')
+      ],
+      askLogout: () => this.open('logout'),
+      askDelete: () => this.open('delete'),
+
+      dnStart: this.dnStart,
+      dnMove: this.dnMove,
+      dnEnd: this.dnEnd,
+      scrimClass: 'cf-scrim' + (sheet ? ' open' : ''),
+      sheetClass: 'cf-sheet' + (sheet ? ' open' : ''),
+      sheetTitle: titles[sheet] || '',
+      closeSheet: this.closeSheet,
+      isUser: sheet === 'user', isEmail: sheet === 'email', isPass: sheet === 'pass', isLogout: sheet === 'logout', isDelete: sheet === 'delete',
+      showCancel: sheet === 'logout' || sheet === 'delete',
+      uDraft: s.uDraft, onUser: (e) => this.setState({ uDraft: e.target.value.toLowerCase() }), uMsg: us.msg, uColor: us.color,
+      eDraft: s.eDraft, onEmail: (e) => this.setState({ eDraft: e.target.value }), eMsg: es.msg, eColor: es.color,
+      pCur: s.pCur, pNew: s.pNew, pConf: s.pConf,
+      onPCur: (e) => this.setState({ pCur: e.target.value }), onPNew: (e) => this.setState({ pNew: e.target.value }), onPConf: (e) => this.setState({ pConf: e.target.value }),
+      passType: s.showPass ? 'text' : 'password',
+      showPassLabel: s.showPass ? 'Ocultar senhas' : 'Mostrar senhas',
+      toggleShowPass: () => this.setState({ showPass: !s.showPass }),
+      strengthPct: Math.round((score / 5) * 100), strengthColor: strengthColor, strengthLabel: strengthLabel, pError: pError,
+      delText: s.delText, onDel: (e) => this.setState({ delText: e.target.value }),
+      confirm: confirm,
+      confirmLabel: confirmLabel,
+      confirmStyle: 'flex: 1.4; height: 48px; border: none; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: ' + (enabled ? 'pointer' : 'default') + '; background: ' + (enabled ? (danger ? '#F31260' : accent) : '#27272A') + '; color: ' + (enabled ? '#FFFFFF' : '#71717A') + ';',
+
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastText: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

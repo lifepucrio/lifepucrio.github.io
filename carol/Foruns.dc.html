@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Fóruns</title>
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+  <style>
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    body { margin: 0; background: #000000; color: #ECEDEE; font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    button { font-family: inherit; }
+    .fr-field { width: 100%; background: #212124; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px; color: #ECEDEE; font-family: 'Manrope', sans-serif; font-size: 14px; outline: none; }
+    .fr-field:focus { border-color: rgba(51,142,247,0.6); }
+    .fr-label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #71717A; margin: 0 0 10px; }
+    .fr-clamp2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .fr-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; letter-spacing: -0.01em; }
+  </style>
+</helmet>
+<div data-froot="" style="position: relative; width: 390px; height: 776px; overflow: hidden; background: #000000;">
+
+  <!-- ============ INÍCIO DOS FÓRUNS ============ -->
+  <sc-if value="{{showHome}}" hint-placeholder-val="{{true}}">
+  <div style="position: absolute; inset: 0; overflow-y: auto; padding-bottom: 32px;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 0; height: 55px;">
+      <div class="fr-title" style="font-size: 24px; font-weight: 700;">Fóruns</div>
+      <button type="button" onClick="{{openComposer}}" style="height: 38px; padding: 0 14px 0 11px; border: none; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Novo tópico
+      </button>
+    </div>
+
+    <div style="padding: 14px 16px 0;">
+      <label style="display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; background: #212124; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input value="{{query}}" onInput="{{onQuery}}" placeholder="Buscar tópicos, jogos ou comunidades" aria-label="Buscar nos fóruns" style="flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: #ECEDEE; font-family: 'Manrope', sans-serif; font-size: 14px;">
+        <sc-if value="{{hasQuery}}" hint-placeholder-val="{{false}}">
+          <button type="button" onClick="{{clearQuery}}" aria-label="Limpar busca" style="width: 24px; height: 24px; padding: 0; border: none; border-radius: 50%; background: #3F3F46; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+          </button>
+        </sc-if>
+      </label>
+    </div>
+
+    <div style="padding: 12px 16px 0;">
+      <div style="display: flex; gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <button type="button" onClick="{{pickTopicos}}" style="flex-grow: 1; padding: 0 0 10px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <span style="font-size: 14px; font-weight: {{tabs.topicos.weight}}; color: {{tabs.topicos.color}};">Tópicos</span>
+          <div style="height: 2px; width: 100%; border-radius: 2px; background: {{tabs.topicos.bar}};"></div>
+        </button>
+        <button type="button" onClick="{{pickComunidades}}" style="flex-grow: 1; padding: 0 0 10px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <span style="font-size: 14px; font-weight: {{tabs.comunidades.weight}}; color: {{tabs.comunidades.color}};">Comunidades</span>
+          <div style="height: 2px; width: 100%; border-radius: 2px; background: {{tabs.comunidades.bar}};"></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- filtros -->
+    <div style="display: flex; gap: 8px; padding: 14px 16px 0; overflow-x: auto;">
+      <sc-for list="{{filterChips}}" as="f" hint-placeholder-count="4">
+        <button type="button" onClick="{{f.onClick}}" style="{{f.style}}">{{f.label}}</button>
+      </sc-for>
+    </div>
+
+    <!-- cabeçalho da comunidade selecionada -->
+    <sc-if value="{{hasForumSel}}" hint-placeholder-val="{{false}}">
+      <div style="margin: 14px 16px 0; background: #18181B; border-radius: 14px; padding: 14px; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 12px; background-color: {{forumSel.bg}}; background-image: {{forumSel.img}}; background-size: cover; background-position: center; box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.1);"></div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+            <div class="fr-title" style="font-size: 16px; font-weight: 700;">{{forumSel.name}}</div>
+            <div style="font-size: 11.5px; color: #A1A1AA;">{{forumSel.meta}}</div>
+          </div>
+          <button type="button" onClick="{{clearForum}}" aria-label="Voltar para todas as comunidades" style="width: 32px; height: 32px; padding: 0; border: none; border-radius: 10px; background: #27272A; color: #D4D4D8; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+          </button>
+        </div>
+        <div style="font-size: 12.5px; line-height: 1.5; color: #D4D4D8;">{{forumSel.desc}}</div>
+        <button type="button" onClick="{{forumSel.onJoin}}" style="{{forumSel.joinStyle}}">{{forumSel.joinLabel}}</button>
+      </div>
+    </sc-if>
+
+    <!-- LISTA DE TÓPICOS -->
+    <sc-if value="{{showTopicos}}" hint-placeholder-val="{{true}}">
+    <div style="display: flex; flex-direction: column; padding: 4px 16px 0;">
+      <sc-if value="{{noTopics}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 40px 24px; text-align: center; font-size: 13px; line-height: 1.55; color: #71717A;">{{emptyTopicsText}}</div>
+      </sc-if>
+      <sc-for list="{{topicList}}" as="t" hint-placeholder-count="5">
+        <div style="display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <button type="button" onClick="{{t.openGame}}" aria-label="Abrir página do jogo {{t.game}}" style="width: 52px; height: 70px; padding: 0; border: none; flex-shrink: 0; cursor: {{t.coverCursor}}; border-radius: 8px; background-color: {{t.bg}}; background-image: {{t.img}}; background-size: cover; background-position: center; box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.08);"></button>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="height: 19px; padding: 0 8px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: {{t.forumSoft}}; color: {{t.forumColor}};">{{t.forumName}}</span>
+              <span style="font-size: 11px; color: #71717A;">{{t.when}}</span>
+            </div>
+            <sc-if value="{{t.hasGame}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{t.openGame}}" style="align-self: flex-start; max-width: 100%; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 4px; color: #8FC7FF; font-size: 12px; font-weight: 700;"><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{t.game}}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M9 18l6-6-6-6"></path></svg></button>
+            </sc-if>
+            <button type="button" onClick="{{t.open}}" style="padding: 0; border: none; background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+            <div class="fr-title fr-clamp2" style="font-size: 15px; font-weight: 700; line-height: 1.3;">{{t.title}}</div>
+            <div class="fr-clamp2" style="font-size: 12.5px; line-height: 1.4; color: #A1A1AA;">{{t.body}}</div>
+            <div style="display: flex; align-items: center; gap: 8px; padding-top: 2px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; border-radius: 5px;">
+                <rect x="0" y="0" width="24" height="24" fill="{{t.avBg}}"></rect>
+                <rect x="4" y="2" width="16" height="8" fill="{{t.avBody}}"></rect>
+                <rect x="0" y="6" width="4" height="10" fill="{{t.avBody}}"></rect>
+                <rect x="20" y="6" width="4" height="10" fill="{{t.avBody}}"></rect>
+                <rect x="6" y="8" width="12" height="10" fill="{{t.avBody}}"></rect>
+                <rect x="8" y="12" width="3" height="3" fill="{{t.avAccent}}"></rect>
+                <rect x="13" y="12" width="3" height="3" fill="{{t.avAccent}}"></rect>
+                <rect x="9" y="17" width="6" height="2" fill="{{t.avAccent}}"></rect>
+              <image href="{{t.avUri}}" x="0" y="0" width="24" height="24"></image></svg>
+              <span style="font-size: 12px; font-weight: 600; color: #D4D4D8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">{{t.authorName}}</span>
+              <sc-if value="{{t.isFriend}}" hint-placeholder-val="{{false}}"><span style="height: 17px; padding: 0 6px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; background: rgba(0,111,238,0.16); color: #8FC7FF; flex-shrink: 0;">Amigo</span></sc-if>
+              <span style="flex: 1;"></span>
+              <span style="display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #A1A1AA; flex-shrink: 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"></path></svg>{{t.likeCount}}
+              </span>
+              <span style="display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #A1A1AA; flex-shrink: 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>{{t.replyCount}}
+              </span>
+            </div>
+            </button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <!-- LISTA DE COMUNIDADES -->
+    <sc-if value="{{showComunidades}}" hint-placeholder-val="{{false}}">
+    <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 0;">
+      <sc-if value="{{noForums}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 40px 24px; text-align: center; font-size: 13px; line-height: 1.55; color: #71717A;">Nenhuma comunidade encontrada.</div>
+      </sc-if>
+      <sc-for list="{{forumList}}" as="f" hint-placeholder-count="4">
+        <div style="display: flex; align-items: center; gap: 12px; background: #18181B; border-radius: 14px; padding: 12px; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15);">
+          <button type="button" onClick="{{f.open}}" style="flex: 1; min-width: 0; padding: 0; border: none; background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer; display: flex; gap: 12px; align-items: center;">
+            <div style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 12px; background-color: {{f.bg}}; background-image: {{f.img}}; background-size: cover; background-position: center; box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.1);"></div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 14.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{f.name}}</div>
+              <div class="fr-clamp2" style="font-size: 12px; line-height: 1.4; color: #A1A1AA;">{{f.desc}}</div>
+              <div style="font-size: 11px; font-weight: 600; color: #71717A;">{{f.meta}}</div>
+            </div>
+          </button>
+          <button type="button" onClick="{{f.onJoin}}" style="{{f.joinStyle}}">{{f.joinLabel}}</button>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+
+  </div>
+  </sc-if>
+
+  <!-- ============ TÓPICO (DISCUSSÃO) ============ -->
+  <sc-if value="{{showThread}}" hint-placeholder-val="{{false}}">
+  <div style="position: absolute; inset: 0; display: flex; flex-direction: column; background: #000000;">
+
+    <div style="flex: none; display: flex; align-items: center; gap: 10px; padding: 14px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <button type="button" onClick="{{goBack}}" aria-label="Voltar" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #71717A;">{{backLabel}}</div>
+        <button type="button" onClick="{{th.openForum}}" style="padding: 0; border: none; background: transparent; cursor: pointer; text-align: left; font-size: 14px; font-weight: 700; color: {{th.forumColor}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{th.forumName}}</button>
+      </div>
+    </div>
+
+    <div data-fthread="" style="flex: 1; overflow-y: auto; padding: 18px 16px 24px; display: flex; flex-direction: column; gap: 16px;">
+
+      <div class="fr-title" style="font-size: 21px; font-weight: 700; line-height: 1.25; text-wrap: pretty;">{{th.title}}</div>
+
+      <button type="button" onClick="{{th.openAuthor}}" aria-label="Ver perfil de {{th.authorName}}" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 0; border: none; background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer;">
+        <svg width="36" height="36" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; border-radius: 9px;">
+          <rect x="0" y="0" width="24" height="24" fill="{{th.avBg}}"></rect>
+          <rect x="4" y="2" width="16" height="8" fill="{{th.avBody}}"></rect>
+          <rect x="0" y="6" width="4" height="10" fill="{{th.avBody}}"></rect>
+          <rect x="20" y="6" width="4" height="10" fill="{{th.avBody}}"></rect>
+          <rect x="6" y="8" width="12" height="10" fill="{{th.avBody}}"></rect>
+          <rect x="8" y="12" width="3" height="3" fill="{{th.avAccent}}"></rect>
+          <rect x="13" y="12" width="3" height="3" fill="{{th.avAccent}}"></rect>
+          <rect x="9" y="17" width="6" height="2" fill="{{th.avAccent}}"></rect>
+        <image href="{{th.avUri}}" x="0" y="0" width="24" height="24"></image></svg>
+        <div style="display: flex; flex-direction: column; min-width: 0;">
+          <div style="font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 6px;">{{th.authorName}}<sc-if value="{{th.isFriend}}" hint-placeholder-val="{{false}}"><span style="height: 17px; padding: 0 6px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; background: rgba(0,111,238,0.16); color: #8FC7FF;">Amigo</span></sc-if></div>
+          <div style="font-size: 11.5px; color: #71717A;">iniciou esta discussão · {{th.when}}</div>
+        </div>
+      </button>
+
+      <div style="font-size: 14.5px; line-height: 1.6; color: #E4E4E7; text-wrap: pretty;">{{th.body}}</div>
+
+      <sc-if value="{{th.hasGame}}" hint-placeholder-val="{{true}}">
+      <button type="button" onClick="{{th.openGame}}" aria-label="Abrir página do jogo {{th.game}}" style="width: 100%; display: flex; align-items: center; gap: 10px; background: #18181B; border: none; border-radius: 12px; padding: 8px 12px 8px 8px; box-shadow: inset 0px 0px 1px 0px rgba(255,255,255,0.15); color: inherit; font-family: inherit; text-align: left; cursor: pointer;">
+        <div style="width: 34px; height: 46px; flex-shrink: 0; border-radius: 6px; background-color: {{th.bg}}; background-image: {{th.img}}; background-size: cover; background-position: center;"></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{th.game}}</div>
+          <div style="font-size: 11.5px; color: #A1A1AA;">{{th.modeLabel}} · ver página do jogo</div>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M9 18l6-6-6-6"></path></svg>
+      </button>
+      </sc-if>
+
+      <div style="display: flex; align-items: center; gap: 18px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <button type="button" onClick="{{th.toggleLike}}" style="display: flex; align-items: center; gap: 6px; border: none; background: transparent; cursor: pointer; padding: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="{{th.likeFill}}" stroke="{{th.likeStroke}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"></path></svg>
+          <span style="font-size: 13px; font-weight: 600; color: #A1A1AA;">{{th.likeCount}}</span>
+        </button>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <span style="font-size: 13px; font-weight: 600; color: #A1A1AA;">{{th.replyCount}} respostas</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column;">
+        <div class="fr-title" style="font-size: 16px; font-weight: 600; padding-bottom: 4px;">Respostas</div>
+        <sc-if value="{{th.noReplies}}" hint-placeholder-val="{{false}}">
+          <div style="padding: 18px 0; font-size: 13px; color: #71717A;">Ninguém respondeu ainda. Seja a primeira pessoa.</div>
+        </sc-if>
+        <sc-for list="{{th.replies}}" as="r" hint-placeholder-count="4">
+          <div style="display: flex; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <button type="button" onClick="{{r.openAuthor}}" aria-label="Ver perfil de {{r.name}}" style="width: 30px; height: 30px; padding: 0; border: none; background: transparent; cursor: pointer; flex-shrink: 0;">
+              <svg width="30" height="30" viewBox="0 0 24 24" shape-rendering="crispEdges" style="display: block; border-radius: 8px;">
+                <rect x="0" y="0" width="24" height="24" fill="{{r.avBg}}"></rect>
+                <rect x="4" y="2" width="16" height="8" fill="{{r.avBody}}"></rect>
+                <rect x="0" y="6" width="4" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="20" y="6" width="4" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="6" y="8" width="12" height="10" fill="{{r.avBody}}"></rect>
+                <rect x="8" y="12" width="3" height="3" fill="{{r.avAccent}}"></rect>
+                <rect x="13" y="12" width="3" height="3" fill="{{r.avAccent}}"></rect>
+                <rect x="9" y="17" width="6" height="2" fill="{{r.avAccent}}"></rect>
+              <image href="{{r.avUri}}" x="0" y="0" width="24" height="24"></image></svg>
+            </button>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px;">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;">{{r.name}}<sc-if value="{{r.isFriend}}" hint-placeholder-val="{{false}}"><span style="height: 17px; padding: 0 6px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; background: rgba(0,111,238,0.16); color: #8FC7FF;">Amigo</span></sc-if><span style="font-weight: 500; color: #71717A;">· {{r.when}}</span></div>
+              <div style="font-size: 13.5px; line-height: 1.5; color: #E4E4E7; text-wrap: pretty;">{{r.text}}</div>
+              <button type="button" onClick="{{r.toggleLike}}" style="align-self: flex-start; display: flex; align-items: center; gap: 5px; border: none; background: transparent; cursor: pointer; padding: 2px 0 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="{{r.likeFill}}" stroke="{{r.likeStroke}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"></path></svg>
+                <span style="font-size: 11.5px; font-weight: 600; color: #A1A1AA;">{{r.likeCount}}</span>
+              </button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+
+    <div style="flex: none; display: flex; align-items: center; gap: 10px; padding: 12px 16px 16px; border-top: 1px solid rgba(255,255,255,0.08); background: #09090B;">
+      <input value="{{replyDraft}}" onInput="{{onReplyDraft}}" onKeyDown="{{onReplyKey}}" placeholder="Escreva uma resposta" aria-label="Escreva uma resposta" style="flex: 1; min-width: 0; height: 44px; background: #212124; border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; padding: 0 16px; color: #ECEDEE; font-family: 'Manrope', sans-serif; font-size: 14px; outline: none;">
+      <button type="button" onClick="{{sendReply}}" aria-label="Enviar resposta" style="{{sendStyle}}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
+      </button>
+    </div>
+
+  </div>
+  </sc-if>
+
+  <!-- ============ NOVO TÓPICO ============ -->
+  <sc-if value="{{composerOpen}}" hint-placeholder-val="{{false}}">
+  <div data-sheet="composer" onTouchStart="{{dnStart}}" onTouchMove="{{dnMove}}" onTouchEnd="{{dnEnd}}" onTouchCancel="{{dnEnd}}" style="position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; background: #000000;">
+    <div style="flex: none; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <button type="button" onClick="{{closeComposer}}" aria-label="Fechar" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+      </button>
+      <div class="fr-title" style="font-size: 17px; font-weight: 700;">Novo tópico</div>
+      <div style="width: 38px;"></div>
+    </div>
+    <div style="flex: 1; overflow-y: auto; padding: 18px 16px; display: flex; flex-direction: column; gap: 22px;">
+      <div>
+        <span class="fr-label">Em qual comunidade?</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <sc-for list="{{composerForums}}" as="f" hint-placeholder-count="6">
+            <button type="button" onClick="{{f.onPick}}" style="{{f.style}}">{{f.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <label for="fr-title-in" class="fr-label">Título</label>
+        <input id="fr-title-in" class="fr-field" maxlength="80" placeholder="Resuma sua dúvida ou assunto" value="{{draftTitle}}" onInput="{{onDraftTitle}}">
+        <div style="margin-top: 6px; font-size: 11px; color: #71717A; text-align: right;">{{titleCount}}/80</div>
+      </div>
+      <div>
+        <label for="fr-body-in" class="fr-label">Mensagem</label>
+        <textarea id="fr-body-in" class="fr-field" rows="6" maxlength="400" placeholder="Explique o contexto para a galera responder melhor" value="{{draftBody}}" onInput="{{onDraftBody}}" style="resize: none; line-height: 1.5;"></textarea>
+        <div style="margin-top: 6px; font-size: 11px; color: #71717A; text-align: right;">{{bodyCount}}/400</div>
+      </div>
+    </div>
+    <div style="flex: none; padding: 14px 16px 18px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <button type="button" onClick="{{publish}}" style="{{publishStyle}}">Publicar tópico</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="{{toastStyle}}">{{toastText}}</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"view":{"editor":null},"setView":{"editor":null},"navigate":{"editor":null},"openPerson":{"editor":null},"openGame":{"editor":null},"avatars":{"editor":null},"exitTopic":{"editor":null},"friends":{"editor":null},"$preview":{"width":390,"height":776}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: 'topicos',
+      tFilter: 'todos',
+      cFilter: 'todas',
+      query: '',
+      forumSel: null,
+      joined: { f1: true, f3: true },
+      liked: {},
+      myTopics: [],
+      myReplies: {},
+      replyDraft: '',
+      composerOpen: false,
+      draftForum: null,
+      draftTitle: '',
+      draftBody: '',
+      toast: ''
+    };
+  }
+
+  coverId(title) {
+    const ids = {"Hollow Knight":"277d28967fa386097af861953e14c25f","Portal 2":"f69e027e61a24f07a19a3433aaecdfe1","Frostpunk":"d742b55ab9327ec41279d35e7c1b47bf","It Takes Two":"25796a36da18db9bcdd877ad619ed6cf","Firewatch":"e827863b8b1a27c4d177ceb3e4186395","Counter-Strike 2":"b8dfc9323e08ff0d93f2e392ca123355","Outer Wilds":"84956e4bd9cc98eb7fc3a4cc59f78199","Stardew Valley":"103f33fce63cae312c88a26ac07c7325","Celeste":"740c979d64acc42d4ba3a58f7ffa6a07","Disco Elysium":"d6115fe460bc39f64134a3402745b571","Elden Ring":"7e6cc755eda69cc8903a3b38f4003be8","A Short Hike":"24ffd7c04c925b38abc331f4ff276712","Ticket to Ride":"7be1e7e9ef4d7e068198aea62e5c9b73","The Resistance: Avalon":"6f872a9e1e47c881c8c363eaacffe9fe","Cartographers":"2bbafa5ca50297d2d82527d2f186cea3","Coup":"1020e23c2256a72d35ce37bb20e32668","Terraforming Mars":"0fa40174c3d845217e68f9c6e4ed684b","7 Wonders":"3bf63fefca0970a962b3e1bde7616f94","Azul":"c4c2cd9b0c44034d4efe02e766897765","Agricola":"6c7e1dacf1122287d23526e948240fca","Pandemic":"5ebd23f87077370fb8d2eaa31bf425a2","Catan":"da39f348cf772fc5ff8bba976f206c34","Cascadia":"64320339d4d335373144fc3d8dc5c754","Wingspan":"8c5229074fe8117741b15f1bb1b7d3cc","Santorini":"2983ff88878edaad77e2467d03683778","Splendor":"145b0ba42fa5438cc488c322647af2c8","Camel Up":"4944f8f284daf231f3db3f754042e43a","Cosmic Encounter":"ecc4d9078a1524ea374f44a8cf0e9968","Century: Spice Road":"365ca0c856c7d6417ed0bf9d65de4a73","Patchwork":"fb10dbfa1f8dc3011920e51b6ecd4700","Carcassonne":"47b380e0b6a3c8cecefd66cd986a44de"};
+    return ids[title];
+  }
+
+  artFor(title, idx) {
+    const id = this.coverId(title);
+    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    return this.art(idx);
+  }
+
+  art(i) {
+    const set = [
+      { bg: '#221E22', img: 'radial-gradient(circle at 50% 56%, #E4572E 0 30%, rgba(0,0,0,0) 30%)' },
+      { bg: '#12161B', img: 'linear-gradient(122deg, #6C8EAD 0 46%, rgba(0,0,0,0) 46%)' },
+      { bg: '#14110F', img: 'conic-gradient(from 208deg at 50% 104%, #C9A227 0 44deg, rgba(0,0,0,0) 44deg)' },
+      { bg: '#10130F', img: 'linear-gradient(0deg, #3E5641 0 34%, rgba(0,0,0,0) 34%), radial-gradient(circle at 68% 28%, #A8C686 0 13%, rgba(0,0,0,0) 13%)' },
+      { bg: '#17111F', img: 'linear-gradient(45deg, #7A3E9D 0 50%, rgba(0,0,0,0) 50%)' },
+      { bg: '#1A1114', img: 'radial-gradient(circle at 50% 48%, rgba(0,0,0,0) 0 24%, #D64550 24% 33%, rgba(0,0,0,0) 33%)' },
+      { bg: '#0F1417', img: 'repeating-linear-gradient(180deg, #2B4A5A 0 9px, rgba(0,0,0,0) 9px 20px)' },
+      { bg: '#1C1A15', img: 'linear-gradient(90deg, #D8CFC0 0 22%, rgba(0,0,0,0) 22%)' },
+      { bg: '#161B18', img: 'conic-gradient(from 90deg at 30% 40%, #4E8C7D 0 90deg, rgba(0,0,0,0) 90deg)' },
+      { bg: '#1B1620', img: 'radial-gradient(circle at 26% 74%, #B07BAC 0 22%, rgba(0,0,0,0) 22%)' },
+      { bg: '#101A17', img: 'linear-gradient(160deg, #2F6F5E 0 38%, rgba(0,0,0,0) 38%), radial-gradient(circle at 74% 76%, #E8C468 0 11%, rgba(0,0,0,0) 11%)' },
+      { bg: '#1A1518', img: 'repeating-linear-gradient(90deg, #8C4A5A 0 6px, rgba(0,0,0,0) 6px 18px)' },
+      { bg: '#131A22', img: 'conic-gradient(from 20deg at 70% 20%, #5B7DB1 0 70deg, rgba(0,0,0,0) 70deg)' },
+      { bg: '#1D1913', img: 'radial-gradient(circle at 30% 32%, #C4763A 0 18%, rgba(0,0,0,0) 18%), linear-gradient(200deg, #6B4A2A 0 26%, rgba(0,0,0,0) 26%)' }
+    ];
+    return set[i % set.length];
+  }
+
+  palette() {
+    return [
+      { bg: '#1F2A24', body: '#3E7D5A', accent: '#0B0F0D' },
+      { bg: '#221E22', body: '#E4572E', accent: '#141014' },
+      { bg: '#12161B', body: '#6C8EAD', accent: '#0A0D10' },
+      { bg: '#14110F', body: '#C9A227', accent: '#0C0906' },
+      { bg: '#17111F', body: '#9B5DE5', accent: '#0D0912' },
+      { bg: '#1A1114', body: '#D64550', accent: '#100B0D' },
+      { bg: '#101A17', body: '#2F6F5E', accent: '#0A100E' },
+      { bg: '#1D1913', body: '#C4763A', accent: '#100E0A' },
+      { bg: '#1B1620', body: '#B07BAC', accent: '#110D14' }
+    ];
+  }
+
+  authors() {
+    return {
+      '@marina.rolls': { name: 'Você', pal: 0 },
+      '@yaz.codes': { name: 'Yasmin Prado', pal: 1 },
+      '@rafabtt': { name: 'Rafa Bittencourt', pal: 2 },
+      '@cadu.plays': { name: 'Camila Duarte', pal: 3 },
+      '@diegom': { name: 'Diego M.', pal: 4 },
+      '@sofi.alm': { name: 'Sofia Almeida', pal: 5 },
+      '@theov': { name: 'Théo Vasques', pal: 6 },
+      '@lari.dados': { name: 'Larissa K.', pal: 7 },
+      '@pedrosalg': { name: 'Pedro Salgado', pal: 8 },
+      '@biarabelo': { name: 'Bianca R.', pal: 0 }
+    };
+  }
+
+  forums() {
+    return [
+      { id: 'f1', name: 'Metroidvanias', mode: 'digital', art: 9, color: '#9B5DE5', members: '12,4 mil', desc: 'Mapas interligados, backtracking e chefes que humilham. Spoilers sempre marcados.' },
+      { id: 'f2', name: 'Estratégia de mesa', mode: 'analog', art: 2, color: '#F5A524', members: '8,1 mil', desc: 'Regras, estratégia e partidas que fazem a mesa inteira pensar.' },
+      { id: 'f3', name: 'Coop e jogos para duas pessoas', mode: 'both', art: 3, color: '#17C964', members: '9,7 mil', desc: 'Indicações para jogar em dupla, no sofá ou na mesa, sem ninguém ficar para trás.' },
+      { id: 'f4', name: 'Competitivo e ranked', mode: 'digital', art: 5, color: '#F31260', members: '15,2 mil', desc: 'Formação de time, meta, comunicação e como lidar com partidas tóxicas.' },
+      { id: 'f5', name: 'Mesas de São Paulo', mode: 'analog', art: 12, color: '#22D3EE', members: '3,4 mil', desc: 'Combine jogatinas presenciais, divulgue vagas na mesa e encontre ludotecas.' },
+      { id: 'f6', name: 'Indies e aventuras', mode: 'digital', art: 8, color: '#338EF7', members: '5,9 mil', desc: 'Jogos independentes, aventuras curtas e mistérios para explorar no seu ritmo.' }
+    ];
+  }
+
+  topics() {
+    return [
+      { id: 'p7', forum: 'f3', game: 'Pandemic', mode: 'analog', art: 8, by: '@theov', title: 'Perdemos três vezes seguidas', body: 'Alguém mais perdeu três vezes seguidas no cooperativo? A gente não passa do segundo surto.', likes: 96, count: 31, when: 'há 2 h',
+        replies: [['@cadu.plays', 'Vocês estão gastando as cartas de evento cedo demais. Guardem pelo menos uma para quando o surto apertar.', 34, 'há 1 h'], ['@rafabtt', 'Combinem o plano antes de cada rodada. Quem joga sozinho acaba perdendo o time.', 21, 'há 1 h'], ['@lari.dados', 'Aqui só passou na quarta tentativa. Ajudou escolher bem os papéis dos jogadores.', 12, 'há 50 min'], ['@yaz.codes', 'Também achei difícil nas primeiras partidas. Depois que pega o ritmo, fica viciante.', 7, 'há 20 min']] },
+      { id: 's5', forum: 'f2', game: 'Azul', mode: 'analog', art: 5, by: '@rafabtt', title: 'Vale o preço? Funciona com iniciantes?', body: 'Vale muito o preço e funciona até com quem nunca jogou nada parecido.', likes: 11, count: 3, when: 'há 1 dia',
+        replies: [['@sofi.alm', 'Joguei com minha mãe na primeira vez e ela entendeu em cinco minutos.', 5, 'há 20 h'], ['@pedrosalg', 'As peças são lindas. Recomendo guardar as fichas na bandeja para não sumirem.', 2, 'há 18 h'], ['@rafabtt', 'E ainda dá para jogar em dupla, o que ajuda quando falta gente.', 3, 'há 17 h']] },
+      { id: 'j1', forum: 'f2', game: '7 Wonders', mode: 'analog', art: 5, by: '@pedrosalg', title: 'Vale jogar 7 Wonders com duas pessoas?', body: 'Alguém mais acha que 7 Wonders perde a graça com apenas 2 jogadores?', likes: 22, count: 14, when: 'há 6 h',
+        replies: [['@lari.dados', 'Perde um pouco. A graça está em passar as cartas e ver o que os vizinhos fazem.', 15, 'há 5 h'], ['@sofi.alm', 'Com cinco ou mais pessoas é outro jogo. Vale esperar a mesa encher.', 9, 'há 4 h'], ['@diegom', 'Para dupla eu prefiro jogos feitos para dois.', 4, 'há 3 h']] },
+      { id: 'j3', forum: 'f6', game: 'Outer Wilds', mode: 'digital', art: 2, by: '@lari.dados', title: 'Zerei sem abrir o diário da nave', body: 'Consegui chegar ao final sem consultar o diário da nave nenhuma vez, alguém mais?', likes: 45, count: 27, when: 'há 4 h',
+        replies: [['@yaz.codes', 'Eu só consegui anotando tudo num caderno. Sem o diário seria outro jogo.', 18, 'há 3 h'], ['@biarabelo', 'Quase, mas abri uma vez para lembrar onde estava uma pista.', 11, 'há 3 h'], ['@theov', 'Nem sabia que dava. Vou tentar no fim de semana.', 6, 'há 2 h'], ['@lari.dados', 'Sem spoilers, por favor. Ainda estou no terceiro ciclo.', 8, 'há 1 h']] },
+      { id: 'j5', forum: 'f3', game: 'It Takes Two', mode: 'digital', art: 0, by: '@cadu.plays', title: 'Vale jogar com quem não joga muito?', body: 'Quero convidar meu namorado, que quase não joga. It Takes Two funciona para iniciantes?', likes: 9, count: 6, when: 'há 2 dias',
+        replies: [['@rafabtt', 'Funciona muito bem. Os desafios são curtos e o jogo é generoso com quem está começando.', 6, 'há 1 dia'], ['@yaz.codes', 'Meu irmão nunca jogava e terminou comigo. Só combinem as pausas.', 3, 'há 1 dia']] },
+      { id: 't1', forum: 'f1', game: 'Hollow Knight', mode: 'digital', art: 6, by: '@yaz.codes', title: 'Dicas para quem está começando', body: 'Estou no começo e me perdi no mapa. Como vocês organizam a exploração sem se frustrar?', likes: 58, count: 19, when: 'há 5 h',
+        replies: [['@lari.dados', 'Compre o mapa de cada região assim que puder. Muda tudo.', 22, 'há 4 h'], ['@biarabelo', 'Anote os caminhos que não conseguiu abrir e volte depois com novas habilidades.', 10, 'há 3 h'], ['@theov', 'Sem pressa. Explorar errado também faz parte do jogo.', 4, 'há 2 h']] },
+      { id: 't2', forum: 'f4', game: 'Counter-Strike 2', mode: 'digital', art: 4, by: '@rafabtt', title: 'Como vocês montam o time para o ranked?', body: 'Estou jogando sozinho há semanas e queria montar um time fixo. Onde vocês acham gente com horário parecido?', likes: 33, count: 12, when: 'há 8 h',
+        replies: [['@yaz.codes', 'Procure alguém pelas notas de Chill e Jogaria de novo no perfil. Funciona melhor que olhar só o rank.', 25, 'há 7 h'], ['@sofi.alm', 'Escolher o horário antes do estilo de jogo evita muita dor de cabeça.', 9, 'há 6 h'], ['@diegom', 'Posso entrar em time de terça e quinta à noite, se ainda tiver vaga.', 3, 'há 5 h']] },
+      { id: 't3', forum: 'f5', game: 'Catan', mode: 'analog', art: 2, by: '@cadu.plays', title: 'Mesa de quarta com vaga para mais duas pessoas', body: 'Nossa mesa de quarta, em Pinheiros, está com duas vagas. Jogos de peso médio, partidas de até duas horas.', likes: 41, count: 16, when: 'há 1 dia',
+        replies: [['@theov', 'Tenho interesse! Posso levar um jogo cooperativo curto para abrir a noite.', 7, 'há 22 h'], ['@biarabelo', 'Quarta é complicado para mim, mas se abrir uma sexta aviso.', 3, 'há 20 h'], ['@cadu.plays', 'Sexta eu consigo também. Vou montar um grupo para combinar.', 5, 'há 18 h']] },
+      { id: 't4', forum: 'f3', game: 'Stardew Valley', mode: 'digital', art: 3, by: '@biarabelo', title: 'Vale jogar Stardew em dupla?', body: 'Quero jogar com meu namorado depois do jantar. Stardew funciona bem em modo cooperativo?', likes: 27, count: 21, when: 'há 3 h',
+        replies: [['@rafabtt', 'Funciona, só combinem como dividir a fazenda antes de começar.', 12, 'há 2 h'], ['@sofi.alm', 'Em dupla vira uma rotina compartilhada. Muito gostoso.', 4, 'há 2 h'], ['@lari.dados', 'Vocês preferem algo mais curto? Posso indicar outros jogos.', 2, 'há 1 h']] },
+      { id: 't5', forum: 'f2', game: 'Century: Spice Road', mode: 'analog', art: 1, by: '@sofi.alm', title: 'Dá para ensinar em dez minutos?', body: 'Quero levar Century: Spice Road para uma mesa de iniciantes. Alguém tem um resumo de regras que funcione?', likes: 19, count: 8, when: 'há 9 h',
+        replies: [['@pedrosalg', 'Ensine só o ciclo de ações e deixe a pontuação final para a segunda rodada.', 10, 'há 8 h'], ['@rafabtt', 'Tem um vídeo curto de cinco minutos que eu sempre passo antes de começar.', 6, 'há 7 h'], ['@cadu.plays', 'Prepare as fichas antes. Economiza uns vinte minutos.', 4, 'há 6 h']] },
+      { id: 't6', forum: 'f6', game: 'A Short Hike', mode: 'digital', art: 8, by: '@diegom', title: 'Indies que merecem mais atenção', body: 'Vamos montar uma lista colaborativa com jogos independentes. Quais vocês indicam?', likes: 64, count: 38, when: 'há 12 h',
+        replies: [['@biarabelo', 'A Short Hike e Celeste são os dois que mais recomendo.', 20, 'há 11 h'], ['@lari.dados', 'Aventuras curtas são perfeitas para uma tarde. Entra na lista.', 14, 'há 10 h'], ['@yaz.codes', 'Anoto tudo e monto uma lista pública no meu perfil.', 8, 'há 9 h']] },
+    ];
+  }
+
+  forumById(id) {
+    return this.forums().filter((f) => f.id === id)[0];
+  }
+
+  allTopics() {
+    return this.state.myTopics.concat(this.topics());
+  }
+
+  flash(text) {
+    this.setState({ toast: text });
+    setTimeout(() => this.setState({ toast: '' }), 1900);
+  }
+
+  toggleLike = (key) => this.setState((prev) => ({ liked: Object.assign({}, prev.liked, { [key]: !prev.liked[key] }) }));
+  toggleJoin = (id) => this.setState((prev) => ({ joined: Object.assign({}, prev.joined, { [id]: !prev.joined[id] }) }));
+
+  openAuthor = (handle) => {
+    if (handle === '@marina.rolls') { if (this.props.navigate) this.props.navigate('perfil'); }
+    else if (this.props.openPerson) this.props.openPerson(handle);
+  };
+
+  openTopic = (id) => {
+    if (this.props.setView) this.props.setView({ topic: id, from: null });
+  };
+
+  goBack = () => {
+    const view = this.props.view || {};
+    if (view.from && this.props.exitTopic) this.props.exitTopic();
+    else if (view.from && this.props.navigate) this.props.navigate(view.from);
+    else if (this.props.setView) this.props.setView({ topic: null, from: null });
+  };
+
+  openForumOf = (id) => {
+    this.setState({ tab: 'topicos', forumSel: id, tFilter: 'todos', query: '' });
+    if (this.props.setView) this.props.setView({ topic: null, from: null });
+  };
+
+  dnStart = (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const scale = el.offsetHeight ? rect.height / el.offsetHeight : 1;
+    if ((t.clientY - rect.top) / (scale || 1) > 72) { this._dn = null; return; }
+    this._dn = { el: el, key: el.getAttribute('data-sheet'), x0: t.clientX, y0: t.clientY, scale: scale || 1, active: false, dy: 0, t0: Date.now() };
+  };
+  dnMove = (e) => {
+    const s = this._dn;
+    if (!s) return;
+    const t = e.touches[0];
+    const dy = (t.clientY - s.y0) / s.scale;
+    const dx = (t.clientX - s.x0) / s.scale;
+    if (!s.active) {
+      if (Math.abs(dx) > 16 && Math.abs(dx) > Math.abs(dy)) { this._dn = null; return; }
+      if (dy > 10 && dy > Math.abs(dx) * 1.3) s.active = true; else return;
+    }
+    s.dy = Math.max(0, dy);
+    s.el.style.transition = 'none';
+    s.el.style.transform = 'translateY(' + s.dy + 'px)';
+  };
+  dnEnd = () => {
+    const s = this._dn;
+    this._dn = null;
+    if (!s || !s.active) return;
+    const el = s.el;
+    const clear = () => { try { el.style.transition = ''; el.style.transform = ''; } catch (err) { /* elemento removido */ } };
+    const fast = s.dy > 40 && s.dy / Math.max(1, Date.now() - s.t0) > 0.6;
+    if (s.dy > 110 || fast) {
+      el.style.transition = 'transform .2s ease-out';
+      el.style.transform = 'translateY(' + (el.offsetHeight + 40) + 'px)';
+      setTimeout(() => { this.dnClose(s.key); setTimeout(clear, 80); }, 190);
+    } else {
+      el.style.transition = 'transform .2s ease';
+      el.style.transform = 'translateY(0)';
+      setTimeout(clear, 220);
+    }
+  };
+  dnClose = (key) => {
+    if (key === 'composer') this.closeComposer();
+  };
+
+  openComposer = () => this.setState({ composerOpen: true, draftForum: this.state.forumSel || null, draftTitle: '', draftBody: '' });
+  closeComposer = () => this.setState({ composerOpen: false });
+
+  publish = () => {
+    const s = this.state;
+    const title = s.draftTitle.trim();
+    const body = s.draftBody.trim();
+    if (!s.draftForum || title.length < 4 || body.length < 4) return;
+    const f = this.forumById(s.draftForum);
+    const topic = { id: 'm' + Date.now(), forum: f.id, game: f.name, mode: f.mode === 'both' ? 'digital' : f.mode, art: f.art, by: '@marina.rolls', title: title, body: body, likes: 0, count: 0, when: 'agora', replies: [], mine: true };
+    this.setState({ myTopics: [topic].concat(s.myTopics), composerOpen: false, tab: 'topicos', forumSel: null, tFilter: 'todos', query: '', joined: Object.assign({}, s.joined, { [f.id]: true }) });
+    if (this.props.setView) this.props.setView({ topic: topic.id, from: null });
+    this.flash('Tópico publicado em ' + f.name + '.');
+  };
+
+  sendReply = (e) => {
+    const text = (this.state.replyDraft || '').trim();
+    const id = (this.props.view || {}).topic;
+    if (!text || !id) return;
+    let scroller = null;
+    try { const root = e && e.currentTarget && e.currentTarget.closest('[data-froot]'); scroller = root && root.querySelector('[data-fthread]'); } catch (err) { scroller = null; }
+    const mine = (this.state.myReplies[id] || []).concat([{ handle: '@marina.rolls', text: text, likes: 0, when: 'agora', key: 'my' + Date.now() }]);
+    this.setState({ myReplies: Object.assign({}, this.state.myReplies, { [id]: mine }), replyDraft: '' });
+    if (scroller) setTimeout(() => { try { scroller.scrollTop = scroller.scrollHeight; } catch (err) { /* sem rolagem */ } }, 60);
+  };
+
+  chipStyle(on, accent) {
+    return 'flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; border: 1px solid ' + (on ? accent : 'rgba(255,255,255,0.12)') + '; background: ' + (on ? 'rgba(0,111,238,0.18)' : '#18181B') + '; color: ' + (on ? '#8FC7FF' : '#D4D4D8') + ';';
+  }
+
+  soft(hex, alpha) {
+    const n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255) + ', ' + alpha + ')';
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#006FEE';
+    const s = this.state;
+    const view = this.props.view || {};
+    const friends = this.props.friends || [];
+    const authors = this.authors();
+    const pal = this.palette();
+    const q = s.query.trim().toLowerCase();
+    const liked = s.liked;
+
+    const authorVM = (handle) => {
+      const a = authors[handle] || { name: handle, pal: 0 };
+      const c = pal[a.pal % pal.length];
+      return { name: a.name, avBg: c.bg, avBody: c.body, avAccent: c.accent, avUri: (this.props.avatars || {})[handle] || '', isFriend: friends.indexOf(handle) >= 0 };
+    };
+
+    const topicVM = (t) => {
+      const f = this.forumById(t.forum);
+      const a = authorVM(t.by);
+      const myR = s.myReplies[t.id] || [];
+      const likeKey = 't:' + t.id;
+      const replies = t.replies.map((r, i) => ({ handle: r[0], text: r[1], likes: r[2], when: r[3], key: t.id + ':' + i })).concat(myR);
+      return Object.assign({
+        id: t.id, title: t.title, body: t.body, game: t.game, when: t.when,
+        forumName: f.name, forumColor: f.color, forumSoft: this.soft(f.color, 0.16),
+        authorName: a.name, avBg: a.avBg, avBody: a.avBody, avAccent: a.avAccent, avUri: a.avUri, isFriend: a.isFriend,
+        likeCount: t.likes + (liked[likeKey] ? 1 : 0),
+        likeFill: liked[likeKey] ? accent : 'none', likeStroke: liked[likeKey] ? accent : '#A1A1AA',
+        replyCount: t.count + myR.length,
+        modeLabel: t.mode === 'analog' ? 'Jogo de mesa' : 'Jogo digital',
+        hasGame: !t.mine,
+        coverCursor: t.mine ? 'default' : 'pointer',
+        openGame: () => { if (!t.mine && this.props.openGame) this.props.openGame(t.game, t.art); },
+        noReplies: replies.length === 0,
+        open: () => this.openTopic(t.id),
+        openAuthor: () => this.openAuthor(t.by),
+        openForum: () => this.openForumOf(t.forum),
+        toggleLike: () => this.toggleLike(likeKey),
+        replies: replies.map((r) => {
+          const ra = authorVM(r.handle);
+          const rk = 'r:' + r.key;
+          return {
+            name: ra.name, avBg: ra.avBg, avBody: ra.avBody, avAccent: ra.avAccent, avUri: ra.avUri, isFriend: ra.isFriend,
+            text: r.text, when: r.when, likeCount: r.likes + (liked[rk] ? 1 : 0),
+            likeFill: liked[rk] ? accent : 'none', likeStroke: liked[rk] ? accent : '#A1A1AA',
+            toggleLike: () => this.toggleLike(rk),
+            openAuthor: () => this.openAuthor(r.handle)
+          };
+        })
+      }, this.artFor(t.game, t.art));
+    };
+
+    const all = this.allTopics();
+    const threadRaw = view.topic ? all.filter((t) => t.id === view.topic)[0] : null;
+    const th = topicVM(threadRaw || all[0]);
+    const showThread = !!threadRaw;
+
+    const forumVM = (f) => {
+      const on = !!s.joined[f.id];
+      const count = all.filter((t) => t.forum === f.id).length;
+      return Object.assign({
+        id: f.id, name: f.name, desc: f.desc,
+        meta: f.members + ' membros · ' + count + (count === 1 ? ' tópico' : ' tópicos'),
+        joinLabel: on ? 'Participando' : 'Entrar',
+        joinStyle: 'flex-shrink: 0; height: 34px; padding: 0 14px; border-radius: 10px; font-size: 12.5px; font-weight: 700; cursor: pointer; width: auto; border: ' + (on ? '1px solid rgba(255,255,255,0.16)' : 'none') + '; background: ' + (on ? 'transparent' : accent) + '; color: ' + (on ? '#D4D4D8' : '#FFFFFF') + ';',
+        onJoin: () => this.toggleJoin(f.id),
+        open: () => this.openForumOf(f.id)
+      }, this.art(f.art));
+    };
+
+    const tabOn = { color: '#ECEDEE', weight: 700, bar: accent };
+    const tabOff = { color: '#A1A1AA', weight: 500, bar: 'transparent' };
+
+    const tFilters = [['todos', 'Todos'], ['digital', 'Digital'], ['analog', 'Analógico'], ['amigos', 'De amigos']];
+    const cFilters = [['todas', 'Todas'], ['digital', 'Digital'], ['analog', 'Analógico'], ['minhas', 'Participando']];
+    const isTopicos = s.tab === 'topicos';
+    const activeFilter = isTopicos ? s.tFilter : s.cFilter;
+    const filterChips = (isTopicos ? tFilters : cFilters).map((f) => ({
+      label: f[1], style: this.chipStyle(activeFilter === f[0], accent),
+      onClick: () => this.setState(isTopicos ? { tFilter: f[0] } : { cFilter: f[0] })
+    }));
+
+    let topicList = all.filter((t) => {
+      if (s.forumSel && t.forum !== s.forumSel) return false;
+      if (s.tFilter === 'digital' || s.tFilter === 'analog') { if (t.mode !== s.tFilter) return false; }
+      if (s.tFilter === 'amigos' && friends.indexOf(t.by) < 0) return false;
+      if (q) {
+        const hay = (t.title + ' ' + t.body + ' ' + t.game + ' ' + this.forumById(t.forum).name + ' ' + (authors[t.by] || {}).name).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    topicList = topicList.map((t, i) => ({ t: t, i: i, score: (t.mine ? 100000 : 0) + t.likes + t.count * 2 }))
+      .sort((a, b) => b.score - a.score || a.i - b.i).map((x) => topicVM(x.t));
+
+    const forumList = this.forums().filter((f) => {
+      if (s.cFilter === 'digital' && f.mode !== 'digital' && f.mode !== 'both') return false;
+      if (s.cFilter === 'analog' && f.mode !== 'analog' && f.mode !== 'both') return false;
+      if (s.cFilter === 'minhas' && !s.joined[f.id]) return false;
+      if (q && (f.name + ' ' + f.desc).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    }).map(forumVM);
+
+    const selRaw = s.forumSel ? this.forumById(s.forumSel) : null;
+    const forumSel = selRaw ? forumVM(selRaw) : forumVM(this.forums()[0]);
+
+    const canPublish = !!s.draftForum && s.draftTitle.trim().length >= 4 && s.draftBody.trim().length >= 4;
+    const composerForums = this.forums().map((f) => ({
+      label: f.name,
+      style: this.chipStyle(s.draftForum === f.id, accent),
+      onPick: () => this.setState({ draftForum: f.id })
+    }));
+
+    return {
+      accent: accent,
+      showHome: !showThread,
+      showThread: showThread,
+      th: th,
+      backLabel: view.from === 'inicio' ? 'Voltar ao início' : 'Fóruns',
+      replyDraft: s.replyDraft,
+      onReplyDraft: (e) => this.setState({ replyDraft: e.target.value }),
+      onReplyKey: (e) => { if (e.key === 'Enter') this.sendReply(e); },
+      sendReply: this.sendReply,
+      sendStyle: 'width: 44px; height: 44px; padding: 0; border: none; border-radius: 50%; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #FFFFFF; background: ' + (s.replyDraft.trim() ? accent : '#27272A') + ';',
+      goBack: this.goBack,
+
+      query: s.query,
+      hasQuery: s.query.length > 0,
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      clearQuery: () => this.setState({ query: '' }),
+      tabs: { topicos: isTopicos ? tabOn : tabOff, comunidades: isTopicos ? tabOff : tabOn },
+      pickTopicos: () => this.setState({ tab: 'topicos' }),
+      pickComunidades: () => this.setState({ tab: 'comunidades', forumSel: null }),
+      filterChips: filterChips,
+      showTopicos: isTopicos,
+      showComunidades: !isTopicos,
+      hasForumSel: isTopicos && !!selRaw,
+      forumSel: forumSel,
+      clearForum: () => this.setState({ forumSel: null }),
+      topicList: topicList,
+      noTopics: topicList.length === 0,
+      emptyTopicsText: q ? 'Nenhum tópico encontrado para essa busca.' : (s.tFilter === 'amigos' ? 'Nenhum amigo publicou tópicos aqui ainda.' : 'Nenhum tópico por aqui ainda. Que tal começar o primeiro?'),
+      forumList: forumList,
+      noForums: forumList.length === 0,
+
+      dnStart: this.dnStart,
+      dnMove: this.dnMove,
+      dnEnd: this.dnEnd,
+      openComposer: this.openComposer,
+      closeComposer: this.closeComposer,
+      composerOpen: s.composerOpen,
+      composerForums: composerForums,
+      draftTitle: s.draftTitle,
+      draftBody: s.draftBody,
+      onDraftTitle: (e) => this.setState({ draftTitle: e.target.value }),
+      onDraftBody: (e) => this.setState({ draftBody: e.target.value }),
+      titleCount: s.draftTitle.length,
+      bodyCount: s.draftBody.length,
+      publish: this.publish,
+      publishStyle: 'width: 100%; height: 48px; border: none; border-radius: 14px; font-size: 14.5px; font-weight: 700; cursor: ' + (canPublish ? 'pointer' : 'not-allowed') + '; background: ' + (canPublish ? accent : '#27272A') + '; color: ' + (canPublish ? '#FFFFFF' : '#71717A') + ';',
+
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-140%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastText: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

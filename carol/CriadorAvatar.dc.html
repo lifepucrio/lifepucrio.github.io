@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Criar avatar</title>
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+  <style>
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    body { margin: 0; background: #000000; color: #ECEDEE; font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    button { font-family: inherit; }
+    .av-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; letter-spacing: -0.01em; }
+    .av-px { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+    .av-scroll { scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain; cursor: grab; }
+    .av-scroll::-webkit-scrollbar { display: none; }
+  </style>
+</helmet>
+<div style="position: relative; width: 390px; height: 776px; overflow: hidden; background: #09090B; display: flex; flex-direction: column;">
+
+  <!-- cabeçalho -->
+  <div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 12px; background: #09090B;">
+    <button type="button" onClick="{{goBack}}" aria-label="Voltar sem salvar" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </button>
+    <div class="av-title" style="font-size: 18px; font-weight: 700;">Criar avatar</div>
+    <button type="button" onClick="{{save}}" style="height: 38px; padding: 0 16px; border: none; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 13.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 7px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><path d="M17 21v-8H7v8M7 3v5h8"></path></svg>Salvar
+    </button>
+  </div>
+
+  <!-- pré-visualização -->
+  <div style="flex: none; position: relative; height: 268px; background: #18181B; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <img class="av-px" src="{{previewUri}}" alt="Pré-visualização do avatar" width="224" height="224" style="border-radius: 26px; box-shadow: 0 0 0 3px #09090B, 0 0 0 5px rgba(255,255,255,0.18), 0 18px 40px rgba(0,0,0,0.5);">
+    <button type="button" onClick="{{reset}}" aria-label="Desfazer alterações" style="position: absolute; left: 16px; bottom: 14px; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: rgba(9,9,11,0.7); color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+    </button>
+    <button type="button" onClick="{{randomize}}" aria-label="Sortear avatar" style="position: absolute; right: 16px; bottom: 14px; width: 48px; height: 48px; padding: 0; border-radius: 50%; border: 2px solid #ECEDEE; background: rgba(9,9,11,0.7); color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"></circle><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"></circle><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"></circle></svg>
+    </button>
+  </div>
+
+  <!-- abas -->
+  <div style="flex: none; position: relative; background: #09090B;">
+    <div class="av-scroll" role="tablist" aria-label="Partes do avatar" onMouseDown="{{dragStart}}" onMouseMove="{{dragMove}}" onMouseUp="{{dragEnd}}" onMouseLeave="{{dragEnd}}" style="display: flex; gap: 8px; padding: 10px 40px 12px 14px; overflow-x: auto;">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+        <button type="button" role="tab" aria-selected="{{t.selected}}" onClick="{{t.onPick}}" style="{{t.style}}">{{t.label}}</button>
+      </sc-for>
+    </div>
+    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 34px; pointer-events: none; background: linear-gradient(90deg, rgba(9,9,11,0), #09090B);"></div>
+  </div>
+
+  <!-- painel -->
+  <div style="flex: 1; min-height: 0; background: #212124; border-radius: 22px 22px 0 0; display: flex; flex-direction: column; overflow: hidden;">
+    <sc-if value="{{hasSwatches}}" hint-placeholder-val="{{true}}">
+      <div style="flex: none; position: relative; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <div class="av-scroll" onMouseDown="{{dragStart}}" onMouseMove="{{dragMove}}" onMouseUp="{{dragEnd}}" onMouseLeave="{{dragEnd}}" style="display: flex; align-items: center; gap: 10px; padding: 14px 40px 14px 16px; overflow-x: auto;">
+          <sc-for list="{{swatches}}" as="c" hint-placeholder-count="8">
+            <button type="button" aria-label="Cor {{c.label}}" aria-pressed="{{c.pressed}}" onClick="{{c.onPick}}" style="width: 38px; height: 38px; flex-shrink: 0; padding: 0; border-radius: 50%; cursor: pointer; background: {{c.color}}; border: 3px solid {{c.ring}}; box-shadow: 0 0 0 1px rgba(255,255,255,0.14);"></button>
+          </sc-for>
+        </div>
+        <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 34px; pointer-events: none; background: linear-gradient(90deg, rgba(33,33,36,0), #212124);"></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{hasToggles}}" hint-placeholder-val="{{false}}">
+      <div style="flex: none; display: flex; gap: 8px; padding: 12px 16px 0;">
+        <sc-for list="{{toggles}}" as="g" hint-placeholder-count="2">
+          <button type="button" aria-pressed="{{g.pressed}}" onClick="{{g.onPick}}" style="{{g.style}}">{{g.label}}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 14px 16px 24px;">
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;">
+        <sc-for list="{{items}}" as="it" hint-placeholder-count="8">
+          <button type="button" aria-label="{{it.label}}" aria-pressed="{{it.pressed}}" onClick="{{it.onPick}}" style="aspect-ratio: 1 / 1; padding: 0; border-radius: 14px; cursor: pointer; overflow: hidden; background: #3A3A40; border: 3px solid {{it.ring}}; box-shadow: 0 0 0 1px rgba(255,255,255,0.08);">
+            <img class="av-px" src="{{it.uri}}" alt="" width="100%" height="100%" style="width: 100%; height: 100%;">
+          </button>
+        </sc-for>
+      </div>
+      <div style="padding-top: 14px; font-size: 12px; line-height: 1.5; color: #71717A;">{{hint}}</div>
+    </div>
+  </div>
+
+  <div style="{{toastStyle}}">{{toastText}}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"avatar":{"editor":null},"onSave":{"editor":null},"back":{"editor":null},"$preview":{"width":390,"height":776}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cfg: Object.assign({}, this.defaults(), props.avatar || {}), tab: 'base', toast: '' };
+  }
+
+  // ---------- catálogo de partes ----------
+  defaults() {
+    return { skin: 1, head: 'A', blush: true, freckles: false, hair: 'franja', hairColor: 2, eyes: 'grande', eyeColor: 1, mouth: 'sorriso', top: 'moletom', topColor: 3, acc: { fones: true }, accColor: 0, bg: 0, pattern: 'nenhum' };
+  }
+  skins() { return ['#FBE0CE', '#F3C9A8', '#D9A07A', '#B97A55', '#8A5538', '#5A3524']; }
+  hairColors() { return ['#1B1B1F', '#4A2F27', '#7A4B34', '#B9814E', '#E6C27A', '#C23B3B', '#E97FB0', '#7E5BEF', '#3D7BFF', '#2FBF9B', '#E9E9EE', '#8E8E96']; }
+  eyeColors() { return ['#2B1D14', '#6B3F23', '#2F6F8F', '#3C8D4F', '#7A4FD0', '#C23B3B', '#E0A030', '#374151']; }
+  topColors() { return ['#18181B', '#F4F4F5', '#C23B3B', '#2F6FED', '#2FA672', '#E0A030', '#8E5BD9', '#E86FA0', '#6B7280', '#14532D']; }
+  accColors() { return ['#F4F4F5', '#18181B', '#E0A030', '#E86FA0', '#2F6FED', '#C23B3B']; }
+  bgColors() { return ['#1F2A24', '#221E22', '#12161B', '#17111F', '#1A1114', '#101A17', '#F4EFE6', '#DCE6F5']; }
+  heads() { return [['A', 'Rosto oval'], ['B', 'Rosto redondo']]; }
+  hairs() { return [['curto', 'Curto'], ['franja', 'Chanel com franja'], ['longo', 'Longo'], ['ondulado', 'Ondulado'], ['maria', 'Maria-chiquinha'], ['coque', 'Coque'], ['cacheado', 'Cacheado'], ['nenhum', 'Sem cabelo']]; }
+  eyesList() { return [['grande', 'Olhos grandes'], ['redondo', 'Olhos redondos'], ['sonolento', 'Olhos sonolentos'], ['feliz', 'Olhos felizes'], ['marcante', 'Olhos marcantes'], ['pontinho', 'Olhos pontinho']]; }
+  mouths() { return [['sorriso', 'Sorriso'], ['neutra', 'Neutra'], ['aberta', 'Boca aberta'], ['gatinho', 'Gatinho'], ['pequena', 'Pequena'], ['torta', 'Sorriso de lado']]; }
+  tops() { return [['camiseta', 'Camiseta'], ['moletom', 'Moletom'], ['gola', 'Gola alta'], ['jaqueta', 'Jaqueta'], ['regata', 'Regata'], ['camisa', 'Camisa']]; }
+  accs() { return [['fones', 'Fones de ouvido'], ['oculos', 'Óculos'], ['brincos', 'Brincos'], ['gorro', 'Gorro'], ['orelhas', 'Orelhas de gato'], ['laco', 'Laço'], ['colar', 'Colar'], ['piercing', 'Piercing']]; }
+  patterns() { return [['nenhum', 'Liso'], ['bolinhas', 'Bolinhas'], ['listras', 'Listras'], ['xadrez', 'Xadrez'], ['estrelas', 'Estrelas']]; }
+  tabDefs() { return [['base', 'Base'], ['cabelo', 'Cabelo'], ['olhos', 'Olhos'], ['boca', 'Boca'], ['roupa', 'Roupa'], ['acessorios', 'Acessórios'], ['fundo', 'Fundo']]; }
+
+  // ---------- cores ----------
+  rgb(hex) { const n = parseInt(hex.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  hex(r, g, b) { return '#' + [r, g, b].map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join(''); }
+  mix(a, b, t) { const x = this.rgb(a), y = this.rgb(b); return this.hex(x[0] + (y[0] - x[0]) * t, x[1] + (y[1] - x[1]) * t, x[2] + (y[2] - x[2]) * t); }
+  dark(c, t) { return this.mix(c, '#000000', t); }
+  light(c, t) { return this.mix(c, '#FFFFFF', t); }
+  lum(c) { const x = this.rgb(c); return (0.299 * x[0] + 0.587 * x[1] + 0.114 * x[2]) / 255; }
+
+  // ---------- desenho em camadas (grade 32 x 32) ----------
+  layers(cfg, opts) {
+    const o = opts || {};
+    const out = [];
+    const R = (x1, y1, x2, y2, c) => { out.push([x1, y1, x2, y2, c]); };
+    const M = (x1, y1, x2, y2, c) => { R(x1, y1, x2, y2, c); R(31 - x2, y1, 31 - x1, y2, c); };
+    const skin = this.skins()[cfg.skin];
+    const skinS = this.dark(skin, 0.14);
+    const hairC = this.hairColors()[cfg.hairColor];
+    const hairS = this.dark(hairC, 0.22);
+    const hairH = this.light(hairC, 0.2);
+    const eyeC = this.eyeColors()[cfg.eyeColor];
+    const topC = this.topColors()[cfg.topColor];
+    const topS = this.dark(topC, 0.2);
+    const accC = this.accColors()[cfg.accColor];
+    const accS = this.dark(accC, 0.25);
+    const bgC = this.bgColors()[cfg.bg];
+    const wide = cfg.head === 'B';
+    const hx = wide ? 8 : 9;
+
+    // fundo
+    R(0, 0, 31, 31, o.bg || bgC);
+    if (!o.noPattern) {
+      const pc = this.lum(bgC) > 0.5 ? this.dark(bgC, 0.08) : this.light(bgC, 0.1);
+      if (cfg.pattern === 'bolinhas') { for (let y = 2; y < 32; y += 6) for (let x = (y % 12 === 2 ? 2 : 5); x < 32; x += 6) R(x, y, x, y, pc); }
+      else if (cfg.pattern === 'listras') { for (let x = 0; x < 32; x += 6) R(x, 0, x + 1, 31, pc); }
+      else if (cfg.pattern === 'xadrez') { for (let y = 0; y < 32; y += 4) for (let x = 0; x < 32; x += 4) { if (((x + y) / 4) % 2 === 0) R(x, y, x + 3, y + 3, pc); } }
+      else if (cfg.pattern === 'estrelas') { [[3, 4], [27, 6], [5, 24], [28, 22], [15, 28], [24, 29], [2, 14]].forEach((p) => { R(p[0], p[1] - 1, p[0], p[1] + 1, pc); R(p[0] - 1, p[1], p[0] + 1, p[1], pc); }); }
+    }
+    if (o.onlyBg) return out;
+
+    // cabelo (atrás)
+    const hair = this.hairParts(cfg.hair, hairC, hairS, hairH);
+    hair.back.forEach((r) => R(r[0], r[1], r[2], r[3], r[4]));
+
+    // pescoço e tronco
+    R(14, 20, 17, 23, skin);
+    R(14, 21, 17, 22, skinS);
+    this.clothes(cfg.top, topC, topS, skin, R);
+
+    // cabeça
+    const head = wide
+      ? [[11, 6, 20, 6], [9, 7, 22, 7], [8, 8, 23, 16], [9, 17, 22, 17], [10, 18, 21, 18], [11, 19, 20, 19], [13, 20, 18, 20]]
+      : [[11, 6, 20, 6], [10, 7, 21, 7], [9, 8, 22, 17], [10, 18, 21, 18], [11, 19, 20, 19], [12, 20, 19, 20]];
+    head.forEach((r) => R(r[0], r[1], r[2], r[3], skin));
+    const ear = wide ? 7 : 8;
+    R(ear, 13, ear, 15, skin); R(31 - ear, 13, 31 - ear, 15, skin);
+    if (wide) R(22, 11, 23, 16, skinS); else R(21, 11, 22, 17, skinS);
+    if (cfg.blush) { const b = this.mix(skin, '#F0707A', 0.4); M(10, 16, 11, 16, b); }
+    if (cfg.freckles) { const f = this.dark(skin, 0.28); R(11, 15, 11, 15, f); R(13, 16, 13, 16, f); R(18, 16, 18, 16, f); R(20, 15, 20, 15, f); }
+    R(15, 15, 16, 15, skinS);
+
+    // sobrancelhas e olhos
+    const brow = this.dark(hairC, 0.15);
+    if (cfg.eyes !== 'feliz') M(10, 10, 12, 10, brow);
+    this.eyes(cfg.eyes, eyeC, M);
+
+    // boca
+    this.mouth(cfg.mouth, R, M);
+
+    // cabelo (frente)
+    hair.front.forEach((r) => R(r[0], r[1], r[2], r[3], r[4]));
+
+    // acessórios
+    const a = cfg.acc || {};
+    if (a.orelhas) { M(8, 3, 13, 4, accC); M(9, 2, 12, 2, accC); M(10, 1, 11, 1, accC); M(10, 3, 11, 3, '#F2A0B5'); }
+    if (a.laco) { R(19, 3, 20, 5, accC); R(23, 3, 24, 5, accC); R(21, 4, 22, 4, accS); }
+    if (a.gorro) { R(9, 2, 22, 3, accC); R(8, 4, 23, 7, accC); R(8, 8, 23, 9, accS); R(14, 0, 17, 1, accC); R(9, 5, 11, 5, this.light(accC, 0.2)); }
+    if (a.fones) { R(10, 1, 21, 1, accC); R(8, 2, 9, 2, accC); R(22, 2, 23, 2, accC); M(7, 3, 8, 10, accC); M(5, 10, 8, 17, accC); M(5, 11, 5, 16, this.light(accC, 0.2)); M(8, 11, 8, 16, accS); }
+    if (a.oculos) { M(9, 11, 14, 11, accC); M(9, 15, 14, 15, accC); M(9, 12, 9, 14, accC); M(14, 12, 14, 14, accC); R(15, 12, 16, 12, accC); R(8, 12, 8, 12, accC); R(23, 12, 23, 12, accC); }
+    if (a.brincos) { M(ear, 16, ear, 17, accC); }
+    if (a.piercing) { R(16, 16, 16, 16, accC); }
+    if (a.colar) { [[13, 24], [14, 25], [15, 26], [16, 26], [17, 25], [18, 24]].forEach((p) => R(p[0], p[1], p[0], p[1], accC)); R(15, 27, 16, 28, accS); }
+    return out;
+  }
+
+  hairParts(style, m, s, h) {
+    const f = [];
+    const b = [];
+    const F = (x1, y1, x2, y2, c) => f.push([x1, y1, x2, y2, c || m]);
+    const B = (x1, y1, x2, y2, c) => b.push([x1, y1, x2, y2, c || m]);
+    const FM = (x1, y1, x2, y2, c) => { F(x1, y1, x2, y2, c); F(31 - x2, y1, 31 - x1, y2, c); };
+    const dome = () => { F(10, 3, 21, 3); F(9, 4, 22, 4); F(8, 5, 23, 8); };
+    if (style === 'curto') {
+      dome(); F(8, 9, 23, 9); FM(8, 10, 9, 11); F(8, 8, 23, 8, s); F(11, 4, 13, 4, h); F(12, 5, 12, 5, h);
+    } else if (style === 'franja') {
+      B(7, 8, 24, 21); B(8, 22, 23, 22, s);
+      F(10, 3, 21, 3); F(8, 4, 23, 4); F(7, 5, 24, 7); F(8, 8, 23, 10); F(8, 10, 23, 10, s); FM(7, 11, 8, 20); F(11, 4, 14, 4, h); F(11, 5, 12, 5, h);
+    } else if (style === 'longo') {
+      B(7, 8, 24, 29); B(7, 27, 24, 29, s);
+      F(10, 3, 21, 3); F(8, 4, 23, 4); F(7, 5, 24, 8); F(8, 9, 22, 9); F(8, 10, 14, 10); F(8, 11, 11, 11); FM(7, 9, 8, 26); FM(7, 22, 9, 28); F(11, 4, 14, 4, h);
+    } else if (style === 'ondulado') {
+      B(6, 8, 25, 26); B(5, 14, 6, 24); B(25, 14, 26, 24); B(5, 18, 7, 22); B(24, 18, 26, 22);
+      B(6, 27, 8, 28); B(11, 27, 13, 28); B(18, 27, 20, 28); B(23, 27, 25, 28); B(6, 24, 25, 26, s);
+      F(9, 2, 22, 2); F(7, 3, 24, 4); F(6, 5, 25, 8); F(7, 9, 14, 10); F(17, 9, 24, 10); FM(6, 9, 8, 20); FM(5, 12, 7, 16); F(10, 3, 12, 3, h); F(8, 9, 10, 9, h);
+    } else if (style === 'maria') {
+      B(4, 12, 7, 24); B(24, 12, 27, 24); B(4, 21, 7, 24, s); B(24, 21, 27, 24, s); B(4, 12, 7, 13, '#E86FA0'); B(24, 12, 27, 13, '#E86FA0');
+      dome(); F(8, 9, 14, 10); F(17, 9, 23, 10); FM(7, 9, 8, 13); F(11, 4, 13, 4, h);
+    } else if (style === 'coque') {
+      F(13, 0, 18, 0); F(12, 1, 19, 2); F(13, 2, 18, 2, s); dome(); F(8, 9, 23, 9); FM(8, 9, 9, 12); F(11, 4, 13, 4, h); F(14, 1, 15, 1, h);
+    } else if (style === 'cacheado') {
+      B(5, 6, 26, 18); B(6, 19, 25, 20);
+      F(8, 1, 23, 1); F(6, 2, 25, 3); F(5, 4, 26, 8); F(8, 9, 23, 9); F(9, 10, 11, 10); F(14, 10, 17, 10); F(20, 10, 22, 10); FM(5, 9, 7, 17); F(9, 2, 12, 2, h); F(19, 3, 22, 3, h);
+    }
+    return { front: f, back: b };
+  }
+
+  clothes(style, c, s, skin, R) {
+    const torso = (col) => { R(10, 23, 21, 23, col); R(8, 24, 23, 24, col); R(6, 25, 25, 31, col); };
+    if (style === 'camiseta') {
+      torso(c); R(6, 30, 25, 31, s); R(6, 25, 7, 29, s); R(24, 25, 25, 29, s);
+      R(13, 23, 18, 23, skin); R(14, 24, 17, 24, skin);
+    } else if (style === 'moletom') {
+      torso(c); R(6, 30, 25, 31, s); R(11, 22, 20, 23, s); R(13, 22, 18, 24, skin); R(13, 25, 13, 28, '#F4F4F5'); R(18, 25, 18, 28, '#F4F4F5'); R(10, 28, 21, 28, s); R(10, 29, 10, 31, s); R(21, 29, 21, 31, s);
+    } else if (style === 'gola') {
+      torso(c); R(6, 30, 25, 31, s); R(13, 20, 18, 24, c); R(13, 22, 18, 22, s); R(13, 20, 18, 20, s);
+    } else if (style === 'jaqueta') {
+      const inner = this.lum(c) < 0.45 ? '#C23B3B' : '#F4F4F5';
+      torso(c); R(6, 30, 25, 31, s); R(13, 24, 18, 31, inner); R(14, 23, 17, 23, skin); R(12, 23, 13, 25, s); R(18, 23, 19, 25, s); R(15, 25, 16, 25, this.dark(inner, 0.15));
+    } else if (style === 'regata') {
+      torso(skin); R(6, 30, 25, 31, this.dark(skin, 0.1)); R(9, 27, 22, 31, c); R(11, 23, 12, 26, c); R(19, 23, 20, 26, c); R(9, 30, 22, 31, s);
+    } else if (style === 'camisa') {
+      torso(c); R(6, 30, 25, 31, s); R(14, 23, 17, 23, skin); R(12, 23, 15, 24, '#F4F4F5'); R(16, 23, 19, 24, '#F4F4F5'); R(16, 26, 16, 26, s); R(16, 29, 16, 29, s);
+    }
+  }
+
+  eyes(style, c, M) {
+    const dk = '#1A1218';
+    if (style === 'grande') { M(10, 12, 12, 12, dk); M(10, 13, 12, 14, c); M(11, 14, 11, 14, dk); M(10, 13, 10, 13, '#FFFFFF'); }
+    else if (style === 'redondo') { M(11, 12, 12, 14, c); M(11, 12, 11, 12, '#FFFFFF'); M(12, 14, 12, 14, dk); }
+    else if (style === 'sonolento') { M(10, 13, 12, 13, dk); M(11, 14, 12, 14, c); }
+    else if (style === 'feliz') { M(10, 14, 10, 14, dk); M(11, 13, 12, 13, dk); M(13, 14, 13, 14, dk); }
+    else if (style === 'marcante') { M(10, 12, 13, 12, dk); M(11, 13, 12, 14, c); M(11, 14, 11, 14, dk); M(11, 13, 11, 13, '#FFFFFF'); M(9, 13, 9, 13, dk); }
+    else if (style === 'pontinho') { M(11, 13, 11, 14, dk); }
+  }
+
+  mouth(style, R, M) {
+    const dk = '#7A2E3A';
+    if (style === 'sorriso') { M(13, 17, 13, 17, dk); M(14, 18, 15, 18, dk); }
+    else if (style === 'neutra') { R(14, 18, 17, 18, dk); }
+    else if (style === 'aberta') { R(14, 17, 17, 18, '#5A1F2B'); R(15, 18, 16, 18, '#E86F7C'); }
+    else if (style === 'gatinho') { M(13, 17, 13, 17, dk); M(14, 18, 14, 18, dk); M(15, 17, 15, 17, dk); }
+    else if (style === 'pequena') { R(15, 18, 16, 18, dk); }
+    else if (style === 'torta') { R(14, 18, 16, 18, dk); R(17, 17, 18, 17, dk); }
+  }
+
+  svg(cfg, opts) {
+    const o = opts || {};
+    const crop = o.crop || [0, 0, 32, 32];
+    const body = this.layers(cfg, o).map((r) => '<rect x="' + r[0] + '" y="' + r[1] + '" width="' + (r[2] - r[0] + 1) + '" height="' + (r[3] - r[1] + 1) + '" fill="' + r[4] + '"/>').join('');
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + crop.join(' ') + '" shape-rendering="crispEdges">' + body + '</svg>';
+  }
+
+  uri(cfg, opts) {
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(this.svg(cfg, opts));
+  }
+
+  // ---------- ações ----------
+  setCfg = (patch) => this.setState((prev) => ({ cfg: Object.assign({}, prev.cfg, patch) }));
+  flash(text) { this.setState({ toast: text }); setTimeout(() => this.setState({ toast: '' }), 1800); }
+
+  dragStart = (e) => { this.drag = { el: e.currentTarget, x: e.clientX, left: e.currentTarget.scrollLeft }; this.dragged = false; };
+  dragMove = (e) => {
+    const d = this.drag;
+    if (!d || e.buttons === 0) return;
+    const dx = e.clientX - d.x;
+    if (Math.abs(dx) > 4) this.dragged = true;
+    d.el.scrollLeft = d.left - dx;
+  };
+  dragEnd = () => { this.drag = null; setTimeout(() => { this.dragged = false; }, 0); };
+
+  pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+  randomize = () => {
+    const accs = {};
+    this.accs().forEach((a) => { if (Math.random() < 0.22) accs[a[0]] = true; });
+    this.setState({
+      cfg: {
+        skin: Math.floor(Math.random() * this.skins().length), head: this.pick(this.heads())[0], blush: Math.random() < 0.8, freckles: Math.random() < 0.25,
+        hair: this.pick(this.hairs())[0], hairColor: Math.floor(Math.random() * this.hairColors().length),
+        eyes: this.pick(this.eyesList())[0], eyeColor: Math.floor(Math.random() * this.eyeColors().length), mouth: this.pick(this.mouths())[0],
+        top: this.pick(this.tops())[0], topColor: Math.floor(Math.random() * this.topColors().length),
+        acc: accs, accColor: Math.floor(Math.random() * this.accColors().length),
+        bg: Math.floor(Math.random() * this.bgColors().length), pattern: this.pick(this.patterns())[0]
+      }
+    });
+  };
+  reset = () => { this.setState({ cfg: Object.assign({}, this.defaults(), this.props.avatar || {}) }); this.flash('Alterações desfeitas.'); };
+  save = () => {
+    const cfg = this.state.cfg;
+    if (this.props.onSave) this.props.onSave(cfg, this.uri(cfg));
+    if (this.props.back) this.props.back();
+  };
+
+  renderVals() {
+    const accent = this.props.accent ?? '#006FEE';
+    const s = this.state;
+    const cfg = s.cfg;
+    const tab = s.tab;
+    const ring = (on) => (on ? accent : 'transparent');
+    const thumbBg = '#3A3A40';
+
+    const tabs = this.tabDefs().map((t) => {
+      const on = tab === t[0];
+      return { label: t[1], selected: on ? 'true' : 'false', onPick: (e) => {
+          if (this.dragged) { this.dragged = false; return; }
+          this.setState({ tab: t[0] });
+          try { e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }); } catch (err) { /* sem rolagem automática */ }
+        },
+        style: 'flex-shrink: 0; white-space: nowrap; height: 38px; padding: 0 16px; border-radius: 999px; cursor: pointer; font-size: 13.5px; font-weight: ' + (on ? 700 : 600) + '; border: 1px solid ' + (on ? accent : 'rgba(255,255,255,0.12)') + '; background: ' + (on ? 'rgba(0,111,238,0.2)' : '#18181B') + '; color: ' + (on ? '#8FC7FF' : '#D4D4D8') + ';' };
+    });
+
+    let swatches = [];
+    let toggles = [];
+    let items = [];
+    let hint = '';
+    const sw = (colors, key) => colors.map((c, i) => ({ color: c, label: String(i + 1), ring: ring(cfg[key] === i), pressed: cfg[key] === i ? 'true' : 'false', onPick: () => { if (this.dragged) { this.dragged = false; return; } this.setCfg({ [key]: i }); } }));
+    const item = (label, on, patch, crop, extra) => ({
+      label: label, ring: ring(on), pressed: on ? 'true' : 'false',
+      uri: this.uri(Object.assign({}, cfg, extra || {}), { crop: crop, bg: thumbBg, noPattern: true }),
+      onPick: () => this.setCfg(patch)
+    });
+
+    if (tab === 'base') {
+      swatches = sw(this.skins(), 'skin');
+      items = this.heads().map((h) => item(h[1], cfg.head === h[0], { head: h[0] }, [4, 3, 24, 24], { head: h[0] }));
+      const tg = (label, key) => ({ label: label, pressed: cfg[key] ? 'true' : 'false', onPick: () => this.setCfg({ [key]: !cfg[key] }),
+        style: 'height: 34px; padding: 0 14px; border-radius: 999px; cursor: pointer; font-size: 12.5px; font-weight: 600; border: 1px solid ' + (cfg[key] ? accent : 'rgba(255,255,255,0.14)') + '; background: ' + (cfg[key] ? 'rgba(0,111,238,0.18)' : 'transparent') + '; color: ' + (cfg[key] ? '#8FC7FF' : '#D4D4D8') + ';' });
+      toggles = [tg('Bochechas', 'blush'), tg('Sardas', 'freckles')];
+      hint = 'Tom de pele, formato do rosto e detalhes.';
+    } else if (tab === 'cabelo') {
+      swatches = sw(this.hairColors(), 'hairColor');
+      items = this.hairs().map((h) => item(h[1], cfg.hair === h[0], { hair: h[0] }, [2, 0, 28, 28], { hair: h[0] }));
+      hint = 'A cor vale para o cabelo e as sobrancelhas.';
+    } else if (tab === 'olhos') {
+      swatches = sw(this.eyeColors(), 'eyeColor');
+      items = this.eyesList().map((e) => item(e[1], cfg.eyes === e[0], { eyes: e[0] }, [6, 7, 20, 20], { eyes: e[0] }));
+      hint = 'A cor aparece nos estilos com íris.';
+    } else if (tab === 'boca') {
+      items = this.mouths().map((m) => item(m[1], cfg.mouth === m[0], { mouth: m[0] }, [8, 10, 16, 16], { mouth: m[0] }));
+      hint = 'Escolha a expressão.';
+    } else if (tab === 'roupa') {
+      swatches = sw(this.topColors(), 'topColor');
+      items = this.tops().map((t) => item(t[1], cfg.top === t[0], { top: t[0] }, [3, 12, 26, 26], { top: t[0] }));
+      hint = 'Peça e cor da roupa.';
+    } else if (tab === 'acessorios') {
+      swatches = sw(this.accColors(), 'accColor');
+      const cur = cfg.acc || {};
+      items = this.accs().map((a) => {
+        const on = !!cur[a[0]];
+        const onlyThis = Object.assign({}, cfg, { acc: { [a[0]]: true } });
+        return {
+          label: a[1], ring: ring(on), pressed: on ? 'true' : 'false',
+          uri: this.uri(onlyThis, { crop: [2, 0, 28, 28], bg: thumbBg, noPattern: true }),
+          onPick: () => this.setCfg({ acc: Object.assign({}, cur, { [a[0]]: !on }) })
+        };
+      });
+      hint = 'Toque para ligar ou desligar. Dá para combinar vários.';
+    } else if (tab === 'fundo') {
+      swatches = sw(this.bgColors(), 'bg');
+      items = this.patterns().map((p) => ({
+        label: p[1], ring: ring(cfg.pattern === p[0]), pressed: cfg.pattern === p[0] ? 'true' : 'false',
+        uri: this.uri(Object.assign({}, cfg, { pattern: p[0] }), { onlyBg: true }),
+        onPick: () => this.setCfg({ pattern: p[0] })
+      }));
+      hint = 'Cor e estampa do fundo.';
+    }
+
+    return {
+      accent: accent,
+      previewUri: this.uri(cfg),
+      goBack: () => { if (this.props.back) this.props.back(); },
+      save: this.save,
+      reset: this.reset,
+      randomize: this.randomize,
+      tabs: tabs,
+      dragStart: this.dragStart,
+      dragMove: this.dragMove,
+      dragEnd: this.dragEnd,
+      swatches: swatches,
+      hasSwatches: swatches.length > 0,
+      toggles: toggles,
+      hasToggles: toggles.length > 0,
+      items: items,
+      hint: hint,
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastText: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
