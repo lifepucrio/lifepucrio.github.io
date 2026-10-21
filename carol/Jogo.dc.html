@@ -343,7 +343,7 @@ class Component extends DCLogic {
 
   artFor(title, idx) {
     const id = this.coverId(title);
-    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    if (id) return { bg: '#16161A', img: 'url(./covers/' + id + '.jpg)' };
     return this.art(idx);
   }
 
@@ -490,8 +490,8 @@ class Component extends DCLogic {
       'Outer Wilds': [['j3', 'Zerei sem abrir o diário da nave', 'Larissa K.', 27, 'há 4 h', 'f6']],
       'It Takes Two': [['j5', 'Vale jogar com quem não joga muito?', 'Camila Duarte', 6, 'há 2 dias', 'f3']],
       'Hollow Knight': [['t1', 'Dicas para quem está começando', 'Yasmin Prado', 19, 'há 5 h', 'f1']],
-      'Counter-Strike 2': [['t2', 'Como vocês montam o time para o ranked?', 'Rafa Bittencourt', 12, 'há 8 h', 'f4']],
-      'Catan': [['t3', 'Mesa de quarta com vaga para mais duas pessoas', 'Camila Duarte', 16, 'há 1 dia', 'f5']],
+      'Counter-Strike 2': [['t2', 'Como vocês gerenciam a economia dos rounds?', 'Rafa Bittencourt', 12, 'há 8 h', 'f4']],
+      'Catan': [['t3', 'Como negociar melhor em Catan?', 'Camila Duarte', 16, 'há 1 dia', 'f5']],
       'Stardew Valley': [['t4', 'Vale jogar Stardew em dupla?', 'Bianca R.', 21, 'há 3 h', 'f3']],
       'Century: Spice Road': [['t5', 'Dá para ensinar em dez minutos?', 'Sofia Almeida', 8, 'há 9 h', 'f2']],
       'A Short Hike': [['t6', 'Indies que merecem mais atenção', 'Diego M.', 38, 'há 12 h', 'f6']]
@@ -796,7 +796,7 @@ class Component extends DCLogic {
         this.setState({ sheetOpen: false, tab: 'reviews', rf: 'todas' });
         this.flash('Avaliação publicada.');
       },
-      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease, opacity .25s ease; pointer-events: none; opacity: ' + (s.toast ? '1' : '0') + '; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
       toastText: s.toast,
       cfOpen: !!s.confirm,
       cfTitle: s.confirm ? s.confirm.title : '',

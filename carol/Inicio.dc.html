@@ -20,11 +20,12 @@
     a:hover { color: #66AAF9; }
   </style>
 </helmet>
+<div style="position: relative; width: 390px; height: 776px; overflow: hidden; background: #000000;">
 <div style="width: 390px; height: 776px; overflow-y: auto; background: #000000; padding-bottom: 32px;">
 
   <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 0; width: 381px; height: 55px">
     
-    <button type="button" aria-label="Abrir meu perfil" onClick="{{goPerfil}}" style="width: 34px; height: 34px; padding: 0; border: none; border-radius: 9px; cursor: pointer; display: block; background: transparent; box-shadow: 0 0 0 2px {{accent}};">
+    <button type="button" aria-label="Abrir menu" onClick="{{goMenu}}" style="width: 34px; height: 34px; padding: 0; border: none; border-radius: 9px; cursor: pointer; display: block; background: transparent; box-shadow: 0 0 0 2px {{accent}};">
       <sc-if value="{{hasCustomAvatar}}" hint-placeholder-val="{{false}}">
         <img src="{{avatarUri}}" alt="" width="34" height="34" style="display: block; border-radius: 9px; image-rendering: pixelated;">
       </sc-if>
@@ -42,12 +43,20 @@
       </sc-if>
     </button>
 
+    <div style="display: flex; align-items: center; gap: 10px;">
+    <button type="button" aria-label="{{notifAria}}" onClick="{{goNotifs}}" style="position: relative; width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+      <sc-if value="{{hasNotifs}}" hint-placeholder-val="{{false}}">
+        <span style="position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #F31260; color: #FFFFFF; font-size: 10.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid #000000;">{{notifCount}}</span>
+      </sc-if>
+    </button>
     <button type="button" aria-label="Abrir mensagens" onClick="{{goInbox}}" style="position: relative; width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
       <sc-if value="{{hasUnread}}" hint-placeholder-val="{{false}}">
-        <span style="position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #006FEE; color: #FFFFFF; font-size: 10.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #000000;">{{unreadCount}}</span>
+        <span style="position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #F31260; color: #FFFFFF; font-size: 10.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid #000000;">{{unreadCount}}</span>
       </sc-if>
     </button>
+    </div>
   </div>
 
   <div style="padding: 14px 16px 0;">
@@ -75,7 +84,7 @@
       <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
 
         <sc-if value="{{it.isNews}}" hint-placeholder-val="{{false}}">
-          <button type="button" onClick="{{it.openGame}}" aria-label="Abrir página de {{it.game}}" style="position: relative; display: block; padding: 0; border: none; text-align: left; cursor: pointer; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; background-color: {{it.bg}}; background-image: {{it.img}}; background-size: cover; background-position: center; width: 351px; height: 139px">
+          <button type="button" onClick="{{it.openNews}}" aria-label="Ler matéria: {{it.headline}}" style="position: relative; display: block; padding: 0; border: none; text-align: left; cursor: pointer; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; background-color: {{it.bg}}; background-image: {{it.img}}; background-size: cover; background-position: center; width: 351px; height: 139px">
             <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 65%; background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);"></div>
             <span style="position: absolute; top: 10px; right: 10px; height: 22px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.62); color: {{it.kindColor}};">{{it.kindLabel}}</span>
             <div style="position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; flex-direction: column; gap: 4px;">
@@ -179,12 +188,58 @@
   </div>
 
 </div>
+  <sc-if value="{{articleOpen}}" hint-placeholder-val="{{false}}">
+    <div role="dialog" aria-label="Matéria" style="position: absolute; inset: 0; z-index: 20; background: #09090B; display: flex; flex-direction: column;">
+      <div style="flex: none; display: flex; align-items: center; gap: 10px; padding: 12px 12px 10px; background: #18181B; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <button type="button" onClick="{{closeArticle}}" aria-label="Fechar matéria" style="width: 44px; height: 44px; padding: 0; border: none; border-radius: 12px; background: transparent; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; flex: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+        <div style="flex: 1; min-width: 0; height: 36px; border-radius: 999px; background: #0E0E10; display: flex; align-items: center; justify-content: center; gap: 7px; color: #A1A1AA; font-size: 12.5px; font-weight: 600;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{article.url}}</span>
+        </div>
+        <span style="flex: none; width: 44px;"></span>
+      </div>
+      <div style="flex: 1; min-height: 0; overflow-y: auto; padding-bottom: 40px;">
+        <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; background-color: {{article.bg}}; background-image: {{article.img}}; background-size: cover; background-position: center;">
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background-image: linear-gradient(180deg, rgba(9,9,11,0) 0%, #09090B 100%);"></div>
+        </div>
+        <div style="padding: 4px 20px 0; display: flex; flex-direction: column; gap: 14px;">
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}};">{{article.tag}} · {{article.game}}</span>
+          <h1 style="margin: 0; font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 25px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;">{{article.headline}}</h1>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #B4B4BE;">{{article.lead}}</p>
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: #A1A1AA;">
+            <span style="width: 30px; height: 30px; border-radius: 50%; background: #212124; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: #ECEDEE;">C</span>
+            <span style="display: flex; flex-direction: column; gap: 1px;"><span style="font-size: 13px; font-weight: 700; color: #ECEDEE;">Redação Círculo</span><span>{{article.meta}}</span></span>
+          </div>
+          <sc-for list="{{article.blocks}}" as="b" hint-placeholder-count="4">
+            <sc-if value="{{b.isP}}" hint-placeholder-val="{{true}}"><p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #D4D4D8; text-wrap: pretty;">{{b.text}}</p></sc-if>
+            <sc-if value="{{b.isH}}" hint-placeholder-val="{{false}}"><h2 style="margin: 6px 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.3;">{{b.text}}</h2></sc-if>
+            <sc-if value="{{b.isStats}}" hint-placeholder-val="{{false}}">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+                <sc-for list="{{b.items}}" as="s" hint-placeholder-count="3">
+                  <div style="padding: 12px 10px; border-radius: 14px; background: #18181B; display: flex; flex-direction: column; gap: 4px;">
+                    <span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: {{accent}};">{{s.value}}</span>
+                    <span style="font-size: 11px; line-height: 1.3; color: #A1A1AA;">{{s.label}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </sc-for>
+          <button type="button" onClick="{{articleOpenGame}}" style="margin-top: 8px; width: 100%; height: 48px; border: none; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-family: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer;">Ver página de {{article.game}}</button>
+          <p style="margin: 6px 0 0; font-size: 11.5px; line-height: 1.5; color: #71717A;">Matéria ilustrativa criada para o protótipo do Círculo.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"navigate":{"editor":null},"openPerson":{"editor":null},"openTopic":{"editor":null},"openGame":{"editor":null},"openInbox":{"editor":null},"avatarUri":{"editor":null},"avatars":{"editor":null},"unread":{"editor":null},"friends":{"editor":null},"myReviews":{"editor":null},"$preview":{"width":390,"height":776}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"navigate":{"editor":null},"openNotifs":{"editor":null},"notifCount":{"editor":null},"openPerson":{"editor":null},"openTopic":{"editor":null},"openGame":{"editor":null},"openInbox":{"editor":null},"avatarUri":{"editor":null},"avatars":{"editor":null},"unread":{"editor":null},"friends":{"editor":null},"myReviews":{"editor":null},"$preview":{"width":390,"height":776}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { tab: 'para', liked: {}, kindFilter: 'todos' };
+    this.state = { tab: 'para', liked: {}, kindFilter: 'todos', article: null };
   }
 
   coverId(title) {
@@ -194,7 +249,7 @@ class Component extends DCLogic {
 
   artFor(title, idx) {
     const id = this.coverId(title);
-    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    if (id) return { bg: '#16161A', img: 'url(./covers/' + id + '.jpg)' };
     return this.art(idx);
   }
 
@@ -235,6 +290,40 @@ class Component extends DCLogic {
   reviewer(name, handle, idx) {
     const p = this.avatarPalette()[idx];
     return { reviewer: name, handle: handle, avBg: p.bg, avBody: p.body, avAccent: p.accent };
+  }
+
+  articles() {
+    const p = (text) => ({ isP: true, text: text });
+    const h = (text) => ({ isH: true, text: text });
+    const st = (items) => ({ isStats: true, items: items });
+    return {
+      p3: {
+        url: 'noticias.circulo.app/firewatch-volta-ao-topo', meta: 'Há 3 h · 4 min de leitura',
+        lead: 'Anos depois do lançamento, o jogo de caminhada pela floresta voltou a liderar as notas dadas por quem joga no Círculo.',
+        blocks: [
+          p('Nas últimas duas semanas, Firewatch passou de oitavo para primeiro lugar entre os jogos digitais mais bem avaliados da comunidade. A virada veio de uma onda de novas avaliações, muitas delas escritas por quem acabou de terminar a história pela primeira vez.'),
+          st([{ value: '4,7', label: 'nota média da comunidade' }, { value: '+38%', label: 'avaliações em 14 dias' }, { value: '1º', label: 'entre jogos digitais' }]),
+          h('O que as pessoas estão dizendo'),
+          p('Os comentários giram em torno de três pontos: a relação construída só por conversas de rádio, a paisagem que muda conforme o dia avança e um final que divide opiniões. Há quem tenha jogado de uma vez, numa tarde, e quem prefira dividir em pequenas caminhadas ao longo da semana.'),
+          p('Nos fóruns, o assunto virou tópico fixo. Jogadores trocam dicas de acessibilidade, comparam as escolhas de diálogo e indicam outros jogos narrativos curtos para quem quer algo no mesmo clima.'),
+          h('Para jogar em dupla'),
+          p('Firewatch é um jogo para uma pessoa só, mas muita gente joga em chamada, com um duo comentando cada decisão. Se você quiser encontrar alguém para isso, vale marcar o jogo no seu cartão de Jogar.')
+        ]
+      },
+      p6: {
+        url: 'noticias.circulo.app/cs2-assunto-dos-foruns', meta: 'Há 5 h · 3 min de leitura',
+        lead: 'Economia de rounds, mira e leitura de mapa dominaram as conversas da semana nos fóruns de jogos competitivos.',
+        blocks: [
+          p('Counter-Strike 2 foi o jogo com mais tópicos e respostas nos fóruns do Círculo nesta semana. A maior parte da discussão aconteceu no fórum Competitivo e ranked, onde jogadores de todos os níveis trocam experiências sobre como evoluir partida a partida.'),
+          st([{ value: '312', label: 'novos tópicos na semana' }, { value: '2,1 mil', label: 'respostas' }, { value: '3', label: 'temas mais comentados' }]),
+          h('Os temas da semana'),
+          p('Economia dos rounds foi o assunto campeão: quando comprar, quando economizar e como alinhar a decisão com o time. Em seguida vieram as discussões sobre treino de mira e sobre como estudar os mapas sem decorar posições.'),
+          p('Uma regra apareceu em vários tópicos: se o time perdeu o round, ninguém compra arma cara no seguinte. Todo mundo junto ou ninguém.'),
+          h('Entre no assunto'),
+          p('Quem quer acompanhar as conversas pode seguir o fórum e filtrar os tópicos por jogo. Para jogar, o caminho é a aba Jogar, que mostra pessoas com o mesmo estilo e horário.')
+        ]
+      }
+    };
   }
 
   news(id, gameIdx, game, tag, headline) {
@@ -348,19 +437,33 @@ class Component extends DCLogic {
         openAuthor: () => this.openAuthor(it.handle),
         openTopic: () => { if (this.props.openTopic) this.props.openTopic(it.id); },
         openGame: () => { if (this.props.openGame) this.props.openGame(it.game, it.artIdx); },
+        openNews: () => this.setState({ article: it.id }),
         isNews: it.kind === 'news',
         isReview: it.kind === 'review',
         isDiscussion: it.kind === 'discussion'
       });
     });
 
+    const allFeeds = feeds.para.concat(feeds.seguindo || []);
+    const artItem = this.state.article ? allFeeds.filter((x) => x.id === this.state.article)[0] : null;
+    const artData = artItem ? this.articles()[artItem.id] : null;
+    const article = artItem && artData ? Object.assign({}, artItem, artData, { blocks: artData.blocks }) : { url: '', bg: '#000', img: 'none', tag: '', game: '', headline: '', lead: '', meta: '', blocks: [] };
     return {
       accent: accent,
+      articleOpen: !!(artItem && artData),
+      article: article,
+      closeArticle: () => this.setState({ article: null }),
+      articleOpenGame: () => { if (artItem && this.props.openGame) { this.setState({ article: null }); this.props.openGame(artItem.game, artItem.artIdx); } },
       goPerfil: () => { if (this.props.navigate) this.props.navigate('perfil'); },
+      goMenu: () => { if (this.props.openMenu) this.props.openMenu(); else if (this.props.navigate) this.props.navigate('perfil'); },
       hasCustomAvatar: !!this.props.avatarUri,
       noCustomAvatar: !this.props.avatarUri,
       avatarUri: this.props.avatarUri || '',
       goInbox: () => { if (this.props.openInbox) this.props.openInbox('todas'); },
+      goNotifs: () => { if (this.props.openNotifs) this.props.openNotifs(); },
+      hasNotifs: (this.props.notifCount || 0) > 0,
+      notifCount: this.props.notifCount || 0,
+      notifAria: (this.props.notifCount || 0) > 0 ? 'Notificações, ' + this.props.notifCount + ' novas' : 'Notificações',
       hasUnread: (this.props.unread || 0) > 0,
       unreadCount: this.props.unread || 0,
       pickPara: () => this.setState({ tab: 'para' }),

@@ -20,17 +20,22 @@ rather than copy wholesale.
 - `CriadorAvatar.dc.html` — referenced resource
 - `Foruns.dc.html` — referenced resource
 - `Inicio.dc.html` — referenced resource
+- `JogarA.dc.html` — referenced resource
 - `Jogo.dc.html` — referenced resource
 - `MatchCirculo.dc.html` — referenced resource
 - `Mensagens.dc.html` — referenced resource
+- `Menu.dc.html` — referenced resource
+- `Notificacoes.dc.html` — referenced resource
 - `PerfilCirculo.dc.html` — referenced resource
+- `Quarto.dc.html` — referenced resource
+- `assets/` — files uploaded to the design (images, fonts, media)
 - `support.js`, `vendor/react*.js` — the runtime that renders the
   component in a browser; not part of the design.
 
 ## Uploaded files
 
 Images, fonts and media uploaded to the design are written once each under
-`assets/` — 0 in this export — and the exported files refer to them there. A
+`assets/` — 8 in this export — and the exported files refer to them there. A
 reference a script puts together while the page runs (for example
 `"/_blob/" + id`) is not rewritten and does not load from this folder.
 

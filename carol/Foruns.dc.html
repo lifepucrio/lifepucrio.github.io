@@ -332,7 +332,7 @@ class Component extends DCLogic {
 
   artFor(title, idx) {
     const id = this.coverId(title);
-    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    if (id) return { bg: '#16161A', img: 'url(./covers/' + id + '.jpg)' };
     return this.art(idx);
   }
 
@@ -391,7 +391,7 @@ class Component extends DCLogic {
       { id: 'f2', name: 'Estratégia de mesa', mode: 'analog', art: 2, color: '#F5A524', members: '8,1 mil', desc: 'Regras, estratégia e partidas que fazem a mesa inteira pensar.' },
       { id: 'f3', name: 'Coop e jogos para duas pessoas', mode: 'both', art: 3, color: '#17C964', members: '9,7 mil', desc: 'Indicações para jogar em dupla, no sofá ou na mesa, sem ninguém ficar para trás.' },
       { id: 'f4', name: 'Competitivo e ranked', mode: 'digital', art: 5, color: '#F31260', members: '15,2 mil', desc: 'Formação de time, meta, comunicação e como lidar com partidas tóxicas.' },
-      { id: 'f5', name: 'Mesas de São Paulo', mode: 'analog', art: 12, color: '#22D3EE', members: '3,4 mil', desc: 'Combine jogatinas presenciais, divulgue vagas na mesa e encontre ludotecas.' },
+      { id: 'f5', name: 'Mesas de São Paulo', mode: 'analog', art: 12, color: '#22D3EE', members: '3,4 mil', desc: 'Dicas de jogos de mesa, ludotecas, espaços para jogar e como ensinar regras.' },
       { id: 'f6', name: 'Indies e aventuras', mode: 'digital', art: 8, color: '#338EF7', members: '5,9 mil', desc: 'Jogos independentes, aventuras curtas e mistérios para explorar no seu ritmo.' }
     ];
   }
@@ -410,10 +410,10 @@ class Component extends DCLogic {
         replies: [['@rafabtt', 'Funciona muito bem. Os desafios são curtos e o jogo é generoso com quem está começando.', 6, 'há 1 dia'], ['@yaz.codes', 'Meu irmão nunca jogava e terminou comigo. Só combinem as pausas.', 3, 'há 1 dia']] },
       { id: 't1', forum: 'f1', game: 'Hollow Knight', mode: 'digital', art: 6, by: '@yaz.codes', title: 'Dicas para quem está começando', body: 'Estou no começo e me perdi no mapa. Como vocês organizam a exploração sem se frustrar?', likes: 58, count: 19, when: 'há 5 h',
         replies: [['@lari.dados', 'Compre o mapa de cada região assim que puder. Muda tudo.', 22, 'há 4 h'], ['@biarabelo', 'Anote os caminhos que não conseguiu abrir e volte depois com novas habilidades.', 10, 'há 3 h'], ['@theov', 'Sem pressa. Explorar errado também faz parte do jogo.', 4, 'há 2 h']] },
-      { id: 't2', forum: 'f4', game: 'Counter-Strike 2', mode: 'digital', art: 4, by: '@rafabtt', title: 'Como vocês montam o time para o ranked?', body: 'Estou jogando sozinho há semanas e queria montar um time fixo. Onde vocês acham gente com horário parecido?', likes: 33, count: 12, when: 'há 8 h',
-        replies: [['@yaz.codes', 'Procure alguém pelas notas de Chill e Jogaria de novo no perfil. Funciona melhor que olhar só o rank.', 25, 'há 7 h'], ['@sofi.alm', 'Escolher o horário antes do estilo de jogo evita muita dor de cabeça.', 9, 'há 6 h'], ['@diegom', 'Posso entrar em time de terça e quinta à noite, se ainda tiver vaga.', 3, 'há 5 h']] },
-      { id: 't3', forum: 'f5', game: 'Catan', mode: 'analog', art: 2, by: '@cadu.plays', title: 'Mesa de quarta com vaga para mais duas pessoas', body: 'Nossa mesa de quarta, em Pinheiros, está com duas vagas. Jogos de peso médio, partidas de até duas horas.', likes: 41, count: 16, when: 'há 1 dia',
-        replies: [['@theov', 'Tenho interesse! Posso levar um jogo cooperativo curto para abrir a noite.', 7, 'há 22 h'], ['@biarabelo', 'Quarta é complicado para mim, mas se abrir uma sexta aviso.', 3, 'há 20 h'], ['@cadu.plays', 'Sexta eu consigo também. Vou montar um grupo para combinar.', 5, 'há 18 h']] },
+      { id: 't2', forum: 'f4', game: 'Counter-Strike 2', mode: 'digital', art: 4, by: '@rafabtt', title: 'Como vocês gerenciam a economia dos rounds?', body: 'Sempre chego no meio da partida sem dinheiro para nada. Qual a regra de vocês para decidir quando comprar e quando economizar?', likes: 33, count: 12, when: 'há 8 h',
+        replies: [['@yaz.codes', 'Regra simples: se o time perdeu o round, ninguém compra arma cara no seguinte. Todo mundo junto ou ninguém.', 25, 'há 7 h'], ['@sofi.alm', 'Anota o dinheiro dos colegas no placar antes de decidir. Evita muita compra errada.', 9, 'há 6 h'], ['@diegom', 'Eco de pistola no segundo round salva mais partida do que parece.', 5, 'há 5 h']] },
+      { id: 't3', forum: 'f5', game: 'Catan', mode: 'analog', art: 2, by: '@cadu.plays', title: 'Como negociar melhor em Catan?', body: 'Sempre acabo sobrando com recursos que ninguém quer. Quais são as dicas de vocês para negociar sem entregar a partida?', likes: 41, count: 16, when: 'há 1 dia',
+        replies: [['@theov', 'Ofereça troca de dois por um só quando o outro jogador estiver travado. Ele costuma aceitar.', 7, 'há 22 h'], ['@biarabelo', 'Evite negociar com quem está na frente. Deixe a negociação para o meio da mesa.', 3, 'há 20 h'], ['@cadu.plays', 'Boa dica! Vou testar na próxima partida.', 5, 'há 18 h']] },
       { id: 't4', forum: 'f3', game: 'Stardew Valley', mode: 'digital', art: 3, by: '@biarabelo', title: 'Vale jogar Stardew em dupla?', body: 'Quero jogar com meu namorado depois do jantar. Stardew funciona bem em modo cooperativo?', likes: 27, count: 21, when: 'há 3 h',
         replies: [['@rafabtt', 'Funciona, só combinem como dividir a fazenda antes de começar.', 12, 'há 2 h'], ['@sofi.alm', 'Em dupla vira uma rotina compartilhada. Muito gostoso.', 4, 'há 2 h'], ['@lari.dados', 'Vocês preferem algo mais curto? Posso indicar outros jogos.', 2, 'há 1 h']] },
       { id: 't5', forum: 'f2', game: 'Century: Spice Road', mode: 'analog', art: 1, by: '@sofi.alm', title: 'Dá para ensinar em dez minutos?', body: 'Quero levar Century: Spice Road para uma mesa de iniciantes. Alguém tem um resumo de regras que funcione?', likes: 19, count: 8, when: 'há 9 h',
@@ -700,7 +700,7 @@ class Component extends DCLogic {
       publish: this.publish,
       publishStyle: 'width: 100%; height: 48px; border: none; border-radius: 14px; font-size: 14.5px; font-weight: 700; cursor: ' + (canPublish ? 'pointer' : 'not-allowed') + '; background: ' + (canPublish ? accent : '#27272A') + '; color: ' + (canPublish ? '#FFFFFF' : '#71717A') + ';',
 
-      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-140%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-140%') + '); transition: transform .25s ease, opacity .25s ease; pointer-events: none; opacity: ' + (s.toast ? '1' : '0') + '; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
       toastText: s.toast
     };
   }

@@ -31,6 +31,10 @@
       <div class="ms-title" style="font-size: 22px; font-weight: 700; line-height: 1.15;">Mensagens</div>
       <div style="font-size: 11.5px; color: #A1A1AA;">{{summary}}</div>
     </div>
+    <button type="button" onClick="{{openSettings}}" aria-label="Privacidade e presença. Status atual: {{presenceLabel}}" style="position: relative; width: 44px; height: 44px; padding: 0; border: none; border-radius: 14px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg>
+      <span style="{{presenceDotStyle}}"><sc-if value="{{curIsOnline}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="7" fill="#17C964"></circle></svg></sc-if><sc-if value="{{curIsBusy}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="7" fill="#F5A524"></circle><rect x="6" y="8.8" width="8" height="2.4" rx="1.2" fill="#09090B"></rect></svg></sc-if><sc-if value="{{curIsInvis}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="5.6" fill="none" stroke="#71717A" stroke-width="2.6"></circle></svg></sc-if></span>
+    </button>
   </div>
 
   <div style="flex: 1; overflow-y: auto; padding-bottom: 24px;">
@@ -139,13 +143,39 @@
     </div>
 
   </div>
+
+  <sc-if value="{{setOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; justify-content: flex-end;">
+      <button type="button" onClick="{{closeSettings}}" aria-label="Fechar" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(0,0,0,0.62); cursor: default;"></button>
+      <div role="dialog" aria-modal="true" aria-labelledby="ms-pres-title" style="position: relative; padding: 18px 20px 28px; border-radius: 24px 24px 0 0; background: #18181B; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+          <div id="ms-pres-title" style="font-size: 16px; font-weight: 700;">Privacidade e presença</div>
+          <button type="button" onClick="{{closeSettings}}" aria-label="Fechar" style="width: 44px; height: 44px; margin: -8px -10px -8px 0; padding: 0; border: none; background: transparent; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+          </button>
+        </div>
+        <div role="radiogroup" aria-label="Status de presença" style="display: flex; flex-direction: column;">
+          <sc-for list="{{presenceOpts}}" as="o" hint-placeholder-count="3">
+            <button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="width: 100%; min-height: 64px; padding: 10px 0; border: none; background: transparent; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: flex-start; gap: 14px;">
+              <span style="flex: none; width: 22px; height: 22px; margin-top: 0; display: flex; align-items: center; justify-content: center;"><sc-if value="{{o.isOnline}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="7" fill="#17C964"></circle></svg></sc-if><sc-if value="{{o.isBusy}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="7" fill="#F5A524"></circle><rect x="6" y="8.8" width="8" height="2.4" rx="1.2" fill="#09090B"></rect></svg></sc-if><sc-if value="{{o.isInvis}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="display: block;"><circle cx="10" cy="10" r="5.6" fill="none" stroke="#71717A" stroke-width="2.6"></circle></svg></sc-if></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <span style="font-size: 14.5px; font-weight: 700; display: flex; align-items: center; gap: 8px;">{{o.label}}<sc-if value="{{o.on}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ECEDEE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></span>
+                <span style="font-size: 12.5px; line-height: 1.45; color: #A1A1AA;">{{o.desc}}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <p style="margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: #8A8A94;">As mensagens mostram apenas envio e recebimento. Ninguém vê se você visualizou.</p>
+      </div>
+    </div>
+  </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"conversations":{"editor":null},"squads":{"editor":null},"starters":{"editor":null},"back":{"editor":null},"initialFilter":{"editor":null},"$preview":{"width":390,"height":776}}'>
+<script type="text/x-dc" data-dc-script data-props='{"conversations":{"editor":null},"squads":{"editor":null},"starters":{"editor":null},"back":{"editor":null},"presence":{"editor":null},"setPresence":{"editor":null},"initialFilter":{"editor":null},"$preview":{"width":390,"height":776}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { filter: props.initialFilter || 'todas' };
+    this.state = { filter: props.initialFilter || 'todas', setOpen: false };
   }
 
   renderVals() {
@@ -176,9 +206,28 @@ class Component extends DCLogic {
       matches: ['Nenhuma conversa de Duo', 'Quando você formar um Duo com alguém, a conversa aparece aqui.'],
       squads: ['Nenhum squad ainda', 'Entre em um squad na aba Jogar para conversar com o grupo.']
     };
+    const pres = this.props.presence || 'online';
+    const POP = {
+      online: { label: 'Disponível', color: '#17C964', desc: 'Seus duos veem a bolinha verde quando você está conectado.' },
+      busy: { label: 'Ocupado', color: '#F5A524', desc: 'Seus duos veem que você está ocupado.' },
+      invisible: { label: 'Invisível', color: '#71717A', desc: 'Você aparece offline e continua recebendo mensagens.' }
+    };
+    const presenceOpts = ['online', 'busy', 'invisible'].map((k) => {
+      const on = pres === k;
+      return { isOnline: k === 'online', isBusy: k === 'busy', isInvis: k === 'invisible', on: on, label: POP[k].label, desc: POP[k].desc, checked: on ? 'true' : 'false', pick: () => { if (this.props.setPresence) this.props.setPresence(k); },
+        radioStyle: 'flex: none; margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid ' + (on ? '#E0447B' : '#52525B') + ';',
+        innerStyle: 'width: 10px; height: 10px; border-radius: 50%; background: ' + (on ? '#E0447B' : 'transparent') + ';' };
+    });
     return {
+      setOpen: this.state.setOpen,
+      openSettings: () => this.setState({ setOpen: true }),
+      closeSettings: () => this.setState({ setOpen: false }),
+      presenceOpts: presenceOpts,
+      presenceLabel: POP[pres].label,
+      curIsOnline: pres === 'online', curIsBusy: pres === 'busy', curIsInvis: pres === 'invisible',
+      presenceDotStyle: 'position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #212124; display: flex; align-items: center; justify-content: center;',
       goBack: () => { if (this.props.back) this.props.back(); },
-      summary: unreadTotal === 0 ? 'Tudo em dia' : (unreadTotal === 1 ? '1 conversa não lida' : unreadTotal + ' conversas não lidas'),
+      summary: (unreadTotal === 0 ? 'Tudo em dia' : (unreadTotal === 1 ? '1 conversa não lida' : unreadTotal + ' conversas não lidas')) + ' · ' + POP[pres].label,
       hasStarters: starters.length > 0,
       starters: starters,
       filterChips: [chip('todas', 'Todas', all.length + squads.length), chip('amigos', 'Amigos', friends.length), chip('matches', 'Duos', matches.length), chip('squads', 'Squads', squads.length)],

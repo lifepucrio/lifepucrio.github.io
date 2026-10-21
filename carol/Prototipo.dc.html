@@ -25,24 +25,41 @@
 <div style="{{fitInner}}">
 
   <div style="{{inicioStyle}}">
-    <dc-import name="Inicio" hint-size="390px,776px" avatars="{{avatars}}" navigate="{{go}}" my-reviews="{{myReviews}}" open-person="{{openPerson}}" open-topic="{{openTopic}}" open-game="{{openGame}}" open-inbox="{{openInbox}}" unread="{{unreadTotal}}" avatar-uri="{{avatarUri}}" friends="{{friends}}"></dc-import>
+    <dc-import name="Inicio" hint-size="390px,776px" open-menu="{{openMenu}}" open-notifs="{{openNotifs}}" notif-count="{{notifCount}}" avatars="{{avatars}}" navigate="{{go}}" my-reviews="{{myReviews}}" open-person="{{openPerson}}" open-topic="{{openTopic}}" open-game="{{openGame}}" open-inbox="{{openInbox}}" unread="{{unreadTotal}}" avatar-uri="{{avatarUri}}" friends="{{friends}}"></dc-import>
   </div>
   <div data-back="topic" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="{{forunsStyle}}">
     <dc-import name="Foruns" hint-size="390px,776px" avatars="{{avatars}}" view="{{forumsView}}" set-view="{{setForumsView}}" exit-topic="{{exitTopic}}" open-game="{{openGame}}" navigate="{{go}}" open-person="{{openPerson}}" friends="{{friends}}"></dc-import>
   </div>
   <div style="{{matchStyle}}">
-    <dc-import name="MatchCirculo" hint-size="390px,776px" on-squad-join="{{joinSquad}}" on-squad-leave="{{leaveSquad}}" open-squad-chat="{{openSquadChat}}" notify="{{notify}}" avatars="{{avatars}}" prefs="{{prefs}}" save-prefs="{{savePrefs}}" prefs-open="{{prefsOpen}}" set-prefs-open="{{setPrefsOpen}}" ratings="{{ratings}}" follows="{{follows}}" toggle-follow="{{toggleFollow}}" open-rate="{{openRate}}" open-chat="{{openChat}}" open-inbox="{{openInbox}}" on-match="{{onMatch}}" unread="{{unreadTotal}}"></dc-import>
+    <div style="{{duoPaneStyle}}">
+      <dc-import name="JogarA" hint-size="390px,776px" avatars="{{avatars}}" on-match="{{onMatch}}" open-chat="{{openChat}}" open-inbox="{{openInbox}}" unread="{{unreadTotal}}" on-pick-squad="{{pickSquadMode}}" my-name="{{profileName}}" my-bio="{{profileBio}}" my-handle="{{myHandle}}" location="{{location}}" profile-cfg="{{profileCfg}}"></dc-import>
+    </div>
+    <div style="{{squadPaneStyle}}">
+      <dc-import name="MatchCirculo" hint-size="390px,776px" squad-only="{{true}}" on-pick-duo="{{pickDuoMode}}" on-squad-join="{{joinSquad}}" on-squad-leave="{{leaveSquad}}" open-squad-chat="{{openSquadChat}}" notify="{{notify}}" avatars="{{avatars}}" prefs="{{prefs}}" save-prefs="{{savePrefs}}" prefs-open="{{prefsOpen}}" set-prefs-open="{{setPrefsOpen}}" ratings="{{ratings}}" follows="{{follows}}" toggle-follow="{{toggleFollow}}" open-rate="{{openRate}}" open-chat="{{openChat}}" open-inbox="{{openInbox}}" on-match="{{onMatch}}" unread="{{unreadTotal}}"></dc-import>
+    </div>
   </div>
   <div style="{{avaliacoesStyle}}">
     <dc-import name="Avaliacoes" hint-size="390px,776px" avatars="{{avatars}}" my-handle="{{myHandle}}" my-reviews="{{myReviews}}" publish-review="{{publishReview}}" delete-review="{{deleteReview}}" navigate="{{go}}" open-person="{{openPerson}}" open-game="{{openGame}}" friends="{{friends}}"></dc-import>
   </div>
   <div style="{{perfilStyle}}">
-    <dc-import name="PerfilCirculo" hint-size="390px,776px" avatars="{{avatars}}" navigate="{{go}}" open-game="{{openGame}}" my-reviews="{{myReviews}}" lists="{{myLists}}" create-list="{{createList}}" delete-list="{{deleteList}}" avatar-uri="{{avatarUri}}" open-avatar="{{openAvatar}}" handle="{{myHandle}}" location="{{location}}" show-location="{{showLocation}}" save-location="{{saveLocation}}" open-settings="{{openSettings}}" initial-name="{{profileName}}" initial-bio="{{profileBio}}" save-profile="{{saveProfile}}" cfg="{{profileCfg}}" save-cfg="{{saveProfileCfg}}" publish-review="{{publishReview}}" delete-review="{{deleteReview}}"></dc-import>
+    <dc-import name="PerfilCirculo" hint-size="390px,776px" avatars="{{avatars}}" navigate="{{go}}" open-game="{{openGame}}" my-reviews="{{myReviews}}" lists="{{myLists}}" create-list="{{createList}}" delete-list="{{deleteList}}" avatar-uri="{{avatarUri}}" open-avatar="{{openAvatar}}" rep-enabled="{{settings.showRep}}" open-room="{{openRoom}}" room-info="{{room}}" handle="{{myHandle}}" location="{{location}}" show-location="{{showLocation}}" save-location="{{saveLocation}}" open-settings="{{openSettings}}" initial-name="{{profileName}}" initial-bio="{{profileBio}}" save-profile="{{saveProfile}}" cfg="{{profileCfg}}" save-cfg="{{saveProfileCfg}}" publish-review="{{publishReview}}" delete-review="{{deleteReview}}"></dc-import>
   </div>
+
+  <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position:absolute;left:0;top:0;width:390px;height:844px;z-index:45;">
+      <dc-import name="Menu" hint-size="390px,844px" avatar-uri="{{avatarUri}}" handle="{{myHandle}}" presence="{{presence}}" set-presence="{{setPresence}}" notif-count="{{notifCount}}" unread="{{unreadTotal}}" close="{{closeMenu}}" go-perfil="{{menuPerfil}}" go-room="{{menuRoom}}" go-notifs="{{menuNotifs}}" go-inbox="{{menuInbox}}" go-avatar="{{menuAvatar}}" go-settings="{{menuSettings}}" go-reviews="{{menuReviews}}" go-forums="{{menuForums}}" logout="{{menuLogout}}"></dc-import>
+    </div>
+  </sc-if>
 
   <sc-if value="{{showInbox}}" hint-placeholder-val="{{false}}">
     <div data-back="inbox" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="position:absolute;left:0;top:0;width:390px;height:776px;z-index:15;background:#000000;">
-      <dc-import name="Mensagens" hint-size="390px,776px" avatars="{{avatars}}" conversations="{{conversations}}" squads="{{squadRows}}" starters="{{starters}}" initial-filter="{{inboxFilter}}" back="{{closeInbox}}"></dc-import>
+      <dc-import name="Mensagens" hint-size="390px,776px" avatars="{{avatars}}" conversations="{{conversations}}" squads="{{squadRows}}" starters="{{starters}}" initial-filter="{{inboxFilter}}" back="{{closeInbox}}" presence="{{presence}}" set-presence="{{setPresence}}"></dc-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{showNotifs}}" hint-placeholder-val="{{false}}">
+    <div data-back="notifs" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="position:absolute;left:0;top:0;width:390px;height:776px;z-index:16;background:#000000;">
+      <dc-import name="Notificacoes" hint-size="390px,776px" notifs="{{notifs}}" avatars="{{avatars}}" back="{{closeNotifs}}" on-open="{{notifOpen}}" on-answer="{{notifAnswer}}" on-mark-all="{{notifMarkAll}}"></dc-import>
     </div>
   </sc-if>
 
@@ -58,6 +75,12 @@
     </div>
   </sc-if>
 
+  <sc-if value="{{showRoom}}" hint-placeholder-val="{{false}}">
+    <div data-back="room" style="{{roomLayerStyle}}">
+      <dc-import name="Quarto" hint-size="390px,844px" height="844" shelves="{{roomShelves}}" visit-handle="{{roomVisit}}" admit-handle="{{roomAdmit}}" open-person="{{openPerson}}" avatar="{{avatarCfg}}" handle="{{myHandle}}" room="{{room}}" save-room="{{saveRoom}}" back="{{closeRoom}}"></dc-import>
+    </div>
+  </sc-if>
+
   <sc-if value="{{showGame}}" hint-placeholder-val="{{false}}">
     <div data-back="game" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="{{gameLayerStyle}}">
       <dc-import name="Jogo" hint-size="390px,776px" avatars="{{avatars}}" game="{{gameView}}" my-reviews="{{myReviews}}" publish-review="{{publishReview}}" delete-review="{{deleteReview}}" friends="{{friends}}" open-person="{{openPerson}}" open-topic="{{openTopic}}" navigate="{{go}}" lists="{{myLists}}" toggle-in-list="{{toggleInList}}" create-list="{{createList}}" back="{{closeGame}}"></dc-import>
@@ -66,7 +89,7 @@
 
   <sc-if value="{{showView}}" hint-placeholder-val="{{false}}">
     <div data-back="view" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="position:absolute;left:0;top:0;width:390px;height:776px;z-index:20;background:#000000;">
-      <dc-import name="PerfilCirculo" hint-size="390px,776px" avatars="{{avatars}}" person="{{viewPerson}}" following="{{viewFollowing}}" toggle-follow="{{viewToggleFollow}}" back="{{closeView}}" rate="{{rateFromView}}" message="{{messageFromView}}" open-game="{{openGame}}"></dc-import>
+      <dc-import name="PerfilCirculo" hint-size="390px,776px" avatars="{{avatars}}" visit-room="{{openRoomVisit}}" person="{{viewPerson}}" following="{{viewFollowing}}" toggle-follow="{{viewToggleFollow}}" back="{{closeView}}" rate="{{rateFromView}}" message="{{messageFromView}}" open-game="{{openGame}}"></dc-import>
     </div>
   </sc-if>
 
@@ -78,7 +101,7 @@
 
   <sc-if value="{{showChat}}" hint-placeholder-val="{{false}}">
     <div data-back="chat" onTouchStart="{{swStart}}" onTouchMove="{{swMove}}" onTouchEnd="{{swEnd}}" onTouchCancel="{{swEnd}}" style="position:absolute;left:0;top:0;width:390px;height:776px;z-index:25;background:#000000;">
-      <dc-import name="Conversa" hint-size="390px,776px" avatars="{{avatars}}" person="{{chatPerson}}" messages="{{chatMessages}}" send="{{sendChat}}" back="{{closeChat}}" open-profile="{{openProfileFromChat}}" rate="{{rateFromChat}}"></dc-import>
+      <dc-import name="Conversa" hint-size="390px,776px" avatars="{{avatars}}" person="{{chatPerson}}" messages="{{chatMessages}}" send="{{sendChat}}" back="{{closeChat}}" open-profile="{{openProfileFromChat}}" rate="{{rateFromChat}}" my-discord="{{myDiscord}}" save-discord="{{saveDiscord}}"></dc-import>
     </div>
   </sc-if>
 
@@ -137,6 +160,7 @@ class Component extends DCLogic {
       vw: vw,
       vh: vh,
       screen: 'inicio',
+      matchMode: 'duo',
       prefsOpen: false,
       myReviews: [],
       ratings: {},
@@ -156,10 +180,28 @@ class Component extends DCLogic {
       avatarUri: this.uri(myCfg),
       profile: { nome: saved.profile ? saved.profile.nome : undefined, bio: saved.profile ? saved.profile.bio : undefined },
       avatarOpen: false,
+      menuOpen: false,
+      roomOpen: false,
+      roomVisit: null,
+      roomAdmit: null,
+      notifsOpen: false,
+      notifs: [
+        { id: 'n1', kind: 'quarto', handle: '@rafabtt', who: 'Rafa Bittencourt', text: 'te convidou pro quarto dele.', when: 'Agora', group: 'hoje', read: false },
+        { id: 'n2', kind: 'match', handle: '@yaz.codes', who: 'Yasmin Prado', text: 'deu match com você em Elden Ring. Mande um oi!', when: '12 min', group: 'hoje', read: false },
+        { id: 'n3', kind: 'squad', handle: '@lari.dados', who: 'Noite de Catan', text: 'tem vaga pra você: o squad fechou 3 de 4.', when: '40 min', group: 'hoje', read: false },
+        { id: 'n4', kind: 'avaliacao', handle: '@lari.dados', who: 'Larissa K.', text: 'avaliou seu perfil depois da partida.', quote: '“Carrega o time e é super paciente.”', when: '2 h', group: 'hoje', read: false },
+        { id: 'n5', kind: 'curtida', handle: '@theov', who: 'Théo Vasques e mais 4', text: 'curtiram sua avaliação de Catan.', when: 'Ontem', group: 'antes', read: true },
+        { id: 'n6', kind: 'forum', handle: '@cadu.plays', who: 'Camila Duarte', text: 'respondeu seu tópico em Fóruns.', quote: '“Pandemic é perfeito pra dupla, recomendo muito.”', when: 'Ontem', group: 'antes', read: true },
+        { id: 'n7', kind: 'pedido', handle: '@sofi.alm', who: 'Sofia Almeida', text: 'pediu pra entrar no seu quarto.', when: '2 dias', group: 'antes', read: true },
+        { id: 'n8', kind: 'seguir', handle: '@pedrosalg', who: 'Pedro Salgado', text: 'começou a seguir você.', when: '3 dias', group: 'antes', read: true }
+      ],
+      room: saved.room || null,
       settingsOpen: false,
       profileCfg: saved.profileCfg || null,
+      discord: saved.discord || { user: '', tag: '' },
+      presence: saved.presence || 'online',
       account: Object.assign({ username: 'carolguimaraes', email: 'carol@exemplo.com', pendingEmail: '', passInfo: 'Alterada há 3 meses' }, saved.account || {}),
-      settings: Object.assign({ publicProfile: true, inMatch: true, notifMsg: true, notifForum: true, notifFollow: true }, saved.settings || {}),
+      settings: Object.assign({ showRep: true, inMatch: true, notifMsg: true, notifRoom: true, notifMatch: true, notifRating: true, notifForum: true, notifFollow: true }, saved.settings || {}),
       location: saved.location !== undefined ? saved.location : 'Rio de Janeiro, RJ',
       showLocation: saved.showLocation !== undefined ? saved.showLocation : true,
       myLists: [
@@ -451,7 +493,9 @@ class Component extends DCLogic {
     };
   }
 
-  go = (screen) => this.setState({ squadChatId: null, screen: screen, prefsOpen: false, viewHandle: null, rateTarget: null, chatHandle: null, inboxOpen: false, gameView: null, settingsOpen: false, forumsView: { topic: null, from: null } });
+  pickDuoMode = () => this.setState({ matchMode: 'duo' });
+  pickSquadMode = () => this.setState({ matchMode: 'squad' });
+  go = (screen) => this.setState({ menuOpen: false, squadChatId: null, screen: screen, prefsOpen: false, viewHandle: null, rateTarget: null, chatHandle: null, inboxOpen: false, gameView: null, settingsOpen: false, forumsView: { topic: null, from: null } });
   setForumsView = (patch) => this.setState((prev) => ({ forumsView: Object.assign({}, prev.forumsView, patch) }));
   openTopic = (id, game) => this.setState({ screen: 'foruns', prefsOpen: false, viewHandle: null, rateTarget: null, chatHandle: null, inboxOpen: false, gameView: null, forumsView: { topic: id, from: this.state.screen, game: game || null } });
   exitTopic = () => {
@@ -471,7 +515,7 @@ class Component extends DCLogic {
     setTimeout(() => {
       try {
         const s = this.state;
-        window.localStorage.setItem('circulo-proto-perfil-v2', JSON.stringify({ account: s.account, settings: s.settings, location: s.location, showLocation: s.showLocation, avatarCfg: s.avatarCfg, profile: s.profile, profileCfg: s.profileCfg }));
+        window.localStorage.setItem('circulo-proto-perfil-v2', JSON.stringify({ account: s.account, settings: s.settings, location: s.location, showLocation: s.showLocation, avatarCfg: s.avatarCfg, profile: s.profile, profileCfg: s.profileCfg, discord: s.discord, presence: s.presence, room: s.room }));
       } catch (err) { /* sem armazenamento: o perfil volta ao padrão ao recarregar */ }
     }, 0);
   };
@@ -484,8 +528,61 @@ class Component extends DCLogic {
     this.setState({ settingsOpen: false, screen: 'inicio', toast: msg });
     setTimeout(() => this.setState({ toast: '' }), 2400);
   };
+  openMenu = () => this.setState({ menuOpen: true });
+  closeMenu = () => this.setState({ menuOpen: false });
+  menuPerfil = () => { this.setState({ menuOpen: false }); this.go('perfil'); };
+  menuRoom = () => { this.setState({ menuOpen: false }); this.openRoom(); };
+  menuNotifs = () => { this.setState({ menuOpen: false }); this.openNotifs(); };
+  menuInbox = () => { this.setState({ menuOpen: false }); this.openInbox('todas'); };
+  menuAvatar = () => { this.setState({ menuOpen: false }); this.openAvatar(); };
+  menuReviews = () => { this.setState({ menuOpen: false }); this.go('avaliacoes'); };
+  menuForums = () => { this.setState({ menuOpen: false }); this.go('foruns'); };
+  menuLogout = () => { this.setState({ menuOpen: false }); this.logout('Você saiu da conta. (simulado)'); };
+  menuSettings = () => { this.setState({ menuOpen: false }); this.openSettings(); };
+  roomShelves() {
+    const analogSet = ['Ticket to Ride', 'Coup', 'Catan', '7 Wonders', 'Cascadia', 'Azul', 'Terraforming Mars', 'Agricola', 'Cartographers', 'The Resistance: Avalon', 'Pandemic', 'Wingspan', 'Santorini', 'Splendor', 'Camel Up', 'Cosmic Encounter', 'Century: Spice Road', 'Patchwork', 'Carcassonne'];
+    const uniq = (a) => a.filter((t, i) => t && a.indexOf(t) === i);
+    const cfg = this.state.profileCfg || {};
+    const names = (l) => (l || []).map((x) => (typeof x === 'string' ? x : x && x.t));
+    const rv = this.state.myReviews || [];
+    const out = {
+      me: {
+        digital: uniq(['Frostpunk', 'A Short Hike', 'Firewatch', 'Celeste', 'Disco Elysium', 'Elden Ring'].concat(names(cfg.favD), rv.filter((m) => m.mode === 'digital').map((m) => m.game))),
+        analog: uniq(['Century: Spice Road', 'Azul', 'Agricola', 'Patchwork', 'Carcassonne', 'Coup'].concat(names(cfg.favA), rv.filter((m) => m.mode === 'analog').map((m) => m.game)))
+      }
+    };
+    this.directory().forEach((d) => {
+      const lib = d.library || [];
+      out[d.handle] = { digital: lib.filter((t) => analogSet.indexOf(t) < 0), analog: lib.filter((t) => analogSet.indexOf(t) >= 0) };
+    });
+    return out;
+  }
   openAvatar = () => this.setState({ avatarOpen: true });
   closeAvatar = () => this.setState({ avatarOpen: false });
+  openRoom = () => this.setState({ roomOpen: true, roomTop: true });
+  openRoomVisit = (h) => this.setState({ roomOpen: true, roomVisit: h, roomAdmit: null, roomTop: true });
+  closeRoom = () => this.setState({ roomOpen: false, roomVisit: null, roomAdmit: null, roomTop: false });
+  openNotifs = () => this.setState({ notifsOpen: true });
+  closeNotifs = () => this.setState({ notifsOpen: false });
+  patchNotif = (id, patch) => this.setState((prev) => ({ notifs: prev.notifs.map((n) => (n.id === id ? Object.assign({}, n, patch) : n)) }));
+  notifMarkAll = () => this.setState((prev) => ({ notifs: prev.notifs.map((n) => Object.assign({}, n, { read: true })) }));
+  notifOpen = (id) => {
+    const n = this.state.notifs.find((x) => x.id === id); if (!n) return;
+    this.patchNotif(id, { read: true });
+    if (n.kind === 'quarto' || n.kind === 'pedido') return;
+    if (n.kind === 'match') { this.setState({ notifsOpen: false }); this.openChat(n.handle); return; }
+    if (n.kind === 'seguir') { this.setState({ notifsOpen: false }); this.openPerson(n.handle); return; }
+    const dest = { squad: 'match', avaliacao: 'perfil', curtida: 'avaliacoes', forum: 'foruns' }[n.kind];
+    if (dest) { this.go(dest); this.setState({ notifsOpen: false }); }
+  };
+  notifAnswer = (id, yes) => {
+    const n = this.state.notifs.find((x) => x.id === id); if (!n) return;
+    this.patchNotif(id, { read: true, answered: yes ? 'sim' : 'nao' });
+    if (!yes) { this.notify(n.kind === 'quarto' ? 'Convite recusado' : 'Pedido recusado'); return; }
+    if (n.kind === 'quarto') this.setState({ notifsOpen: false, roomOpen: true, roomVisit: n.handle, roomAdmit: null });
+    else this.setState({ notifsOpen: false, roomOpen: true, roomVisit: null, roomAdmit: n.handle });
+  };
+  saveRoom = (room) => { this.setState({ room: room }); this.persist(); };
   saveAvatar = (cfg, uri) => {
     this.setState({ avatarCfg: cfg, avatarUri: uri, toast: 'Avatar atualizado.' });
     this.persist();
@@ -523,12 +620,14 @@ class Component extends DCLogic {
   }));
   openProfileFromChat = () => this.setState((prev) => ({ viewHandle: prev.chatHandle, chatHandle: null }));
   rateFromChat = () => { if (this.state.chatHandle) this.openRate(this.state.chatHandle); };
-  sendChat = (text) => {
+  saveDiscord = (d) => { this.setState({ discord: d }); this.persist(); };
+  setPresence = (v) => { this.setState({ presence: v }); this.persist(); };
+  sendChat = (text, extra) => {
     const h = this.state.chatHandle;
     if (!h) return;
     const n = (this.state.chats[h] || []).filter((m) => m.from === 'them').length;
     this.setState((prev) => ({
-      chats: Object.assign({}, prev.chats, { [h]: (prev.chats[h] || []).concat([{ from: 'me', text: text, when: 'agora' }]) }),
+      chats: Object.assign({}, prev.chats, { [h]: (prev.chats[h] || []).concat([Object.assign({ from: 'me', text: text, when: 'agora' }, extra && extra.discord ? { discord: extra.discord } : {})]) }),
       order: [h].concat(prev.order.filter((x) => x !== h))
     }));
     const bank = ['Oi! Que bom te ver por aqui.', 'Bora marcar? Qual horário fica bom pra você?', 'Combinado, me chama quando estiver livre.'];
@@ -635,7 +734,7 @@ class Component extends DCLogic {
     }
   };
   swipeBack = (key) => {
-    const map = { inbox: this.closeInbox, settings: this.closeSettings, avatar: this.closeAvatar, game: this.closeGame, view: this.closeView, squadchat: this.closeSquadChat, chat: this.closeChat, rate: this.closeRate };
+    const map = { inbox: this.closeInbox, settings: this.closeSettings, avatar: this.closeAvatar, room: this.closeRoom, notifs: this.closeNotifs, game: this.closeGame, view: this.closeView, squadchat: this.closeSquadChat, chat: this.closeChat, rate: this.closeRate };
     if (key === 'topic') { if (this.state.forumsView && this.state.forumsView.topic) this.exitTopic(); return; }
     if (map[key]) map[key]();
   };
@@ -649,7 +748,7 @@ class Component extends DCLogic {
   deleteReview = (id) => this.setState((prev) => ({ myReviews: prev.myReviews.filter((r) => r.id !== id) }));
   openPerson = (handle) => {
     if (handle === '@marina.rolls') this.go('perfil');
-    else if (this.directory().some((d) => d.handle === handle) || this.state.people[handle]) this.setState((prev) => ({ viewHandle: handle, gameView: prev.gameView ? Object.assign({}, prev.gameView, { top: false }) : null }));
+    else if (this.directory().some((d) => d.handle === handle) || this.state.people[handle]) this.setState((prev) => ({ roomTop: false, viewHandle: handle, gameView: prev.gameView ? Object.assign({}, prev.gameView, { top: false }) : null }));
   };
   closeView = () => this.setState({ viewHandle: null });
   toggleFollow = (handle) => this.setState((prev) => ({ follows: Object.assign({}, prev.follows, { [handle]: !prev.follows[handle] }) }));
@@ -708,7 +807,7 @@ class Component extends DCLogic {
       const count = this.state.unread[h] || 0;
       conversations.push({
         key: h, name: p.name, kind: p.matched ? 'match' : 'friend', kindLabel: p.matched ? 'Duo' : 'Amigo',
-        preview: last ? (last.from === 'me' ? 'Você: ' : '') + last.text : (p.matched ? 'Vocês formaram um Duo — comece a conversa!' : 'Vocês são amigos — comece a conversa!'),
+        preview: last ? (last.from === 'me' ? 'Você: ' : '') + (last.discord ? 'Cartão do Discord' : last.text) : (p.matched ? 'Vocês formaram um Duo — comece a conversa!' : 'Vocês são amigos — comece a conversa!'),
         when: last ? (last.when || 'agora') : 'novo',
         hasUnread: count > 0, unreadCount: count,
         avUri: avatars[h] || '', is24: !!p.pix24, is8: !p.pix24, pix: p.pix24 || blank, av: { bg: p.bg || '#000000', body: p.body || '#000000', light: p.light || '#000000' },
@@ -781,6 +880,19 @@ class Component extends DCLogic {
       openAvatar: this.openAvatar,
       closeAvatar: this.closeAvatar,
       saveAvatar: this.saveAvatar,
+      menuOpen: this.state.menuOpen,
+      openMenu: this.openMenu, closeMenu: this.closeMenu,
+      menuPerfil: this.menuPerfil, menuRoom: this.menuRoom, menuNotifs: this.menuNotifs, menuInbox: this.menuInbox, menuAvatar: this.menuAvatar, menuSettings: this.menuSettings, menuReviews: this.menuReviews, menuForums: this.menuForums, menuLogout: this.menuLogout,
+      roomShelves: this.roomShelves(),
+      showRoom: this.state.roomOpen,
+      roomVisit: this.state.roomVisit, roomAdmit: this.state.roomAdmit,
+      showNotifs: this.state.notifsOpen, notifs: this.state.notifs, notifCount: this.state.notifs.filter((n) => !n.read).length,
+      openNotifs: this.openNotifs, closeNotifs: this.closeNotifs, notifOpen: this.notifOpen, notifAnswer: this.notifAnswer, notifMarkAll: this.notifMarkAll,
+      roomLayerStyle: 'position:absolute;left:0;top:0;width:390px;height:844px;background:#09090B;z-index:' + (!this.state.roomTop && (this.state.viewHandle || this.state.chatHandle || this.state.rateTarget) ? 18 : 58) + ';',
+      room: this.state.room,
+      openRoom: this.openRoom, openRoomVisit: this.openRoomVisit,
+      closeRoom: this.closeRoom,
+      saveRoom: this.saveRoom,
       showGame: !!this.state.gameView,
       gameView: this.state.gameView,
       gameLayerStyle: 'position:absolute;left:0;top:0;width:390px;height:776px;background:#000000;z-index:' + (this.state.gameView && this.state.gameView.top ? 22 : 17) + ';',
@@ -817,6 +929,10 @@ class Component extends DCLogic {
       chatPerson: chatPerson,
       chatMessages: this.state.chatHandle ? (this.state.chats[this.state.chatHandle] || []) : [],
       sendChat: this.sendChat,
+      myDiscord: this.state.discord,
+      saveDiscord: this.saveDiscord,
+      presence: this.state.presence,
+      setPresence: this.setPresence,
       closeChat: this.closeChat,
       openProfileFromChat: this.openProfileFromChat,
       openTopic: this.openTopic,
@@ -828,11 +944,15 @@ class Component extends DCLogic {
       rateInitial: rt ? (this.state.ratings[rt.id] || null) : null,
       submitRating: this.submitRating,
       closeRate: this.closeRate,
-      toastStyle: 'position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(' + (this.state.toast ? '0' : '-160%') + ');transition:transform .25s ease;background:#28282C;border:1px solid rgba(255,255,255,0.16);color:#ECEDEE;font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:999px;z-index:100;white-space:nowrap;',
+      toastStyle: 'position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(' + (this.state.toast ? '0' : '-160%') + ');transition:transform .25s ease,opacity .25s ease;opacity:' + (this.state.toast ? '1' : '0') + ';pointer-events:none;background:#28282C;border:1px solid rgba(255,255,255,0.16);color:#ECEDEE;font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:999px;z-index:100;white-space:nowrap;',
       toastText: this.state.toast,
       inicioStyle: layer('inicio'),
       forunsStyle: layer('foruns'),
       matchStyle: layer('match'),
+      duoPaneStyle: 'position:absolute;left:0;top:0;width:390px;height:776px;overflow:hidden;display:' + (this.state.matchMode === 'duo' ? 'block' : 'none') + ';',
+      squadPaneStyle: 'position:absolute;left:0;top:0;width:390px;height:776px;overflow:hidden;display:' + (this.state.matchMode === 'squad' ? 'block' : 'none') + ';',
+      pickDuoMode: this.pickDuoMode,
+      pickSquadMode: this.pickSquadMode,
       avaliacoesStyle: layer('avaliacoes'),
       perfilStyle: layer('perfil'),
       tabs: tabs

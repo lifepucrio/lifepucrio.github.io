@@ -29,6 +29,7 @@
     .ed-sheet.s2 { z-index: 33; }
     .ed-scrim.s3 { z-index: 36; }
     .ed-sheet.s3 { z-index: 37; top: auto; max-height: calc(100% - 60px); }
+    .pf-actions button { flex: 1 1 0; display: flex; align-items: center; justify-content: center; }
     .sec-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
   </style>
 </helmet>
@@ -36,31 +37,24 @@
 
 <div data-psc="" style="width: 390px; height: 776px; overflow-y: auto; background: #000000; padding-bottom: {{bottomPad}};">
 
-  <div style="position: relative; height: 136px; background-color: {{banner.bg}}; background-image: {{banner.img}}; background-size: cover; background-position: center;">
-    <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 72px; background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);"></div>
-    <sc-if value="{{canOpenSettings}}" hint-placeholder-val="{{true}}">
-      <button type="button" onClick="{{openSettings}}" aria-label="Configurações da conta" style="position: absolute; right: 14px; top: 14px; width: 40px; height: 40px; padding: 0; border: none; border-radius: 12px; background: rgba(0,0,0,0.55); color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-      </button>
-    </sc-if>
+  <div style="position: relative; padding: 14px 16px 0;">
     <sc-if value="{{isOther}}" hint-placeholder-val="{{false}}">
-      <button type="button" onClick="{{goBack}}" aria-label="Voltar" style="position: absolute; left: 14px; top: 14px; width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: rgba(0,0,0,0.55); color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      <button type="button" onClick="{{goBack}}" aria-label="Voltar" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; position: absolute; left: 16px; top: 14px; z-index: 2;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
       </button>
     </sc-if>
-  </div>
-
-  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 0 16px; margin-top: -38px; position: relative;">
+    <sc-if value="{{canOpenSettings}}" hint-placeholder-val="{{true}}">
+      <button type="button" onClick="{{openSettings}}" aria-label="Configurações da conta" style="width: 38px; height: 38px; padding: 0; border: none; border-radius: 12px; background: #212124; color: #ECEDEE; cursor: pointer; display: flex; align-items: center; justify-content: center; position: absolute; right: 16px; top: 14px; z-index: 2;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      </button>
+    </sc-if>
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 6px 30px 0;">
+      <div style="position: relative; width: 92px; height: 92px;">
     <sc-if value="{{showOwnCustom}}" hint-placeholder-val="{{false}}">
-      <img src="{{avatarUri}}" alt="Seu avatar" width="84" height="84" style="flex-shrink: 0; display: block; border-radius: 20px; image-rendering: pixelated; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
-    </sc-if>
-    <sc-if value="{{canEditAvatar}}" hint-placeholder-val="{{true}}">
-      <button type="button" onClick="{{openAvatar}}" aria-label="{{avatarEditLabel}}" style="position: absolute; left: 72px; bottom: -4px; z-index: 3; width: 32px; height: 32px; padding: 0; border: 2px solid #000000; border-radius: 50%; background: {{accent}}; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
-      </button>
+      <img src="{{avatarUri}}" alt="Seu avatar" width="92" height="92" style="flex-shrink: 0; display: block; border-radius: 22px; image-rendering: pixelated; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
     </sc-if>
     <sc-if value="{{showOwnDefault}}" hint-placeholder-val="{{true}}">
-      <svg width="84" height="84" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 20px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
+      <svg width="92" height="92" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 22px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
         <rect x="0" y="0" width="24" height="24" fill="#1F2A24"></rect>
         <rect x="4" y="2" width="16" height="8" fill="#3E7D5A"></rect>
         <rect x="0" y="6" width="4" height="10" fill="#3E7D5A"></rect>
@@ -72,12 +66,12 @@
       </svg>
     </sc-if>
     <sc-if value="{{avatar8}}" hint-placeholder-val="{{false}}">
-      <svg width="84" height="84" viewBox="0 0 8 8" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 20px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
+      <svg width="92" height="92" viewBox="0 0 8 8" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 22px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
         <rect width="8" height="8" fill="{{avatar.bg}}"></rect><rect x="1" y="1" width="6" height="6" fill="{{avatar.body}}"></rect><rect x="1" y="1" width="1" height="1" fill="{{avatar.bg}}"></rect><rect x="6" y="6" width="1" height="1" fill="{{avatar.bg}}"></rect><rect x="2.5" y="3.5" width="1" height="1" fill="{{avatar.light}}"></rect><rect x="4.5" y="3.5" width="1" height="1" fill="{{avatar.light}}"></rect><rect x="3" y="5.5" width="2" height="0.6" fill="{{avatar.bg}}"></rect><rect x="3.5" y="0" width="1" height="1" fill="{{avatar.light}}"></rect>
       <image href="{{otherAvUri}}" x="0" y="0" width="8" height="8"></image></svg>
     </sc-if>
     <sc-if value="{{avatar24}}" hint-placeholder-val="{{false}}">
-      <svg width="84" height="84" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 20px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
+      <svg width="92" height="92" viewBox="0 0 24 24" shape-rendering="crispEdges" style="flex-shrink: 0; display: block; border-radius: 22px; box-shadow: 0 0 0 3px #000000, 0 0 0 5px {{accent}};">
         <rect x="0" y="0" width="24" height="24" fill="{{pix.bg}}"></rect>
         <rect x="4" y="2" width="16" height="8" fill="{{pix.body}}"></rect>
         <rect x="0" y="6" width="4" height="10" fill="{{pix.body}}"></rect>
@@ -88,26 +82,19 @@
         <rect x="9" y="17" width="6" height="2" fill="{{pix.accent}}"></rect>
       <image href="{{otherAvUri}}" x="0" y="0" width="24" height="24"></image></svg>
     </sc-if>
-    <div style="display: flex; gap: 8px; padding-bottom: 4px;">
-      <sc-if value="{{isOwn}}" hint-placeholder-val="{{true}}">
-        <button type="button" onClick="{{openEdit}}" style="height: 44px; padding: 0 22px; border: none; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 600; cursor: pointer;">Editar perfil</button>
-      </sc-if>
-      <sc-if value="{{isOther}}" hint-placeholder-val="{{false}}">
-        <button type="button" onClick="{{toggleFollow}}" style="{{followStyle}}">{{followLabel}}</button>
-        <sc-if value="{{canMessage}}" hint-placeholder-val="{{false}}">
-          <button type="button" onClick="{{goMessage}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid #3F3F46; background: transparent; color: #ECEDEE; font-size: 14px; font-weight: 600; cursor: pointer;">Mensagem</button>
-        </sc-if>
-      </sc-if>
-    </div>
-  </div>
-
-  <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 0; width: 390px;">
-    <div style="display: flex; flex-direction: column; gap: 2px;">
-      <div style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 23px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;">{{data.name}}</div>
-      <div style="font-size: 14px; color: #A1A1AA;">{{data.handle}}</div>
-    </div>
-    <div style="font-size: 13.5px; line-height: 1.5; color: #D4D4D8; text-wrap: pretty;">{{data.bio}}</div>
-    <div style="display: flex; flex-wrap: wrap; gap: 6px; padding-top: 2px;">
+    <sc-if value="{{canEditAvatar}}" hint-placeholder-val="{{true}}">
+      <button type="button" onClick="{{openAvatar}}" aria-label="{{avatarEditLabel}}" style="position: absolute; right: -6px; bottom: -6px; z-index: 3; width: 32px; height: 32px; padding: 0; border: 2px solid #000000; border-radius: 50%; background: {{accent}}; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
+      </button>
+    </sc-if>
+      </div>
+      <div style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-top: 14px;">{{data.name}}</div>
+      <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 3px;">
+        <span style="font-size: 13.5px; color: #A1A1AA;">{{data.handle}}</span>
+        <sc-if value="{{hasRelTag}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 9px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 11.5px; font-weight: 700; background: {{relTag.bg}}; color: {{relTag.color}};">{{relTag.label}}</span></sc-if>
+      </div>
+      <div style="font-size: 13.5px; line-height: 1.5; color: #D4D4D8; text-wrap: pretty; margin-top: 8px;">{{data.bio}}</div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 10px;">
       <sc-for list="{{infoChips}}" as="c" hint-placeholder-count="3">
         <div style="height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 10px; border-radius: 999px; background: {{c.bg}}; font-size: 12px; font-weight: 600; color: {{c.color}};">
           <sc-if value="{{c.hasDot}}" hint-placeholder-val="{{false}}"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{c.color}};"></span></sc-if>
@@ -115,9 +102,43 @@
           {{c.label}}
         </div>
       </sc-for>
+      </div>
     </div>
-    <div style="font-size: 13px; color: #A1A1AA; padding-top: 2px;"><strong style="color: #ECEDEE; font-weight: 700;">{{data.stats.jogos}}</strong> jogos &nbsp;·&nbsp; <strong style="color: #ECEDEE; font-weight: 700;">{{data.stats.seguindo}}</strong> seguindo &nbsp;·&nbsp; <strong style="color: #ECEDEE; font-weight: 700;">{{data.stats.seguidores}}</strong> seguidores</div>
   </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 16px 16px 0; padding: 10px 0; border-radius: 14px; background: #18181B;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1px;"><span style="font-size: 17px; font-weight: 800;">{{data.stats.jogos}}</span><span style="font-size: 12px; color: #A1A1AA;">jogos</span></div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1px; border-left: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08);"><span style="font-size: 17px; font-weight: 800;">{{data.stats.seguindo}}</span><span style="font-size: 12px; color: #A1A1AA;">seguindo</span></div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1px;"><span style="font-size: 17px; font-weight: 800;">{{data.stats.seguidores}}</span><span style="font-size: 12px; color: #A1A1AA;">seguidores</span></div>
+  </div>
+
+  <div class="pf-actions" style="display: flex; gap: 8px; padding: 10px 16px 0;">
+      <sc-if value="{{isOwn}}" hint-placeholder-val="{{true}}">
+        <button type="button" onClick="{{openEdit}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid #3F3F46; background: transparent; color: #ECEDEE; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Editar perfil</button>
+      </sc-if>
+      <sc-if value="{{isOther}}" hint-placeholder-val="{{false}}">
+        <button type="button" onClick="{{toggleFollow}}" style="{{followStyle}}">{{followLabel}}</button>
+        <sc-if value="{{canMessage}}" hint-placeholder-val="{{false}}">
+          <button type="button" onClick="{{goMessage}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid #3F3F46; background: transparent; color: #ECEDEE; font-size: 14px; font-weight: 600; cursor: pointer;">Mensagem</button>
+        </sc-if>
+      </sc-if>
+  </div>
+
+  <sc-if value="{{showRoomCard}}" hint-placeholder-val="{{true}}">
+  <button type="button" onClick="{{roomAct}}" aria-label="{{roomAria}}" style="width: calc(100% - 32px); margin: 10px 16px 0; padding: 8px 12px 8px 8px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: #18181B; color: #ECEDEE; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; font-family: inherit;">
+    <span style="width: 92px; height: 72px; border-radius: 11px; background: #0E0E12; overflow: hidden; flex: none; display: flex; align-items: center; justify-content: center;"><img src="{{roomImg}}" alt="" width="87" height="76" style="width: 87px; height: 76px; image-rendering: pixelated; display: block;"></span>
+    <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 3px;">
+      <span style="max-width: 100%; font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{roomTitle}}</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #A1A1AA; white-space: nowrap;">
+        <sc-if value="{{roomPrivate}}" hint-placeholder-val="{{false}}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none;"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if>
+        <sc-if value="{{roomOpenFlag}}" hint-placeholder-val="{{true}}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none;"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></sc-if>
+        {{roomPrivacy}}
+      </span>
+      <span style="max-width: 100%; font-size: 12px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{roomMeta}}</span>
+    </span>
+    <span style="width: 36px; height: 36px; border-radius: 10px; background: {{roomCtaBg}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span>
+  </button>
+  </sc-if>
 
   <sc-if value="{{showRepStrip}}" hint-placeholder-val="{{true}}">
   <button type="button" onClick="{{openRep}}" aria-label="Ver o resumo da reputação" style="width: calc(100% - 32px); margin: 14px 16px 0; padding: 0; border: none; background: transparent; color: inherit; font-family: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 8px;">
@@ -729,16 +750,6 @@
     <sc-if value="{{shCustom}}" hint-placeholder-val="{{false}}">
       <div style="font-size: 12.5px; line-height: 1.5; color: #A1A1AA;">Escolha o que aparece na aba Perfil e em que ordem. Segure o ícone de pontos e arraste para mudar a posição. O que ficar desligado continua nas outras abas.</div>
       <div>
-        <div class="ed-label">Sob o seu nome</div>
-        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; padding: 0 14px; background: #212124; border-radius: 12px;">
-          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
-            <div style="font-size: 13.5px; font-weight: 600;">Reputação</div>
-            <div style="font-size: 11.5px; color: #71717A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Os 4 percentuais, sempre no topo</div>
-          </div>
-          <button type="button" role="switch" aria-checked="{{repSwitch.checked}}" aria-label="Reputação" onClick="{{repSwitch.toggle}}" style="{{repSwitch.track}}"><span style="{{repSwitch.knob}}"></span></button>
-        </div>
-      </div>
-      <div>
         <div class="ed-label">Seções da aba Perfil</div>
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <sc-for list="{{orderRows}}" as="r" hint-placeholder-count="6">
@@ -1015,7 +1026,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"person":{"editor":null},"following":{"editor":null},"toggleFollow":{"editor":null},"showActions":{"editor":null},"back":{"editor":null},"message":{"editor":null},"rate":{"editor":null},"pass":{"editor":null},"like":{"editor":null},"navigate":{"editor":null},"openGame":{"editor":null},"avatarUri":{"editor":null},"handle":{"editor":null},"location":{"editor":null},"showLocation":{"editor":null},"saveLocation":{"editor":null},"openSettings":{"editor":null},"initialName":{"editor":null},"initialBio":{"editor":null},"saveProfile":{"editor":null},"avatars":{"editor":null},"openAvatar":{"editor":null},"lists":{"editor":null},"createList":{"editor":null},"deleteList":{"editor":null},"myReviews":{"editor":null},"cfg":{"editor":null},"publishReview":{"editor":null},"deleteReview":{"editor":null},"saveCfg":{"editor":null},"$preview":{"width":390,"height":776}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#006FEE","options":["#006FEE","#9353D3","#17C964","#F5A524"],"section":"Tema"},"person":{"editor":null},"following":{"editor":null},"toggleFollow":{"editor":null},"showActions":{"editor":null},"back":{"editor":null},"message":{"editor":null},"rate":{"editor":null},"pass":{"editor":null},"like":{"editor":null},"navigate":{"editor":null},"openGame":{"editor":null},"avatarUri":{"editor":null},"handle":{"editor":null},"location":{"editor":null},"showLocation":{"editor":null},"saveLocation":{"editor":null},"openSettings":{"editor":null},"initialName":{"editor":null},"initialBio":{"editor":null},"saveProfile":{"editor":null},"avatars":{"editor":null},"openAvatar":{"editor":null},"openRoom":{"editor":null},"repEnabled":{"editor":null},"visitRoom":{"editor":null},"roomInfo":{"editor":null},"lists":{"editor":null},"createList":{"editor":null},"deleteList":{"editor":null},"myReviews":{"editor":null},"cfg":{"editor":null},"publishReview":{"editor":null},"deleteReview":{"editor":null},"saveCfg":{"editor":null},"$preview":{"width":390,"height":776}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -1162,6 +1173,44 @@ class Component extends DCLogic {
     else if (key === 'rep') this.setState({ repOpen: false });
     else if (key === 'sh') this.closeSheet();
   };
+
+  roomCatalog() {
+    return {
+      '@rafabtt': { img: './assets/df5877ce5e72eecb6ada3112c1afcc6a.png', occ: 2, priv: 'aberto', name: 'Toca do Coop' },
+      '@lari.dados': { img: './assets/d4b9eb2ce8c3d5ba12a23bf17f2a6958.png', occ: 1, priv: 'aberto', name: 'Fliperama da Lari' },
+      '@yaz.codes': { img: './assets/47ec7af340c55dcce1b0d0d1cc5f47af.png', occ: 3, priv: 'aberto', name: 'Jardim do Dev' },
+      '@cadu.plays': { img: './assets/093206ab7d8410d5e5d799557694e9a3.png', occ: 1, priv: 'privado', name: 'Cantinho da Camila' },
+      '@theov': { img: './assets/5cd65dd4e8415a41fb2220bd86d36064.png', occ: 4, priv: 'aberto', name: 'Taverna do Théo' },
+      '@sofi.alm': { img: './assets/a195385523e5de667c9c391f1f2e6a77.png', occ: 1, priv: 'aberto', name: 'Estúdio da Sofia' }
+    };
+  }
+  roomCard(person, accent) {
+    if (!person) {
+      const ri = this.props.roomInfo || {};
+      const priv = ri.privacy === 'privado';
+      return { roomMeta: priv ? 'só entra com aprovação' : 'amigos podem visitar', roomImg: ri.preview || './assets/ec3a916396bc86bf20a9871bbd4b1526.png', roomTitle: ri.name || 'Meu quarto', roomSub: priv ? 'Só entra quem você aprovar' : 'Aberto para amigos visitarem',
+        roomShowOcc: false, roomOcc: '', roomPrivate: priv, roomOpenFlag: !priv, roomPrivacy: priv ? 'Privado' : 'Aberto',
+        roomCta: 'Entrar', roomCtaBg: accent, roomAria: 'Entrar no meu quarto' };
+    }
+    const first = String(person.name || '').split(' ')[0];
+    const r = this.roomCatalog()[person.handle] || { img: './assets/37ffcfe271b5fddb93992223b6a5e69d.png', occ: 1, priv: 'privado', name: 'Quarto de ' + first };
+    const priv = r.priv === 'privado';
+    const asked = !!(this.state.roomAsked || {})[person.handle];
+    return { roomMeta: priv ? (asked ? 'pedido enviado' : 'toque pra pedir entrada') : (r.occ === 1 ? '1 pessoa agora' : r.occ + ' pessoas agora'), roomImg: r.img, roomTitle: r.name, roomSub: (r.name.indexOf('Quarto de') === 0 ? '' : 'Quarto de ' + first + ' · ') + (r.occ === 1 ? '1 pessoa agora' : r.occ + ' pessoas agora'),
+      roomShowOcc: true, roomOcc: r.occ + '/6', roomPrivate: priv, roomOpenFlag: !priv, roomPrivacy: priv ? 'Privado' : 'Aberto',
+      roomCta: priv ? (asked ? 'Pedido enviado' : 'Pedir pra entrar') : 'Visitar', roomCtaBg: priv && asked ? '#3F3F46' : accent,
+      roomAria: priv ? 'Pedir pra entrar no quarto de ' + first : 'Visitar o quarto de ' + first };
+  }
+  roomAction(person) {
+    if (!person) { if (this.props.openRoom) this.props.openRoom(); return; }
+    const first = String(person.name || '').split(' ')[0];
+    const r = this.roomCatalog()[person.handle];
+    if (r && r.priv !== 'privado') { if (this.props.visitRoom) this.props.visitRoom(person.handle); return; }
+    if ((this.state.roomAsked || {})[person.handle]) return;
+    this.setState((prev) => ({ roomAsked: Object.assign({}, prev.roomAsked, { [person.handle]: true }) }));
+    this.flash('Pedido enviado para ' + first);
+    if (r) setTimeout(() => { this.flash(first + ' aceitou seu pedido'); setTimeout(() => { if (this.props.visitRoom) this.props.visitRoom(person.handle); }, 900); }, 2200);
+  }
 
   flash(msg) {
     this.setState({ toast: msg });
@@ -1348,7 +1397,7 @@ class Component extends DCLogic {
 
   artFor(title, idx) {
     const id = this.coverId(title);
-    if (id) return { bg: '#16161A', img: 'url(/_blob/' + id + ')' };
+    if (id) return { bg: '#16161A', img: 'url(./covers/' + id + '.jpg)' };
     return this.art(idx);
   }
 
@@ -1580,12 +1629,13 @@ class Component extends DCLogic {
     let banner = { bg: '#14181F', img: 'linear-gradient(118deg, #22303F 0 44%, rgba(0,0,0,0) 44%), radial-gradient(circle at 78% 26%, #C8622F 0 9%, rgba(0,0,0,0) 9%)' };
     let avatar = { bg: '#000', body: '#000', light: '#000' };
     const infoChips = [];
+    let relTag = null;
     let commonChips = [];
     if (isOther) {
       banner = { bg: person.bg, img: 'linear-gradient(118deg, rgba(255,255,255,0.07) 0 44%, rgba(0,0,0,0) 44%), radial-gradient(circle at 78% 26%, ' + person.body + ' 0 9%, rgba(0,0,0,0) 9%)' };
       avatar = { bg: person.bg, body: person.body, light: person.light };
-      if (person.friend) infoChips.push({ label: 'Amigos', bg: 'rgba(0,111,238,0.16)', color: '#8FC7FF', hasDot: false, hasPin: false });
-      else if (person.followsYou && !following) infoChips.push({ label: 'Segue você', bg: '#27272A', color: '#D4D4D8', hasDot: false, hasPin: false });
+      if (person.friend) relTag = { label: 'Amigos', bg: 'rgba(0,111,238,0.16)', color: '#8FC7FF' };
+      else if (person.followsYou && !following) relTag = { label: 'Segue você', bg: '#27272A', color: '#D4D4D8' };
       if (person.pct !== undefined) infoChips.push({ label: person.pct + '% de afinidade', bg: 'rgba(224,68,123,0.16)', color: '#F38CB0', hasDot: false, hasPin: false });
       infoChips.push({ label: person.city, bg: '#27272A', color: '#D4D4D8', hasDot: false, hasPin: true });
       infoChips.push({ label: person.since, bg: '#27272A', color: '#D4D4D8', hasDot: false, hasPin: false });
@@ -1639,7 +1689,7 @@ class Component extends DCLogic {
     const show = isOther ? { fav: true, playing: true, shelfD: true, shelfA: true, listas: false, rep: true, dep: true } : cfg.show;
     const thumb = (g, analog) => 'aspect-ratio: ' + (analog ? '1 / 1' : '3 / 4') + '; border-radius: 8px; background-color: ' + g.bg + '; background-image: ' + g.img + '; background-size: cover; background-position: center; box-shadow: ' + (analog ? 'inset 0px 0px 0px 5px rgba(0,0,0,0.28), inset 0px 0px 0px 6px rgba(255,255,255,0.09)' : 'inset 0px 0px 0px 1px rgba(255,255,255,0.08)') + ';';
     const withThumb = (list, analog) => (list || []).map((g) => Object.assign({}, g, { thumb: thumb(g, analog) }));
-    const homeFavs = withThumb((data.digital.favorites || []).filter((g) => g.on !== false), false).concat(withThumb((data.analog.favorites || []).filter((g) => g.on !== false), true));
+    const homeFavs = withThumb((data.digital.favorites || []).filter((g) => g.on !== false), false).concat(withThumb((data.analog.favorites || []).filter((g) => g.on !== false), false));
     const playingList = (data.digital.playing || []).slice(0, 3);
     const homeShelfD = withThumb((data.digital.shelf || []).slice(0, 4), false);
     const homeShelfA = withThumb((data.analog.shelf || []).slice(0, 4), true);
@@ -1787,7 +1837,7 @@ class Component extends DCLogic {
       secAvaliacoes: sec === 'avaliacoes',
       secListas: sec === 'listas',
       secReputacao: sec === 'reputacao',
-      showRepStrip: !!show.rep,
+      showRepStrip: isOther ? !!show.rep : this.props.repEnabled !== false,
       dnStart: this.dnStart,
       dnMove: this.dnMove,
       dnEnd: this.dnEnd,
@@ -1813,6 +1863,8 @@ class Component extends DCLogic {
       openFavs: () => this.openSheet('favs'),
       openPlaying: () => this.openSheet('playing'),
       openDiaryNew: () => this.openDiary(null),
+      relTag: relTag || { label: '', bg: 'transparent', color: '#fff' },
+      hasRelTag: !!relTag,
       homeFavs: homeFavs,
       homeFavsVisible: !!show.fav && (homeFavs.length > 0 || !isOther),
       homeFavsEmpty: homeFavs.length === 0,
@@ -1907,6 +1959,9 @@ class Component extends DCLogic {
       avatarEditLabel: this.props.avatarUri ? 'Editar avatar' : 'Criar avatar',
       avatarEditText: this.props.avatarUri ? 'Editar' : 'Criar',
       openAvatar: () => { if (this.props.openAvatar) this.props.openAvatar(); },
+      showRoomCard: !isOther || !!person,
+      roomAct: () => this.roomAction(person),
+      ...this.roomCard(person, accent),
       banner: banner,
       avatar: avatar,
       infoChips: infoChips,
@@ -1957,7 +2012,7 @@ class Component extends DCLogic {
       draftBio: draft.bio,
       onDraftNome: (e) => this.setDraft({ nome: e.target.value }),
       onDraftBio: (e) => this.setDraft({ bio: e.target.value }),
-      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (this.state.toast ? '0' : '-140%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 40; white-space: nowrap;',
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (this.state.toast ? '0' : '-140%') + '); transition: transform .25s ease, opacity .25s ease; pointer-events: none; opacity: ' + (this.state.toast ? '1' : '0') + '; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 40; white-space: nowrap;',
       toastText: this.state.toast,
       cfOpen: !!this.state.confirm,
       cfTitle: this.state.confirm ? this.state.confirm.title : '',

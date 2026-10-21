@@ -186,7 +186,7 @@ class Component extends DCLogic {
 
   taken() { return ['admin', 'circulo', 'suporte', 'marina', 'yaz.codes', 'rafabtt', 'cadu.plays', 'diegom', 'sofi.alm', 'theov', 'lari.dados', 'pedrosalg', 'biarabelo']; }
   acc() { return Object.assign({ username: 'carolguimaraes', email: 'carol@exemplo.com', pendingEmail: '', passInfo: 'Alterada há 3 meses' }, this.props.account || {}); }
-  cfg() { return Object.assign({ publicProfile: true, inMatch: true, notifMsg: true, notifForum: true, notifFollow: true }, this.props.settings || {}); }
+  cfg() { return Object.assign({ showRep: true, inMatch: true, notifMsg: true, notifRoom: true, notifMatch: true, notifRating: true, notifForum: true, notifFollow: true }, this.props.settings || {}); }
 
   flash(text) { this.setState({ toast: text }); setTimeout(() => this.setState({ toast: '' }), 2200); }
 
@@ -321,13 +321,16 @@ class Component extends DCLogic {
         { label: 'Senha', value: '••••••••••', hasNote: false, note: a.passInfo, onOpen: () => this.open('pass') }
       ].map((r) => Object.assign({}, r, { value: r.label === 'Senha' ? '••••••••••  ·  ' + a.passInfo : r.value })),
       privacyRows: [
-        toggleRow('publicProfile', 'Perfil público', 'Qualquer pessoa pode ver seu perfil, avaliações e listas. Desligado, só amigos veem.'),
+        toggleRow('showRep', 'Reputação no perfil', 'Mostra suas notas dadas por quem jogou com você. Desligada, a reputação some do seu perfil e ninguém pode te avaliar.'),
         toggleRow('inMatch', 'Aparecer no Duo', 'Outras pessoas podem encontrar você ao explorar perfis.')
       ],
       notifRows: [
         toggleRow('notifMsg', 'Mensagens', 'Avisar quando amigos ou duos escreverem para você.'),
+        toggleRow('notifRoom', 'Convites e pedidos do quarto', 'Avisar quando te convidarem para um quarto ou pedirem para entrar no seu.'),
+        toggleRow('notifMatch', 'Matches e squads', 'Avisar quando der match com alguém ou abrir vaga em um squad.'),
+        toggleRow('notifRating', 'Avaliações e curtidas', 'Avisar quando avaliarem seu perfil ou curtirem suas avaliações.'),
         toggleRow('notifForum', 'Respostas nos fóruns', 'Avisar quando responderem aos seus tópicos e comentários.'),
-        toggleRow('notifFollow', 'Seguidores e novos Duos', 'Avisar sobre novos seguidores e novos Duos.')
+        toggleRow('notifFollow', 'Novos seguidores', 'Avisar quando alguém começar a seguir você.')
       ],
       askLogout: () => this.open('logout'),
       askDelete: () => this.open('delete'),
@@ -354,7 +357,7 @@ class Component extends DCLogic {
       confirmLabel: confirmLabel,
       confirmStyle: 'flex: 1.4; height: 48px; border: none; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: ' + (enabled ? 'pointer' : 'default') + '; background: ' + (enabled ? (danger ? '#F31260' : accent) : '#27272A') + '; color: ' + (enabled ? '#FFFFFF' : '#71717A') + ';',
 
-      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
+      toastStyle: 'position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(' + (s.toast ? '0' : '-160%') + '); transition: transform .25s ease, opacity .25s ease; pointer-events: none; opacity: ' + (s.toast ? '1' : '0') + '; background: #28282C; border: 1px solid rgba(255,255,255,0.16); color: #ECEDEE; font-size: 12.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; z-index: 60; white-space: nowrap;',
       toastText: s.toast
     };
   }

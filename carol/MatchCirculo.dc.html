@@ -35,7 +35,7 @@
   .title{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0;letter-spacing:-0.02em;}
   .top-actions{display:flex;gap:8px;}
   .icon-btn{position:relative;width:40px;height:40px;border-radius:12px;border:1px solid var(--border);background:var(--card2);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);cursor:pointer;padding:0;flex:none;}
-  .icon-btn .badge{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--rose);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);}
+  .icon-btn .badge{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#F31260;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);}
   .summary-pill{margin:12px 16px 0;flex:none;display:flex;align-items:center;gap:9px;width:calc(100% - 32px);padding:11px 12px;border-radius:14px;background:var(--card);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;text-align:left;}
   .summary-pill .sp-text{flex:1;min-width:0;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .summary-pill .sp-count{font-size:12px;font-weight:800;color:#8FC7FF;white-space:nowrap;}
@@ -107,6 +107,13 @@
   .mode-switch button.on{background:var(--accent);color:#fff;}
   .count-line{flex:none;padding:10px 18px 0;font-size:12.5px;font-weight:600;color:var(--text-muted);}
   .p-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin:0 0 8px;}
+  .dt-box{position:relative;height:56px;border-radius:18px;border:1px solid var(--border);background:var(--card2);display:flex;align-items:center;}
+  .dt-box input{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;border:none;background:transparent;color:var(--text-bright);font-family:var(--font-body);font-size:15px;font-weight:600;padding:0 38px 0 46px;outline:none;-webkit-appearance:none;appearance:none;text-align:left;color-scheme:dark;border-radius:18px;}
+  .dt-box input::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
+  .dt-box:focus-within{border-color:rgba(51,142,247,.6);}
+  .dt-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-secondary);display:flex;}
+  .dt-chev{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);display:flex;}
+  .dt-lab{display:block;font-size:12.5px;font-weight:600;color:var(--text-muted);margin:0 0 8px 2px;}
   .sq-field{width:100%;height:46px;border-radius:12px;border:1px solid var(--border);background:var(--card2);color:var(--text-bright);font-family:var(--font-body);font-size:14px;padding:0 14px;outline:none;}
   .sq-tools{flex:none;padding:12px 16px 0;display:flex;flex-direction:column;gap:10px;}
   .sq-search{position:relative;}
@@ -258,8 +265,8 @@
   .rr-level{margin-left:auto;font-size:11.5px;font-weight:700;white-space:nowrap;}
   .rr-icons{display:flex;gap:10px;}
   .rr-btn{flex:1;height:48px;border-radius:12px;border:1px solid var(--border);background:var(--card2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
-  .toast{position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(-160%);background:var(--card3);border:1px solid var(--border-strong);color:var(--text-bright);font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:999px;z-index:60;transition:transform .25s ease;max-width:340px;text-align:center;}
-  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast{position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(-160%);background:var(--card3);border:1px solid var(--border-strong);color:var(--text-bright);font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:999px;z-index:60;transition:transform .25s ease,opacity .25s ease;opacity:0;pointer-events:none;max-width:340px;text-align:center;}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 </style>
 </helmet>
 
@@ -550,10 +557,23 @@
       </div>
       <div>
         <div class="p-label">Quando</div>
-        <div class="chip-row">
-          <sc-for list="{{sd.whenChips}}" as="c" hint-placeholder-count="4">
-            <button type="button" class="{{c.cls}}" onClick="{{c.onClick}}">{{c.label}}</button>
-          </sc-for>
+        <div style="display: flex; gap: 12px;">
+          <div style="flex: 1.25; min-width: 0;">
+            <label class="dt-lab" for="sq-data">Data</label>
+            <div class="dt-box">
+              <span class="dt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="3"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13.5h.01M12 13.5h.01M16.5 13.5h.01M7.5 17h.01M12 17h.01"></path></svg></span>
+              <input id="sq-data" type="date" min="{{sd.minDate}}" value="{{sd.date}}" onInput="{{sd.onDate}}">
+              <span class="dt-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <label class="dt-lab" for="sq-hora">Horário</label>
+            <div class="dt-box">
+              <span class="dt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+              <input id="sq-hora" type="time" value="{{sd.time}}" onInput="{{sd.onTime}}">
+              <span class="dt-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span>
+            </div>
+          </div>
         </div>
       </div>
       <div>
@@ -563,8 +583,19 @@
             <button type="button" class="{{o.cls}}" onClick="{{o.onClick}}">{{o.label}}</button>
           </sc-for>
         </div>
+        <sc-if value="{{sd.isOnline}}" hint-placeholder-val="{{true}}">
+          <div class="p-label" style="margin-top: 14px;">Em qual plataforma?</div>
+          <div class="chip-row">
+            <sc-for list="{{sd.platChips}}" as="c" hint-placeholder-count="5">
+              <button type="button" class="{{c.cls}}" aria-pressed="{{c.pressed}}" onClick="{{c.onClick}}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>{{c.label}}
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
         <sc-if value="{{sd.isPresencial}}" hint-placeholder-val="{{false}}">
-          <input class="sq-field" aria-label="Local" maxlength="40" placeholder="Bairro ou local" value="{{sd.local}}" onInput="{{sd.onLocal}}" style="margin-top: 10px;">
+          <label class="p-label" for="sq-local" style="display: block; margin-top: 14px;">Local <span style="text-transform: none; letter-spacing: 0; font-weight: 500;">(opcional)</span></label>
+          <input id="sq-local" class="sq-field" maxlength="40" placeholder="Bairro, ludoteca ou casa de alguém" value="{{sd.local}}" onInput="{{sd.onLocal}}">
         </sc-if>
       </div>
       <div>
@@ -751,7 +782,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"prefs":{"editor":null},"savePrefs":{"editor":null},"ratings":{"editor":null},"follows":{"editor":null},"toggleFollow":{"editor":null},"openRate":{"editor":null},"openChat":{"editor":null},"avatars":{"editor":null},"openInbox":{"editor":null},"onMatch":{"editor":null},"unread":{"editor":null},"prefsOpen":{"editor":null},"onSquadJoin":{"editor":null},"onSquadLeave":{"editor":null},"openSquadChat":{"editor":null},"notify":{"editor":null},"setPrefsOpen":{"editor":null},"$preview":{"width":390,"height":776}}'>
+<script type="text/x-dc" data-dc-script data-props='{"squadOnly":{"editor":null},"onPickDuo":{"editor":null},"prefs":{"editor":null},"savePrefs":{"editor":null},"ratings":{"editor":null},"follows":{"editor":null},"toggleFollow":{"editor":null},"openRate":{"editor":null},"openChat":{"editor":null},"avatars":{"editor":null},"openInbox":{"editor":null},"onMatch":{"editor":null},"unread":{"editor":null},"prefsOpen":{"editor":null},"onSquadJoin":{"editor":null},"onSquadLeave":{"editor":null},"openSquadChat":{"editor":null},"notify":{"editor":null},"setPrefsOpen":{"editor":null},"$preview":{"width":390,"height":776}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -846,7 +877,7 @@ class Component extends DCLogic {
   }
   coverStyleFor(game) {
     const id = this.coverId(game);
-    return id ? { style: 'background-color: #16161A; background-image: url(/_blob/' + id + ');', initial: '' } : { style: 'background-color: #26262B;', initial: game ? game.charAt(0).toUpperCase() : '' };
+    return id ? { style: 'background-color: #16161A; background-image: url(./covers/' + id + '.jpg);', initial: '' } : { style: 'background-color: #26262B;', initial: game ? game.charAt(0).toUpperCase() : '' };
   }
   normS(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
 
@@ -939,7 +970,7 @@ class Component extends DCLogic {
     }
   };
 
-  pickDuo = () => this.setState({ mode: 'duo' });
+  pickDuo = () => { if (this.props.onPickDuo) this.props.onPickDuo(); else this.setState({ mode: 'duo' }); };
   pickSquad = () => this.setState({ mode: 'squad' });
   openDetail = (id) => this.setState({ detailId: id });
   closeDetail = () => this.setState({ detailId: null });
@@ -1036,15 +1067,41 @@ class Component extends DCLogic {
     this.setState((p) => ({ squads: p.squads.filter((s) => s.id !== id), detailId: null }));
     this.flashToast('Squad apagado.');
   };
-  openCreate = () => this.setState({ createOpen: true, createView: 'form', pickQ: '', sqDraft: { game: '', name: '', when: 'Hoje · 21h', where: 'online', local: '', total: 4, desc: '' } });
+  pad2(n) { return (n < 10 ? '0' : '') + n; }
+  nowDraft() {
+    const d = new Date();
+    return { date: d.getFullYear() + '-' + this.pad2(d.getMonth() + 1) + '-' + this.pad2(d.getDate()), time: this.pad2(d.getHours()) + ':' + this.pad2(d.getMinutes()) };
+  }
+  whenLabel(date, time) {
+    if (!date) return 'A combinar';
+    const p = date.split('-').map(Number);
+    const dt = new Date(p[0], p[1] - 1, p[2]);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const diff = Math.round((dt.getTime() - today.getTime()) / 86400000);
+    const wd = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'][dt.getDay()];
+    const day = diff === 0 ? 'Hoje' : (diff === 1 ? 'Amanhã' : wd + ' ' + this.pad2(p[2]) + '/' + this.pad2(p[1]));
+    if (!time) return day;
+    const tm = time.split(':').map(Number);
+    return day + ' · ' + tm[0] + 'h' + (tm[1] ? this.pad2(tm[1]) : '');
+  }
+  platInfo() {
+    return [
+      ['pc', 'PC', 'M3 5h18v11H3zM8 20h8M12 16v4'],
+      ['playstation', 'PlayStation', 'M12 3.4l2.7 4.4H9.3zM19 9.6a2.4 2.4 0 1 0 0 4.8a2.4 2.4 0 1 0 0-4.8zM10 17l4 4M14 17l-4 4M2.6 9.6h4.8v4.8H2.6z'],
+      ['xbox', 'Xbox', 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 8.5l7 7M15.5 8.5l-7 7'],
+      ['switch', 'Nintendo Switch', 'M8 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h2zM16 3h2a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-2zM6 8h.01M18 16h.01'],
+      ['mobile', 'Mobile', 'M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM11 18h2']
+    ];
+  }
+  openCreate = () => this.setState({ createOpen: true, createView: 'form', pickQ: '', sqDraft: Object.assign({ game: '', name: '', where: 'online', platform: 'pc', local: '', total: 3, desc: '' }, this.nowDraft()) });
   closeCreate = () => this.setState({ createOpen: false });
   setSq = (patch) => this.setState((p) => ({ sqDraft: Object.assign({}, p.sqDraft, patch) }));
   createSquad = () => {
     const d = this.state.sqDraft;
     if (!d || !d.game) return;
     const squad = {
-      id: 'sq' + Date.now(), name: (d.name || '').trim() || 'Squad de ' + d.game, game: d.game, when: d.when,
-      where: d.where === 'online' ? 'Online · Discord' : 'Presencial · ' + ((d.local || '').trim() || 'perto de você'),
+      id: 'sq' + Date.now(), name: (d.name || '').trim() || 'Squad de ' + d.game, game: d.game, when: this.whenLabel(d.date, d.time),
+      where: d.where === 'online' ? 'Online · ' + (this.platInfo().filter((x) => x[0] === d.platform)[0] || ['', 'PC'])[1] : 'Presencial · ' + ((d.local || '').trim() || 'perto de você'),
       total: d.total, members: ['@marina.rolls'], host: '@marina.rolls', desc: (d.desc || '').trim(), mine: true
     };
     if (this.props.onSquadJoin) this.props.onSquadJoin(this.squadInfo(squad));
@@ -1157,7 +1214,7 @@ class Component extends DCLogic {
       .concat(common.filter((g) => wants.indexOf(g) < 0).map((g) => ({ g: g, tag: 'Em comum', color: '#8FC7FF', heart: false })));
     const attackRows = rows.slice(0, 3).map((x) => {
       const id = this.coverId(x.g);
-      return { title: x.g, tag: x.tag, tagColor: x.color, hasHeart: x.heart, bg: id ? '#16161A' : '#26262B', img: id ? 'url(/_blob/' + id + ')' : 'none', initial: id ? '' : x.g.charAt(0).toUpperCase() };
+      return { title: x.g, tag: x.tag, tagColor: x.color, hasHeart: x.heart, bg: id ? '#16161A' : '#26262B', img: id ? 'url(./covers/' + id + '.jpg)' : 'none', initial: id ? '' : x.g.charAt(0).toUpperCase() };
     });
     const rep = p.rep || { n: 0, carry: 0, chill: 0, rage: 0, again: 0 };
     const repBoxes = [['Carry', 'carry', '#F5A524', '#2A2412'], ['Chill', 'chill', '#22D3EE', '#10303A'], ['Rage', 'rage', '#FF6259', '#3A1512'], ['De novo', 'again', '#F38CB0', '#3A1526']].map((d) => ({ label: d[0], color: d[2], bg: d[3], pct: Math.round(((rep[d[1]] || 0) / 3) * 100) }));
@@ -1176,7 +1233,7 @@ class Component extends DCLogic {
     const mk = (g) => {
       const id = this.coverId(g);
       const heart = !!hearts && hearts.indexOf(g) >= 0;
-      return id ? { bg: '#16161A', img: 'url(/_blob/' + id + ')', moreText: '', label: g, hasHeart: heart } : { bg: '#26262B', img: 'none', moreText: g.charAt(0).toUpperCase(), label: g, hasHeart: heart };
+      return id ? { bg: '#16161A', img: 'url(./covers/' + id + '.jpg)', moreText: '', label: g, hasHeart: heart } : { bg: '#26262B', img: 'none', moreText: g.charAt(0).toUpperCase(), label: g, hasHeart: heart };
     };
     if (list.length <= 4) return list.map(mk);
     return list.slice(0, 3).map(mk).concat([{ bg: '#212124', img: 'none', moreText: '+' + (list.length - 3), label: 'e mais', hasHeart: false }]);
@@ -1420,17 +1477,20 @@ class Component extends DCLogic {
         ctaLabel: cta.label, ctaStyle: cta.style, cta: cta.run
       };
     }
-    const sdRaw = this.state.sqDraft || { game: '', name: '', when: 'Hoje · 21h', where: 'online', local: '', total: 4, desc: '' };
+    const sdRaw = this.state.sqDraft || Object.assign({ game: '', name: '', where: 'online', platform: 'pc', local: '', total: 3, desc: '' }, this.nowDraft());
     const sdCv = sdRaw.game ? this.coverStyleFor(sdRaw.game) : { style: '', initial: '' };
     const valid = !!sdRaw.game;
     const sd = {
       hasGame: !!sdRaw.game, coverStyle: sdCv.style, initial: sdCv.initial,
       gameLabel: sdRaw.game || 'Escolher jogo', gameColor: sdRaw.game ? '#ECEDEE' : '#71717A', changeLabel: sdRaw.game ? 'Trocar' : 'Escolher',
       name: sdRaw.name, namePlaceholder: 'Squad de ' + (sdRaw.game || 'jogo'), onName: (e) => this.setSq({ name: e.target.value }),
-      whenChips: ['Hoje · 21h', 'Amanhã · 20h', 'Sábado · 15h', 'A combinar'].map((label) => ({ label: label, cls: 'filter-chip' + (sdRaw.when === label ? ' on' : ''), onClick: () => this.setSq({ when: label }) })),
+      minDate: this.nowDraft().date, date: sdRaw.date, time: sdRaw.time,
+      onDate: (e) => this.setSq({ date: e.target.value }), onTime: (e) => this.setSq({ time: e.target.value }),
+      isOnline: sdRaw.where === 'online',
+      platChips: this.platInfo().map((x) => ({ label: x[1], icon: x[2], pressed: sdRaw.platform === x[0] ? 'true' : 'false', cls: 'filter-chip' + (sdRaw.platform === x[0] ? ' on' : ''), onClick: () => this.setSq({ platform: x[0] }) })),
       whereOpts: [['online', 'Online'], ['presencial', 'Presencial']].map((o) => ({ label: o[1], cls: 'seg-btn' + (sdRaw.where === o[0] ? ' on' : ''), onClick: () => this.setSq({ where: o[0] }) })),
       isPresencial: sdRaw.where === 'presencial', local: sdRaw.local, onLocal: (e) => this.setSq({ local: e.target.value }),
-      total: sdRaw.total, dec: () => this.setSq({ total: Math.max(2, sdRaw.total - 1) }), inc: () => this.setSq({ total: Math.min(8, sdRaw.total + 1) }),
+      total: sdRaw.total, dec: () => this.setSq({ total: Math.max(3, sdRaw.total - 1) }), inc: () => this.setSq({ total: Math.min(15, sdRaw.total + 1) }),
       desc: sdRaw.desc, onDesc: (e) => this.setSq({ desc: e.target.value }),
       ctaStyle: 'width: 100%; ' + (valid ? 'background: #006FEE; color: #FFFFFF;' : 'background: #27272A; color: #71717A;')
     };
@@ -1442,7 +1502,7 @@ class Component extends DCLogic {
       const kind = this.kindOfGame(t);
       return { title: t, coverStyle: cv.style, initial: cv.initial, kindLabel: kind === 'analogico' ? 'Analógico' : 'Digital', kindStyle: this.kindStyle(kind), pick: () => this.choosePickGame(t) };
     });
-    const mode = this.state.mode;
+    const mode = this.props.squadOnly ? 'squad' : this.state.mode;
     const screenDiscover = this.state.screen === 'discover';
     return {
       showDiscover: screenDiscover && mode === 'duo',
